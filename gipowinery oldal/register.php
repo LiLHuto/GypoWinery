@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vezeteknev = $_POST['vezeteknev'];  // Vezetéknév
     $keresztnev = $_POST['keresztnev'];  // Keresztnév
     $email = $_POST['email'];            // E-mail
-    $telefon = $_POST['telefon'];        // Telefonszám
+    $telefon = $_POST['telefonszam'];        // Telefonszám
     $jelszo = $_POST['jelszo'];          // Jelszó
 
     // Jelszó titkosítása
