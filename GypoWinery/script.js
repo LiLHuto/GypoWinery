@@ -113,4 +113,31 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
+    const questions = [
+        {
+            text: "Hol alakult meg a GypoWinery?",
+            options: ["Csévharaszti régió", "Tokaji régió", "Villány", "Eger"],
+            correctAnswerIndex: 0
+        },
+        {
+            text: "Mikor ültették el a GypoWinery első szőlőültetvényét?",
+            options: ["1985", "1990", "2000", "2005"],
+            correctAnswerIndex: 1
+        },
+        {
+            text: "Milyen technológiai újítást vezetett be a GypoWinery 2005-ben?",
+            options: ["Organikus gazdálkodási módszerek", "Modern borászat-technológiai újítások", "Új szőlőültetvények elhelyezése", "Nemzetközi forgalmazás"],
+            correctAnswerIndex: 1
+        },
+        {
+            text: "Mi a GypoWinery küldetése?",
+            options: ["A világ legnépszerűbb borát készíteni", "Bemutatni a Csévharaszti terroir egyedülálló ízvilágát", "Új technológiák bevezetése a borászatban", "Csak vörösborokra koncentrálni"],
+            correctAnswerIndex: 1
+        },
+        {
+            text: "Mi a GypoWinery elköteleződése?",
+            options: ["Fenntarthatóság és a helyi közösségek támogatása", "Nemzetközi piacokra való terjeszkedés", "Csak hagyományos borászmódszerek alkalmazása", "Csak édes borok készítése"],
+            correctAnswerIndex: 0
+        }
+    ];
 });

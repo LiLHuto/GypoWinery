@@ -160,3 +160,21 @@ footer p {
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
 }
+/* Válaszlehetőségek megjelenése */
+.form-check {
+    background-color: #f8f9fa; /* Halvány szürke háttér */
+    padding: 10px;
+    border: 1px solid #ced4da; /* Vékony szegély */
+    border-radius: 5px;
+    margin-bottom: 10px; /* Távolság az opciók között */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animált hover */
+}
+
+.form-check:hover {
+    background-color: #e9ecef; /* Sötétebb szürke hover */
+}
+
+.form-check-input {
+    cursor: pointer; /* Kéz ikon az egérmutatóhoz */
+}
