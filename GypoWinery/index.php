@@ -24,7 +24,6 @@ session_start(); // Minden oldalon elindítjuk a session-t
             color: white;
             padding: 20px 0;
             text-align: center;
-            position: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -65,7 +64,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
         }
 
         section h1, section h2 {
-            color: #6c757d;
+            color: #5a2a4e;
             margin-bottom: 20px;
         }
 
