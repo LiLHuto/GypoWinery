@@ -1,42 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
     const wineList = document.getElementById("wine-list");
     const cartContent = document.getElementById("cartContent");
-    let cart = []; // Kosár tartalom
+    const cartPanel = document.getElementById("cartPanel");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    let cart = []; // Kosár tartalma
 
     // Borok betöltése az adatbázisból
     fetch("cart.php")
         .then(response => response.json())
         .then(data => {
-            data.forEach(wine => {
+            for (let i = 0; i < data.length; i++) {
+                const wine = data[i];
                 const wineCard = document.createElement("div");
                 wineCard.className = "col-12 col-sm-6 col-md-4 col-lg-4";
                 wineCard.innerHTML = `
                     <div class="card">
-                        <img src="bor.jpg" class="card-img-top" alt="${wine.nev}">
+                        <img src="bor${i + 1}.jfif" class="card-img-top" alt="${wine.nev}">
                         <div class="card-body">
                             <h5 class="card-title">${wine.nev}</h5>
                             <p class="card-text">${wine.leiras}</p>
                             <p class="text-muted">Ár: ${wine.ar} Ft</p>
                             <p>Készlet: <span id="stock-${wine.ID}">${wine.keszlet}</span></p>
-                            <button class="btn btn-primary add-to-cart" data-id="${wine.ID}">Kosárba</button>
+                            <button class="btn btn-primary add-to-cart" data-id="${wine.ID}" data-name="${wine.nev}">Kosárba</button>
                         </div>
                     </div>
                 `;
                 wineList.appendChild(wineCard);
-            });
+            }
 
             // Kosárba gombok eseménykezelői
-            const addToCartButtons = document.querySelectorAll(".add-to-cart");
-            addToCartButtons.forEach(button => {
+            document.querySelectorAll(".add-to-cart").forEach(button => {
                 button.addEventListener("click", function () {
                     const wineId = this.getAttribute("data-id");
-                    updateCart(wineId, "add");
+                    const wineName = this.getAttribute("data-name");
+                    updateCart(wineId, wineName, "add");
                 });
             });
         });
 
     // Kosár frissítése: hozzáadás vagy eltávolítás
-    function updateCart(wineId, action) {
+    function updateCart(wineId, wineName, action) {
         fetch("cart.php", {
             method: "POST",
             headers: {
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.status === "success") {
                     if (action === "add") {
-                        addToCartUI(wineId);
+                        addToCartUI(wineId, wineName);
                     } else if (action === "remove") {
                         removeFromCartUI(wineId);
                     }
@@ -75,12 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Kosár UI frissítése
-    function addToCartUI(wineId) {
+    function addToCartUI(wineId, wineName) {
         const existingItem = cart.find(item => item.id === wineId);
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
-            cart.push({ id: wineId, quantity: 1 });
+            cart.push({ id: wineId, name: wineName, quantity: 1 });
         }
         renderCart();
     }
@@ -105,39 +108,28 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             cart.forEach(item => {
                 const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
                 cartItem.innerHTML = `
-                    <p>Termék ID: ${item.id}, Mennyiség: ${item.quantity}</p>
-                    <button class="btn btn-danger btn-sm" onclick="updateCart(${item.id}, 'remove')">Eltávolítás</button>
+                    <p>${item.name}, Mennyiség: ${item.quantity}</p>
+                    <button class="btn btn-danger btn-sm remove-from-cart" data-id="${item.id}" data-name="${item.name}">Eltávolítás</button>
                 `;
                 cartContent.appendChild(cartItem);
             });
+
+            // Eltávolítás gombok eseménykezelői
+            document.querySelectorAll(".remove-from-cart").forEach(button => {
+                button.addEventListener("click", function () {
+                    const wineId = this.getAttribute("data-id");
+                    const wineName = this.getAttribute("data-name");
+                    updateCart(wineId, wineName, "remove");
+                });
+            });
         }
+        cartPanel.style.display = "block"; // Kosár panel megjelenítése
     }
-    const questions = [
-        {
-            text: "Hol alakult meg a GypoWinery?",
-            options: ["Csévharaszti régió", "Tokaji régió", "Villány", "Eger"],
-            correctAnswerIndex: 0
-        },
-        {
-            text: "Mikor ültették el a GypoWinery első szőlőültetvényét?",
-            options: ["1985", "1990", "2000", "2005"],
-            correctAnswerIndex: 1
-        },
-        {
-            text: "Milyen technológiai újítást vezetett be a GypoWinery 2005-ben?",
-            options: ["Organikus gazdálkodási módszerek", "Modern borászat-technológiai újítások", "Új szőlőültetvények elhelyezése", "Nemzetközi forgalmazás"],
-            correctAnswerIndex: 1
-        },
-        {
-            text: "Mi a GypoWinery küldetése?",
-            options: ["A világ legnépszerűbb borát készíteni", "Bemutatni a Csévharaszti terroir egyedülálló ízvilágát", "Új technológiák bevezetése a borászatban", "Csak vörösborokra koncentrálni"],
-            correctAnswerIndex: 1
-        },
-        {
-            text: "Mi a GypoWinery elköteleződése?",
-            options: ["Fenntarthatóság és a helyi közösségek támogatása", "Nemzetközi piacokra való terjeszkedés", "Csak hagyományos borászmódszerek alkalmazása", "Csak édes borok készítése"],
-            correctAnswerIndex: 0
-        }
-    ];
+
+    // Kosár panel bezárása
+    closeCartBtn.addEventListener("click", function () {
+        cartPanel.style.display = "none";
+    });
 });
