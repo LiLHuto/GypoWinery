@@ -1,4 +1,4 @@
-// Kérdések definiálása
+// Kvíz kérdések
 const questions = [
     { 
         text: "Hol alakult meg a GypoWinery?",
@@ -66,14 +66,30 @@ const questions = [
 let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
+let userHasTakenQuiz = false; // Ellenőrizzük, hogy a felhasználó már kitöltötte-e a kvízt
 
 // HTML elemek
 const questionContainer = document.getElementById("question-container");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
 
-// Játék inicializálása
-function startQuiz() {
+// Kvíz indítása
+async function startQuiz() {
+    console.log("Kvíz indítása...");
+    
+    // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
+    const loggedIn = await isLoggedIn();
+    if (!loggedIn) {
+        alert("Csak bejelentkezett felhasználók tölthetik ki a kvízt.");
+        return;
+    }
+
+    // Ellenőrizzük a localStorage-ban, hogy a felhasználó már kitöltötte-e a kvízt
+    if (localStorage.getItem('quizCompleted') === 'true') {
+        alert("Már kitöltötted a kvízt!");
+        return;
+    }
+
     // Kérdések randomizálása
     shuffledQuestions = [...questions].sort(() => Math.random() - 0.5).slice(0, 5);
     currentQuestionIndex = 0;
@@ -112,7 +128,7 @@ function handleAnswer(selectedIndex) {
 }
 
 // Eredmény megjelenítése
-function showResult() {
+async function showResult() {
     questionText.textContent = `Kvíz vége! Eredményed: ${score}/${shuffledQuestions.length}`;
     optionsContainer.innerHTML = "";
 
@@ -138,7 +154,66 @@ function showResult() {
     retryButton.classList.add("btn", "btn-success");
     retryButton.onclick = startQuiz;
     optionsContainer.appendChild(retryButton);
+
+    // Mentés a localStorage-ba, hogy a felhasználó már kitöltötte a kvízt
+    localStorage.setItem('quizCompleted', 'true');
+
+    // Mentés a backendre, hogy a felhasználó kitöltötte a kvízt
+    const userId = await getUserIdFromSession(); // Felhasználói ID lekérése session-ból
+    if (userId !== null) {
+        try {
+            console.log("Felhasználói ID:", userId);
+            const response = await fetch('saveQuizCompletion.php', {
+                method: 'POST',
+                body: JSON.stringify({ user_id: userId, quiz_completed: 1, score: score }), // JSON formátumban küldjük az adatokat
+                headers: {
+                    'Content-Type': 'application/json' // Az adat típusa JSON
+                }
+            });
+
+            const responseData = await response.json();
+            console.log('Backend válasz:', responseData); // Debugging
+            if (responseData.status === 'success') {
+                console.log('Kvíz eredmény mentve a backendre');
+            } else {
+                console.error('Hiba történt a mentés során:', responseData.message);
+            }
+        } catch (error) {
+            console.error('Hiba a kvíz eredményének mentésekor:', error);
+        }
+    }
 }
 
-// Játék indítása
+// Felhasználói ID lekérése session-ból
+async function getUserIdFromSession() {
+    try {
+        const response = await fetch('get_user_id.php', { method: 'GET' });
+        if (!response.ok) {
+            throw new Error('Hiba történt a kéréssel');
+        }
+        const data = await response.json();
+        console.log('Felhasználói ID adat:', data); // Debugging
+        return data.user_id || null; // Ha nincs ID, null-t adunk vissza
+    } catch (error) {
+        console.error('Hiba a felhasználói ID lekérésekor:', error);
+        return null;
+    }
+}
+
+// Ellenőrizzük, hogy be van-e jelentkezve a felhasználó
+async function isLoggedIn() {
+    try {
+        const response = await fetch('get_user_id.php', { method: 'GET' });
+        if (!response.ok) {
+            throw new Error('Hiba történt a kéréssel');
+        }
+        const data = await response.json();
+        console.log('Bejelentkezett felhasználó:', data); // Debugging
+        return data.user_id !== null; // Ha user_id null, akkor nincs bejelentkezve
+    } catch (error) {
+        console.error('Hiba a bejelentkezési állapot ellenőrzésekor:', error);
+        return false; // Ha hiba történt, ne engedjük a kvíz kitöltését
+    }
+}
+
 startQuiz();

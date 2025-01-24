@@ -1,16 +1,26 @@
 <?php
-session_start(); // Minden oldalon elindítjuk a session-t
+session_start();
+
+// Bejelentkezés ellenőrzése
+if (!isset($_SESSION['user_id'])) {
+    // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
+    header('Location: login.html');
+    exit(); // Ne folytassa az oldal betöltését
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypo Winery</title>
+    <title>Gypo Winery - Kvíz</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <script defer src="kviz.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -24,6 +34,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
             color: white;
             padding: 20px 0;
             text-align: center;
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -64,7 +75,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
         }
 
         section h1, section h2 {
-            color: #5a2a4e;
+            color: #6c757d;
             margin-bottom: 20px;
         }
 
@@ -113,7 +124,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
     </style>
 </head>
 <body>
-    <header class="text-center py-3">
+<header class="text-center py-3">
         <img src="gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
@@ -148,48 +159,15 @@ session_start(); // Minden oldalon elindítjuk a session-t
         </nav>
     </header>
 
-    <main class="container my-5">
-        <!-- Első szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Gypo Winery – A Borok Művészete</h1>
-                <h2>Üdvözöljük a Gypo Winery-nél!</h2>
-                <p>Fedezze fel a kiváló minőségű boraink világát, ahol a hagyomány és a modern technológia találkozik! Borkészítésünk során a természet adta legjobb alapanyagokat használjuk, hogy minden palackunkban a terroir és a szenvedély esszenciáját örökítsük meg.</p>
-                <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
-            </div>
-            <div class="col-md-6">
-                <img src="borozo.jfif" alt="Borkóstoló" class="img-fluid rounded">
-            </div>
-        </section>
+    <section id="question-container" class="container mt-5">
+        <h2 id="question-text" class="mb-4"></h2>
+        <div id="options-container" class="d-flex flex-column"></div>
+    </section>
 
-        <!-- Második szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6 order-md-2">
-                <h1>Látogatások és Kóstolók</h1>
-                <p>Fedezze fel borászatunkat személyesen! Csoportos és egyéni kóstolóink során lehetősége van megismerkedni a borkészítés folyamatával, valamint megkóstolni a legújabb borainkat. Foglaljon időpontot most!</p>
-            </div>
-            <div class="col-md-6 order-md-1">
-                <img src="borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
-            </div>
-        </section>
-
-        <!-- Harmadik szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Hírek és Események</h1>
-                <p>Tartsa velünk a lépést! Friss hírek, események és különleges ajánlatok várják Önt. Ne hagyja ki a jövőbeli borfesztiválokat és workshopokat!</p>
-            </div>
-            <div class="col-md-6">
-                <img src="istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
-            </div>
-        </section>
-    </main>
-
-    <footer class="text-center py-3">
+    <footer class="mt-5">
         <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
-
     <!-- Kosár panel -->
     <div id="cartPanel" class="cart-panel" style="display:none;">
         <div class="cart-header">

@@ -1,13 +1,21 @@
 <?php
-session_start(); // Minden oldalon elindítjuk a session-t
+session_start();
+
+// Bejelentkezés ellenőrzése
+if (!isset($_SESSION['user_id'])) {
+    // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
+    header('Location: login.html');
+    exit(); // Ne folytassa az oldal betöltését
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypo Winery</title>
+    <title>Gypo Winery - Történet</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
@@ -64,7 +72,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
         }
 
         section h1, section h2 {
-            color: #5a2a4e;
+            color: #6c757d;
             margin-bottom: 20px;
         }
 
@@ -113,7 +121,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
     </style>
 </head>
 <body>
-    <header class="text-center py-3">
+<header class="text-center py-3">
         <img src="gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
@@ -148,48 +156,45 @@ session_start(); // Minden oldalon elindítjuk a session-t
         </nav>
     </header>
 
-    <main class="container my-5">
-        <!-- Első szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Gypo Winery – A Borok Művészete</h1>
-                <h2>Üdvözöljük a Gypo Winery-nél!</h2>
-                <p>Fedezze fel a kiváló minőségű boraink világát, ahol a hagyomány és a modern technológia találkozik! Borkészítésünk során a természet adta legjobb alapanyagokat használjuk, hogy minden palackunkban a terroir és a szenvedély esszenciáját örökítsük meg.</p>
-                <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
-            </div>
-            <div class="col-md-6">
-                <img src="borozo.jfif" alt="Borkóstoló" class="img-fluid rounded">
-            </div>
+    <main class="container">
+        <section>
+            <h2 class="section-title">A Gypo Winery története</h2>
+        </section>
+        
+        <section>
+            <h1>A Borászat Kezdetei</h1>
+            <p>A GypoWinery története a csodálatos Csévharaszti vidéken kezdődött, ahol a borászat hagyományai évszázadokra nyúlnak vissza. A családunk generációk óta foglalkozik szőlőtermesztéssel, és a szenvedélyünk a borkészítés iránt öröklődött. Az első szőlőültetvényünket 1990-ben alapítottuk, kezdetben csak kis mennyiségben készítettük borainkat, de a minőség és a helyi ízek iránti elkötelezettségünk hamarosan meghozta gyümölcsét.</p>
         </section>
 
-        <!-- Második szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6 order-md-2">
-                <h1>Látogatások és Kóstolók</h1>
-                <p>Fedezze fel borászatunkat személyesen! Csoportos és egyéni kóstolóink során lehetősége van megismerkedni a borkészítés folyamatával, valamint megkóstolni a legújabb borainkat. Foglaljon időpontot most!</p>
-            </div>
-            <div class="col-md-6 order-md-1">
-                <img src="borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
-            </div>
+        <section>
+            <h1>A Borászat Fejlődése</h1>
+            <p>Az évek során a GypoWinery folyamatosan fejlődött. 2005-ben modern borkészítő technológiákkal bővítettük üzemünket, ami lehetővé tette számunkra, hogy még finomabb és változatosabb borokat készítsünk. A hagyományos módszerek mellett a legújabb tudományos megközelítéseket is alkalmazzuk, hogy a lehető legjobb minőséget érjük el.</p>
         </section>
 
-        <!-- Harmadik szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Hírek és Események</h1>
-                <p>Tartsa velünk a lépést! Friss hírek, események és különleges ajánlatok várják Önt. Ne hagyja ki a jövőbeli borfesztiválokat és workshopokat!</p>
-            </div>
-            <div class="col-md-6">
-                <img src="istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
-            </div>
+        <section>
+            <h1>Küldetésünk</h1>
+            <p>Célunk, hogy bemutassuk a Csévharaszti terroir egyedülálló ízvilágát. Minden palack borunkban a szőlő, a föld és a helyi környezet szelleme tükröződik. Hiszünk abban, hogy a borkészítés művészet, ahol minden egyes üveg egy történetet mesél el.</p>
         </section>
+
+        <section>
+            <h1>Közösség és Fenntarthatóság</h1>
+            <p>A GypoWinery elkötelezett a fenntarthatóság mellett. Szőlőinket természetbarát módszerekkel gondozzuk, és figyelmet fordítunk a helyi közösség támogatására is. Rendszeresen részt veszünk helyi rendezvényeken, és együttműködünk más borászokkal, hogy népszerűsítsük a Csévharaszti borászatot.</p>
+        </section>
+
+        <section>
+            <h1>Jövőnk</h1>
+            <p>A jövőnk fényes, és szeretnénk továbbra is a borászat iránti szenvedélyünket megosztani Önökkel. Tervezünk új borfajták bevezetését és borászatunk bővítését, hogy a lehető legjobb élményt nyújthassuk a látogatóknak.</p>
+        </section>
+
+        <div class="call-to-action">
+            <p>Fedezze fel a GypoWinery-t, és legyen részese a boraink történetének! Kóstolja meg a szenvedélyünket és hagyományainkat minden egyes palackban!</p>
+            <a href="boraink.html" class="btn btn-primary">Ismerje meg borainkat</a>
+        </div>
     </main>
 
-    <footer class="text-center py-3">
-        <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
+    <footer>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
-
     <!-- Kosár panel -->
     <div id="cartPanel" class="cart-panel" style="display:none;">
         <div class="cart-header">
