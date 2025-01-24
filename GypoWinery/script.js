@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartContent = document.getElementById("cartContent");
     const cartPanel = document.getElementById("cartPanel");
     const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartButton = document.getElementById("cartButton"); // Kosár gomb
+
     let cart = []; // Kosár tartalma
 
     // Borok betöltése az adatbázisból
@@ -131,5 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Kosár panel bezárása
     closeCartBtn.addEventListener("click", function () {
         cartPanel.style.display = "none";
+    });
+
+    // Kosár panel megjelenítése kosár gombra kattintáskor
+    cartButton.addEventListener("click", function () {
+        cartPanel.style.display = "block"; // Kosár panel megjelenítése
     });
 });

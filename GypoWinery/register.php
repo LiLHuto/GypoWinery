@@ -1,4 +1,5 @@
 <?php
+
 // Kapcsolódás az adatbázishoz
 $servername = "localhost";  // Vagy a megfelelő host, pl. 127.0.0.1
 $username = "root";         // A megfelelő felhasználónév
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vezeteknev = $_POST['vezeteknev'];  // Vezetéknév
     $keresztnev = $_POST['keresztnev'];  // Keresztnév
     $email = $_POST['email'];            // E-mail
-    $telefon = $_POST['telefonszam'];        // Telefonszám
+    $telefon = $_POST['telefonszam'];    // Telefonszám
     $jelszo = $_POST['jelszo'];          // Jelszó
 
     // Jelszó titkosítása
@@ -30,11 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Lekérdezés futtatása és eredmény kezelése
     if ($conn->query($sql) === TRUE) {
-        echo "Sikeres regisztráció!";
+        // Sikeres regisztráció után átirányítás a login.html oldalra
+        header("Location: login.html");
+        exit();
     } else {
         echo "Hiba történt: " . $conn->error;
     }
 }
 
 $conn->close();
-?>
