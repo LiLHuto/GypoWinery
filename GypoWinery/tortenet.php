@@ -122,7 +122,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
 <header class="text-center py-3">
-        <img src="gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
             <ul class="nav justify-content-center">
@@ -137,7 +137,7 @@ if (!isset($_SESSION['user_id'])) {
                 <!-- User menu -->
                 <div class="user-menu mt-3">
                     <button id="userIcon" class="user-icon" onclick="toggleMenu()">
-                        <img src="user-icon.png" alt="Felhasználó ikon" class="icon">
+                        <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
                         <a href="#" id="cartButton">Kosár</a>
@@ -168,7 +168,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p>A GypoWinery története a csodálatos Csévharaszti vidéken kezdődött, ahol a borászat hagyományai évszázadokra nyúlnak vissza. A családunk generációk óta foglalkozik szőlőtermesztéssel, és a szenvedélyünk a borkészítés iránt öröklődött. Az első szőlőültetvényünket 1990-ben alapítottuk, kezdetben csak kis mennyiségben készítettük borainkat, de a minőség és a helyi ízek iránti elkötelezettségünk hamarosan meghozta gyümölcsét.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="borkezdete 1.jpg" alt="A borászat kezdetei" class="img-fluid rounded shadow">
+                    <img src="kepek/borkezdete 1.jpg" alt="A borászat kezdetei" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -180,7 +180,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p>Az évek során a GypoWinery folyamatosan fejlődött. 2005-ben modern borkészítő technológiákkal bővítettük üzemünket, ami lehetővé tette számunkra, hogy még finomabb és változatosabb borokat készítsünk. A hagyományos módszerek mellett a legújabb tudományos megközelítéseket is alkalmazzuk, hogy a lehető legjobb minőséget érjük el.</p>
                 </div>
                 <div class="col-md-6 order-md-1">
-                    <img src="borokfejlodes 1.jpeg" alt="A borászat fejlődése" class="img-fluid rounded shadow">
+                    <img src="kepek/borokfejlodes 1.jpeg" alt="A borászat fejlődése" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -189,7 +189,7 @@ if (!isset($_SESSION['user_id'])) {
             <h1 class="h3 fw-bold">Küldetésünk</h1>
             <div class="text-center">
                 <p>Célunk, hogy bemutassuk a Csévharaszti terroir egyedülálló ízvilágát. Minden palack borunkban a szőlő, a föld és a helyi környezet szelleme tükröződik. Hiszünk abban, hogy a borkészítés művészet, ahol minden egyes üveg egy történetet mesél el.</p>
-                <img src="borkuldetes 1.jpg" alt="Küldetésünk" class="img-fluid rounded shadow">
+                <img src="kepek/borkuldetes 1.jpg" alt="Küldetésünk" class="img-fluid rounded shadow">
             </div>
         </section>
 
@@ -200,7 +200,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p>A GypoWinery elkötelezett a fenntarthatóság mellett. Szőlőinket természetbarát módszerekkel gondozzuk, és figyelmet fordítunk a helyi közösség támogatására is. Rendszeresen részt veszünk helyi rendezvényeken, és együttműködünk más borászokkal, hogy népszerűsítsük a Csévharaszti borászatot.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="borkozosseg 1.jpg" alt="Közösség és Fenntarthatóság" class="img-fluid rounded shadow">
+                    <img src="kepek/borkozosseg 1.jpg" alt="Közösség és Fenntarthatóság" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -209,7 +209,7 @@ if (!isset($_SESSION['user_id'])) {
             <h1 class="h3 fw-bold">Jövőnk</h1>
             <div class="text-center">
                 <p>A jövőnk fényes, és szeretnénk továbbra is a borászat iránti szenvedélyünket megosztani Önökkel. Tervezünk új borfajták bevezetését és borászatunk bővítését, hogy a lehető legjobb élményt nyújthassuk a látogatóknak.</p>
-                <img src="borfejlodes.jpeg" alt="Jövőnk" class="img-fluid rounded shadow">
+                <img src="kepek/borfejlodes.jpeg" alt="Jövőnk" class="img-fluid rounded shadow">
             </div>
         </section>
 

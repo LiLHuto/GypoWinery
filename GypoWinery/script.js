@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 wineCard.className = "col-12 col-sm-6 col-md-4 col-lg-4";
                 wineCard.innerHTML = `
                     <div class="card">
-                        <img src="bor${i + 1}.jfif" class="card-img-top" alt="${wine.nev}">
+                        <img src="kepek/bor${i + 1}.jfif" class="card-img-top" alt="${wine.nev}">
                         <div class="card-body">
                             <h5 class="card-title">${wine.nev}</h5>
                             <p class="card-text">${wine.leiras}</p>

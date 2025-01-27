@@ -125,7 +125,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
 <header class="text-center py-3">
-        <img src="gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
             <ul class="nav justify-content-center">
@@ -140,7 +140,7 @@ if (!isset($_SESSION['user_id'])) {
                 <!-- User menu -->
                 <div class="user-menu mt-3">
                     <button id="userIcon" class="user-icon" onclick="toggleMenu()">
-                        <img src="user-icon.png" alt="Felhasználó ikon" class="icon">
+                        <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
                         <a href="#" id="cartButton">Kosár</a>

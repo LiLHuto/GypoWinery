@@ -114,7 +114,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
 </head>
 <body>
     <header class="text-center py-3">
-        <img src="gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
             <ul class="nav justify-content-center">
@@ -129,7 +129,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                 <!-- User menu -->
                 <div class="user-menu mt-3">
                     <button id="userIcon" class="user-icon" onclick="toggleMenu()">
-                        <img src="user-icon.png" alt="Felhasználó ikon" class="icon">
+                        <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
                         <a href="#" id="cartButton">Kosár</a>
@@ -158,7 +158,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                 <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
             </div>
             <div class="col-md-6">
-                <img src="borozo.jfif" alt="Borkóstoló" class="img-fluid rounded">
+                <img src="kepek/borozo.jfif" alt="Borkóstoló" class="img-fluid rounded">
             </div>
         </section>
 
@@ -169,7 +169,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                 <p>Fedezze fel borászatunkat személyesen! Csoportos és egyéni kóstolóink során lehetősége van megismerkedni a borkészítés folyamatával, valamint megkóstolni a legújabb borainkat. Foglaljon időpontot most!</p>
             </div>
             <div class="col-md-6 order-md-1">
-                <img src="borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
+                <img src="kepek/borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
             </div>
         </section>
 
@@ -180,7 +180,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                 <p>Tartsa velünk a lépést! Friss hírek, események és különleges ajánlatok várják Önt. Ne hagyja ki a jövőbeli borfesztiválokat és workshopokat!</p>
             </div>
             <div class="col-md-6">
-                <img src="istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
+                <img src="kepek/istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
             </div>
         </section>
     </main>
