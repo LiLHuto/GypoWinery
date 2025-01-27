@@ -215,7 +215,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="text-center py-4 bg-light rounded shadow">
             <p class="fs-5">Fedezze fel a GypoWinery-t, és legyen részese a boraink történetének! Kóstolja meg a szenvedélyünket és hagyományainkat minden egyes palackban!</p>
-            <a href="boraink.html" class="btn btn-primary btn-lg">Ismerje meg borainkat</a>
+            <a href="boraink.php" class="btn btn-primary btn-lg">Ismerje meg borainkat</a>
         </div>
     </main>
     <footer>
