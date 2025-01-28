@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
             color: white;
             padding: 20px 0;
             text-align: center;
-            position: sticky;
+            position: relative;
             top: 0;
             z-index: 1000;
         }
