@@ -1,5 +1,12 @@
 <?php
-include 'config.php';
+session_start();
+
+// Bejelentkezés ellenőrzése
+if (!isset($_SESSION['user_id'])) {
+    // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
+    header('Location: login.html');
+    exit(); // Ne folytassa az oldal betöltését
+}
 ?>
 
 
@@ -27,7 +34,7 @@ include 'config.php';
             color: white;
             padding: 20px 0;
             text-align: center;
-            position: relative;
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -136,8 +143,7 @@ include 'config.php';
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                    <a href="#" id="cartButton">Kosár</a>
-                        <a href="rendeles.php">Rendeles</a>
+                        <a href="#" id="cartButton">Kosár</a>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
