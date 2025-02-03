@@ -1,5 +1,22 @@
 <?php
+session_start();
 include 'config.php';
+
+// Kosár adatainak lekérdezése
+$user_id = $_SESSION['user_id']; // Feltételezve, hogy a felhasználó be van jelentkezve
+
+$stmt = $pdo->prepare("SELECT c.quantity, b.nev, b.ar FROM cart c JOIN borok b ON c.bor_id = b.ID WHERE c.user_id = :user_id");
+$stmt->execute(['user_id' => $user_id]);
+$cart_items = $stmt->fetchAll();
+
+if ($cart_items) {
+    echo "A kosárban lévő termékek:<br>";
+    foreach ($cart_items as $item) {
+        echo "Termék: " . $item['nev'] . ", Ár: " . $item['ar'] . " Ft, Mennyiség: " . $item['quantity'] . "<br>";
+    }
+} else {
+    echo "A kosár üres.";
+}
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -131,7 +148,8 @@ include 'config.php';
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="rendelesek.php" id="cartButton">Kosár</a>
+                        <a href="#" id="cartButton">Kosár</a>
+                        <a href="rendeles.php">Rendeles</a>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>

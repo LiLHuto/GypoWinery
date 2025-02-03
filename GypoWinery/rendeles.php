@@ -1,6 +1,18 @@
 <?php
 include 'config.php';
 
+
+$stmt = $pdo->prepare("SELECT c.quantity, b.nev, b.ar FROM cart c JOIN borok b ON c.bor_id = b.ID WHERE c.user_id = :user_id");
+$cart_items = $stmt->fetchAll();
+
+if ($cart_items) {
+    echo "A kosárban lévő termékek:<br>";
+    foreach ($cart_items as $item) {
+        echo "Termék: " . $item['nev'] . ", Ár: " . $item['ar'] . " Ft, Mennyiség: " . $item['quantity'] . "<br>";
+    }
+} else {
+    echo "A kosár üres.";
+}
 ?>
 <!DOCTYPE html>
 <html lang="hu">

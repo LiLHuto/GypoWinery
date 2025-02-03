@@ -8,8 +8,3 @@ if (!isset($_SESSION['user_id'])) {
     exit(); // Ne folytassa az oldal betöltését
 }
 
-// Ha a kosár még nincs inicializálva, hozzuk létre
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
-?>

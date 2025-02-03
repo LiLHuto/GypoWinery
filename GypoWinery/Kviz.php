@@ -136,7 +136,8 @@ include 'config.php';
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="rendelesek.php" id="cartButton">Kosár</a>
+                    <a href="#" id="cartButton">Kosár</a>
+                        <a href="rendeles.php">Rendeles</a>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
