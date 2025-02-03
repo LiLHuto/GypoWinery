@@ -1,5 +1,5 @@
 <?php
-session_start(); // Minden oldalon elindítjuk a session-t
+include 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -132,7 +132,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="#" id="cartButton">Kosár</a>
+                        <a href="rendelesek.php" id="cartButton">Kosár</a>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
