@@ -146,6 +146,15 @@ ALTER TABLE `rendeles`
   ADD CONSTRAINT `rendeles_ibfk_2` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`);
 COMMIT;
 
+CREATE TABLE `cart` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,  -- A felhasználó ID-ja
+    `bor_id` INT NOT NULL,   -- A bor ID-ja (a `borok` táblából)
+    `quantity` INT NOT NULL, -- A mennyiség
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- A kosárba való hozzáadás időpontja
+    FOREIGN KEY (`user_id`) REFERENCES `login` (`ID`),  -- Kapcsolat a `login` táblához
+    FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`)    -- Kapcsolat a `borok` táblához
+);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
