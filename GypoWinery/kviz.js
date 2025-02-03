@@ -24,41 +24,6 @@ const questions = [
         text: "Mi a GypoWinery elköteleződése?",
         options: ["Fenntarthatóság és a helyi közösségek támogatása", "Nemzetközi piacokra való terjeszkedés", "Csak hagyományos borászmódszerek alkalmazása", "Csak édes borok készítése"],
         correct: 0
-    },
-    { 
-        text: "Milyen jövőbeli tervei vannak a GypoWinerynek?",
-        options: ["Új helyszínek nyitása világszerte", "Új borfajták bevezetése és a borászat bővítése", "Csak vörösborokra koncentrálni", "Borok kizárólagos online értékesítése"],
-        correct: 1
-    },
-    { 
-        text: "Melyik vörösborunk illik legjobban steakhez vagy grillezett húsokhoz?",
-        options: ["Csévharaszti Kékfrankos", "Csévharaszti Cabernet Sauvignon", "Csévharaszti Rosé", "Csévharaszti Olaszrizling"],
-        correct: 0
-    },
-    { 
-        text: "Milyen hőmérsékleten kell tálalni a GypoWinery Csévharaszti Zöld Veltelinit?",
-        options: ["8-10°C", "10-12°C", "16-18°C", "18-20°C"],
-        correct: 1
-    },
-    { 
-        text: "Melyik borunkban található eper és cseresznye ízvilág, és tökéletes a nyári fogásokhoz?",
-        options: ["Csévharaszti Cabernet Sauvignon", "Csévharaszti Rosé", "Csévharaszti Olaszrizling", "Csévharaszti Kékfrankos"],
-        correct: 1
-    },
-    { 
-        text: "Mi az ideális hőmérséklet a Csévharaszti Jégbor tálalásához?",
-        options: ["6-8°C", "8-10°C", "16-18°C", "18-20°C"],
-        correct: 0
-    },
-    { 
-        text: "Melyik idézet fejezi ki a bor élvezetének fontosságát?",
-        options: [
-            "A legjobb módja, hogy élvezd egy pohár bort, ha megosztod egy barátoddal.",
-            "Az élet túl rövid ahhoz, hogy rossz bort igyunk.",
-            "A bor folyamatos bizonyítéka annak, hogy Isten szeret minket.",
-            "A bor minden étkezést alkalmassá tesz."
-        ],
-        correct: 1
     }
 ];
 
@@ -66,13 +31,11 @@ const questions = [
 let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-let userHasTakenQuiz = false; // Ellenőrizzük, hogy a felhasználó már kitöltötte-e a kvízt
 
 // HTML elemek
 const questionContainer = document.getElementById("question-container");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
-
 // Kvíz indítása
 async function startQuiz() {
     console.log("Kvíz indítása...");
@@ -104,7 +67,6 @@ function showQuestion() {
         questionText.textContent = currentQuestion.text;
         optionsContainer.innerHTML = "";
 
-        // Opciók hozzáadása
         currentQuestion.options.forEach((option, index) => {
             const button = document.createElement("button");
             button.textContent = option;
@@ -127,52 +89,83 @@ function handleAnswer(selectedIndex) {
     showQuestion();
 }
 
-// Eredmény megjelenítése
+// Eredmény megjelenítése és kupon igénylése
 async function showResult() {
     questionText.textContent = `Kvíz vége! Eredményed: ${score}/${shuffledQuestions.length}`;
     optionsContainer.innerHTML = "";
 
     let resultMessage = "";
 
-    // Üzenet a válaszok alapján
     if (score === 5) {
         resultMessage = "Gratulálunk! Nyertél egy ingyenes borkóstolást!";
     } else if (score >= 2 && score <= 4) {
         resultMessage = "Gratulálunk! Nyertél 10%-os kedvezményt a következő vásárlásodhoz!";
+        await fetchCoupon(); // Kupon igénylése
     } else {
         resultMessage = "Köszönjük, hogy játszottál!";
     }
+  // Eredmény megjelenítése
+  const resultText = document.createElement("p");
+  resultText.textContent = resultMessage;
+  optionsContainer.appendChild(resultText);
 
-    // Eredmény megjelenítése
-    const resultText = document.createElement("p");
-    resultText.textContent = resultMessage;
-    optionsContainer.appendChild(resultText);
+  // Újrapróbálás gomb
+  const retryButton = document.createElement("button");
+  retryButton.textContent = "Újrapróbálom";
+  retryButton.classList.add("btn", "btn-success");
+  retryButton.onclick = startQuiz;
+  optionsContainer.appendChild(retryButton);
 
-    // Újrapróbálás gomb
-    const retryButton = document.createElement("button");
-    retryButton.textContent = "Újrapróbálom";
-    retryButton.classList.add("btn", "btn-success");
-    retryButton.onclick = startQuiz;
-    optionsContainer.appendChild(retryButton);
+  // Mentés a localStorage-ba, hogy a felhasználó már kitöltötte a kvízt
+  localStorage.setItem('quizCompleted', 'true');
 
-    // Mentés a localStorage-ba, hogy a felhasználó már kitöltötte a kvízt
-    localStorage.setItem('quizCompleted', 'true');
+    // Mentés a backendre
+    await saveQuizResult();
+}
 
-    // Mentés a backendre, hogy a felhasználó kitöltötte a kvízt
-    const userId = await getUserIdFromSession(); // Felhasználói ID lekérése session-ból
+// Kupon lekérése a szerverről
+async function fetchCoupon() {
+    try {
+        const response = await fetch('get_coupon.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const text = await response.text(); // Először sima szövegként beolvassuk
+        console.log("Szerver válasza:", text); // Debugging
+
+        try {
+            const data = JSON.parse(text); // Megpróbáljuk JSON-né alakítani
+            if (data.status === "success") {
+                const couponText = document.createElement("p");
+                couponText.textContent = `Nyertél egy kupont! Kód: ${data.coupon}`;
+                optionsContainer.appendChild(couponText);
+            } else {
+                console.error('Hiba történt:', data.message);
+            }
+        } catch (jsonError) {
+            console.error("Hibás JSON válasz:", text); // Ha nem JSON, kiírjuk
+        }
+
+    } catch (error) {
+        console.error('Hiba a kupon lekérésekor:', error);
+    }
+}
+
+// Mentés a backendre, hogy a felhasználó kitöltötte a kvízt
+async function saveQuizResult() {
+    const userId = await getUserIdFromSession();
     if (userId !== null) {
         try {
             console.log("Felhasználói ID:", userId);
             const response = await fetch('saveQuizCompletion.php', {
                 method: 'POST',
-                body: JSON.stringify({ user_id: userId, quiz_completed: 1, score: score }), // JSON formátumban küldjük az adatokat
-                headers: {
-                    'Content-Type': 'application/json' // Az adat típusa JSON
-                }
+                body: JSON.stringify({ user_id: userId, quiz_completed: 1, score: score }),
+                headers: { 'Content-Type': 'application/json' }
             });
 
             const responseData = await response.json();
-            console.log('Backend válasz:', responseData); // Debugging
+            console.log('Backend válasz:', responseData);
             if (responseData.status === 'success') {
                 console.log('Kvíz eredmény mentve a backendre');
             } else {
@@ -192,8 +185,8 @@ async function getUserIdFromSession() {
             throw new Error('Hiba történt a kéréssel');
         }
         const data = await response.json();
-        console.log('Felhasználói ID adat:', data); // Debugging
-        return data.user_id || null; // Ha nincs ID, null-t adunk vissza
+        console.log('Felhasználói ID adat:', data);
+        return data.user_id || null;
     } catch (error) {
         console.error('Hiba a felhasználói ID lekérésekor:', error);
         return null;
@@ -208,11 +201,11 @@ async function isLoggedIn() {
             throw new Error('Hiba történt a kéréssel');
         }
         const data = await response.json();
-        console.log('Bejelentkezett felhasználó:', data); // Debugging
-        return data.user_id !== null; // Ha user_id null, akkor nincs bejelentkezve
+        console.log('Bejelentkezett felhasználó:', data);
+        return data.user_id !== null;
     } catch (error) {
         console.error('Hiba a bejelentkezési állapot ellenőrzésekor:', error);
-        return false; // Ha hiba történt, ne engedjük a kvíz kitöltését
+        return false;
     }
 }
 
