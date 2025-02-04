@@ -72,7 +72,6 @@ if (isset($_POST['add_to_cart'])) {
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="#" id="cartButton">Kosár</a>
                         <a href="rendeles.php">Rendeles</a>                       
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
