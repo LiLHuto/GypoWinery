@@ -44,3 +44,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+?>
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <title>GypoWinery Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="signup">
+      <form action="login.php" method="POST">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" name="email" placeholder="Email" required="">
+        <input type="password" name="jelszo" placeholder="Password" required="">
+        <div class="button-container">
+            <button type="submit">Login</button> 
+           
+        </div>
+        <p>Nincs még fiókód? <a href="register.php">Regisztrálj!</a></p>
+    </form>
+    </div>
+  </div>
+</body>
+
+</html>
+

@@ -136,12 +136,13 @@ include('config.php');
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
-            <?php else: ?>
+                <?php else: ?>
                 <!-- Login/Register links - only visible if not logged in -->
                 <div class="login-links mt-3">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item"><a href="login.html">Bejelentkezés</a></li>
-                        <li class="nav-item"><a href="regisztracio.html">Regisztráció</a></li>
+                        <li class="nav-item"><a href="login.php">Bejelentkezés</a></li>
+                        
+                        <li class="nav-item"><a href="register.php">Regisztráció</a></li>
                     </ul>
                 </div>
             <?php endif; ?>

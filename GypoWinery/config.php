@@ -21,7 +21,7 @@ try {
 // Bejelentkezés ellenőrzése
 if (!isset($_SESSION['user_id'])) {
     // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
-    header('Location: login.html');
+    header('Location: login.php');
     exit(); // Ne folytassa az oldal betöltését
 }
 ?>
