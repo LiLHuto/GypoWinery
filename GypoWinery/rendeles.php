@@ -28,6 +28,21 @@ if (!$cart_items) {
     exit();
 }
 
+// Kosár frissítése
+if (isset($_POST['update_cart'])) {
+    $cart_id = $_POST['cart_id'];
+    $new_quantity = $_POST['quantity'];
+
+    // Mennyiség frissítése
+    $update_query = "UPDATE cart SET quantity = :quantity WHERE ID = :cart_id";
+    $update_stmt = $pdo->prepare($update_query);
+    $update_stmt->execute(['quantity' => $new_quantity, 'cart_id' => $cart_id]);
+
+    // Frissítjük az oldalt
+    header('Location: rendeles.php'); // Oldal frissítése
+    exit();
+}
+
 // Kosár törlés
 if (isset($_POST['remove_item'])) {
     $cart_id = $_POST['cart_id'];
@@ -47,22 +62,8 @@ if (isset($_POST['remove_item'])) {
     header('Location: rendeles.php'); // Törlés után frissítjük az oldalt
     exit();
 }
-
-// Kosár frissítése
-if (isset($_POST['update_cart'])) {
-    $cart_id = $_POST['cart_id'];
-    $new_quantity = $_POST['quantity'];
-
-    // Mennyiség frissítése
-    $update_query = "UPDATE cart SET quantity = :quantity WHERE ID = :cart_id";
-    $update_stmt = $pdo->prepare($update_query);
-    $update_stmt->execute(['quantity' => $new_quantity, 'cart_id' => $cart_id]);
-
-    // Frissítjük az oldalt
-    header('Location: rendeles.php'); // Oldal frissítése
-    exit();
-}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
