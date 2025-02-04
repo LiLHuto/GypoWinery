@@ -1,5 +1,5 @@
 <?php
-session_start(); // Minden oldalon elindítjuk a session-t
+include('config.php');
 ?>
 
 <!DOCTYPE html>
