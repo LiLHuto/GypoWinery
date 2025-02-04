@@ -140,7 +140,7 @@ include('config.php');
                 <div class="login-links mt-3">
                     <ul class="nav justify-content-center">
                         <li class="nav-item"><a href="login.html">Bejelentkezés</a></li>
-                        <li class = "nav-item"><a href="rendeles.php"></a></li>
+                        <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
                         <li class="nav-item"><a href="regisztracio.html">Regisztráció</a></li>
                     </ul>
                 </div>

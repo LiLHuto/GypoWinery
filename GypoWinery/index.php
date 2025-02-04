@@ -133,7 +133,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
                         <a href="#" id="cartButton">Kosár</a>
-                        <li class = "nav-item"><a href="rendeles.php"></a></li>
+                        <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
