@@ -38,7 +38,7 @@ if (isset($_POST['place_order'])) {
     $delete_cart_stmt->execute(['user_id' => $user_id]);
 
     // Törlés után visszairányítás a rendelés oldalra
-    header('Location: rendeles.php');
+    header('Location: rendelesvege.php');
     exit();
 }
 ?>
