@@ -1,12 +1,5 @@
 <?php
-session_start();
-
-// Bejelentkezés ellenőrzése
-if (!isset($_SESSION['user_id'])) {
-    // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkező oldalra
-    header('Location: login.html');
-    exit(); // Ne folytassa az oldal betöltését
-}
+include('config.php');
 ?>
 
 

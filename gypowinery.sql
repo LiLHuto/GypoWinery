@@ -76,6 +76,15 @@ CREATE TABLE `rendeles` (
   `rendeles_datum` date NOT NULL DEFAULT curdate()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+CREATE TABLE rendeles_tetelek (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    rendeles_id INT,
+    bor_id INT,
+    quantity INT,
+    FOREIGN KEY (rendeles_id) REFERENCES rendelesek(ID),
+    FOREIGN KEY (bor_id) REFERENCES borok(ID)
+);
+
 --
 -- Indexek a kiírt táblákhoz
 --
