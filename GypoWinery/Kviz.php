@@ -174,28 +174,5 @@ include('config.php');
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-
-    <!-- Kosár funkció és megjelenítés -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cartButton = document.getElementById("cartButton");
-            const cartPanel = document.getElementById("cartPanel");
-            const closeCartBtn = document.getElementById("closeCartBtn");
-
-            // Kosár panel megjelenítése
-            cartButton.addEventListener("click", function () {
-                cartPanel.style.display = "block";
-            });
-
-            // Kosár panel bezárása
-            closeCartBtn.addEventListener("click", function () {
-                cartPanel.style.display = "none";
-            });
-
-            // Kosár tartalom (itt statikus példát adok, valós adatbázisból kell lekérdezni)
-            const cartContent = document.getElementById("cartContent");
-            cartContent.innerHTML = "<p>A kosár üres.</p>";
-        });
-    </script>
 </body>
 </html>
