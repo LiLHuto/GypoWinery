@@ -1,51 +1,48 @@
 <?php
-include('index_config.php');
+session_start();
+include('config.php');
 
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $email=$_POST["email"];
-    $password=$_POST["password"];
- 
-    $sql="select * from login where email= '".$email."' AND password='".$password."' ";
-    $result=mysqli_query();
+$connection = mysqli_connect("localhost", "root", "", "gypowinery");
+if (!$connection) {
+    die("Database connection error: " . mysqli_connect_error());
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
+    $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
 
+    if (empty($email) || empty($password)) {
+        echo "Email and password fields cannot be empty.";
+        exit;
+    }
+
+    $sql = "SELECT id, jelszo, usertype FROM login WHERE email = ?";
+    $stmt = mysqli_prepare($connection, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($row = mysqli_fetch_array($result)) {
+            if (password_verify($password, $row["jelszo"])) {
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['usertype'] = $row['usertype'];
+                
+                if ($row["usertype"] == "admin") {
+                    header("Location: admin_borok.php");
+                    exit;
+                } else {
+                    header("Location: index.php");
+                    exit;
+                }
+            } else {
+                echo "Email or password incorrect";
+            }
+        } else {
+            echo "Email or password incorrect";
+        }
+    } else {
+        echo "Query preparation failed.";
+    }
+}
 ?>
-
-
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-<body>
-    <center>
-        <h1>login form</h1>
-        <br><br><br><br>
-        <div style="background-color: grey; width: 500px">
-        <br><br>
-
-
-        <form action="#" method="POST">
-        <div>
-            <label>emailadress</label>
-            <input type="text" name="email" required>
-        </div>
-        <br><br>
-
-        <div>
-            <label>password</label>
-            <input type="password" name="password" required>
-        </div>
-        <br><br>
-
-        <div>
-            <input type="submit" value="login">
-        </div>
-        </form>
-        <br><br>
-        </div>
-    </center>
-</body>
