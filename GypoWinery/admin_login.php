@@ -1,131 +1,24 @@
 <?php
-<<<<<<< Updated upstream
-session_start();
-include('index_config.php');
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
-    $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
-
-    if (empty($email) || empty($password)) {
-        echo "Email and password fields cannot be empty.";
-        exit;
-    }
-
-    try {
-        $sql = "SELECT ID, jelszo, usertype FROM login WHERE email = :email";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['email' => $email]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row && password_verify($password, $row["jelszo"])) {
-            $_SESSION['user_id'] = $row['ID'];
-            $_SESSION['usertype'] = $row['usertype'];
-
-            echo "Logged in as: " . htmlspecialchars($row["usertype"]);
-
-            if ($row["usertype"] === "admin") {
-                header("Location: admin_borok.php");
-                exit;
-            } else {
-                header("Location: index.php");
-                exit;
-            }
-        } else {
-            echo "Email or password incorrect";
-        }
-    } catch (PDOException $e) {
-        echo "Database error: " . $e->getMessage();
-    }
-}
-?>
-
-=======
-// Include database connection
 include('config.php');
 
-$connection = mysqli_connect("localhost", "root", "", "gypowinery");
-if (!$connection) {
-    die("Database connection error: " . mysqli_connect_error());
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $email
 }
 
-$connection = mysqli_connect("localhost", "root", "", "gypowinery");
-if (!$connection) {
-    die("Database connection error: " . mysqli_connect_error());
-}
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
-    $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
-
-    if (empty($email) || empty($password)) {
-        echo "Email and password fields cannot be empty.";
-        exit;
-    }
-
-    $sql = "SELECT id, jelszo, usertype FROM login WHERE email = ?";
-    $stmt = mysqli_prepare($connection, $sql);
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-
-        if ($row = mysqli_fetch_array($result)) {
-            if (password_verify($password, $row["jelszo"])) {
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['usertype'] = $row['usertype'];
-                
-                if ($row["usertype"] == "admin") {
-                    header("Location: admin_borok.php");
-                    exit;
-                } else {
-                    header("Location: index.php");
-                    exit;
-                }
-            } else {
-                echo "Email or password incorrect";
-            }
-        } else {
-            echo "Email or password incorrect";
-        }
-    } else {
-        echo "Query preparation failed.";
-    }
-}
 ?>
 
 
 
-
->>>>>>> Stashed changes
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Login</title>
-</head>
+<html>
+    <head>
+        <title></title>
+    </head>
 <body>
     <center>
-<<<<<<< Updated upstream
-        <h1>Admin Form</h1>
-        <div style="background-color: grey; width: 500px; padding: 20px; border-radius: 10px;">
-            <form action="#" method="POST">
-                <div>
-                    <label>Email Address</label>
-                    <input type="email" name="email" required>
-                </div>
-                <br>
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" required>
-                </div>
-                <br>
-                <div>
-                    <input type="submit" value="Login">
-                </div>
-            </form>
-=======
-        <h1>Admin login</h1>
+        <h1>login form</h1>
         <br><br><br><br>
         <div style="background-color: grey; width: 500px">
         <br><br>
@@ -135,8 +28,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
             <label>emailadress</label>
             <input type="text" name="email" required>
->>>>>>> Stashed changes
         </div>
+        <br><br>
+
+        <div>
+            <label>password</label>
+            <input type="password" name="password" required>
+        </div>
+        <br><br>
+
+        <div>
+            <input type="submit" value="login">
+        </div>
+        </form>
+        <br><br>
+    </div>
     </center>
 </body>
-</html>

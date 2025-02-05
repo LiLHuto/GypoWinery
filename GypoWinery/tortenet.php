@@ -12,6 +12,7 @@ include('config.php');
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="darkmode.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -229,6 +230,7 @@ include('config.php');
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
     <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 
 
 </body>

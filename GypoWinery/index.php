@@ -1,5 +1,5 @@
 <?php
-include('fasz.php');
+include('config.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@ include('fasz.php');
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="darkmode.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -115,6 +116,17 @@ include('fasz.php');
 <body>
     <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                </div>
+              </div>
+            </label>    
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <nav>
             <ul class="nav justify-content-center">
@@ -123,8 +135,6 @@ include('fasz.php');
                 <li class="nav-item"><a href="boraink.php">Boraink</a></li>
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
                 <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
-                <li class="nav-item"><div id="google_translate_element"></div>
-                <button onclick="translatePage()">Fordítás angolra</button></li>
             </ul>
 
             <?php if (isset($_SESSION['user_id'])): ?>
@@ -207,6 +217,8 @@ include('fasz.php');
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
     <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
+
 
 
 </body>

@@ -51,6 +51,7 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="darkmode.css">
 </head>
 <body>
     <header class="text-center py-3">
@@ -131,5 +132,6 @@ if (isset($_POST['add_to_cart'])) {
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
     <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>

@@ -70,5 +70,6 @@ if (isset($_POST['place_order'])) {
     </footer>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translate.js"></script>
 </body>
 </html>
