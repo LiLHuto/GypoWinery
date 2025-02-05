@@ -116,18 +116,46 @@ include('config.php');
 <body>
     <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
-        <label class="theme-switch">
+        <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+                <!-- Zászlók helye (ez JavaScript tölti be) -->
+                <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
         <input type="checkbox" id="darkModeToggle">
         <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
             <div class="circle"></div>
             <div class="stars">
                 <span class="star"></span>
                 <span class="star"></span>
                 <span class="star"></span>
-                </div>
-              </div>
-            </label>    
-        <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item"><a href="index.php">Főoldal</a></li>
@@ -136,6 +164,7 @@ include('config.php');
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
                 <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
             </ul>
+            
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <!-- User menu -->

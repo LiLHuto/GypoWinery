@@ -57,6 +57,45 @@ if (isset($_POST['add_to_cart'])) {
     <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+                    <!-- Zászlók helye (ez JavaScript tölti be) -->
+                    <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item"><a href="index.php">Főoldal</a></li>
@@ -91,38 +130,39 @@ if (isset($_POST['add_to_cart'])) {
     </header>
 
     <main class="container my-5">
-        <h2 class="section-title text-center mb-4">Boraink</h2>
+    <h2 class="section-title text-center mb-4">Boraink</h2>
 
-        <div class="row">
-            <?php foreach ($borok as $bor): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <?php 
-                            // A bor ID-ja alapján kép megjelenítése
-                            $image_path = 'kepek/bor' . $bor['ID'] . '.jfif';
-                        ?>
-                        <img src="<?php echo $image_path; ?>" class="card-img-top" alt="<?php echo $bor['nev']; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $bor['nev']; ?></h5>
-                            <p class="card-text"><?php echo $bor['leiras']; ?></p>
-                            <p class="card-text"><strong>Ár:</strong> <?php echo number_format($bor['ar'], 0, '.', ' '); ?> Ft</p>
-                            <p class="card-text"><strong>Raktár:</strong> 
-                                <?php 
-                                    echo ($bor['keszlet'] > 0) ? $bor['keszlet'] . " palack" : "Nincs raktáron"; 
-                                ?>
-                            </p>
+    <div class="row">
+        <?php foreach ($borok as $bor): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm wine-card"> <!-- Hozzáadtam a wine-card osztályt -->
+                    <?php 
+                        // A bor ID-ja alapján kép megjelenítése
+                        $image_path = 'kepek/bor' . $bor['ID'] . '.jfif';
+                    ?>
+                    <img src="<?php echo $image_path; ?>" class="card-img-top" alt="<?php echo $bor['nev']; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $bor['nev']; ?></h5>
+                        <p class="card-text"><?php echo $bor['leiras']; ?></p>
+                        <p class="card-text wine-price"><strong>Ár:</strong> <?php echo number_format($bor['ar'], 0, '.', ' '); ?> Ft</p>
+                        <p class="card-text wine-stock"><strong>Raktár:</strong> 
+                            <?php 
+                                echo ($bor['keszlet'] > 0) ? $bor['keszlet'] . " palack" : "Nincs raktáron"; 
+                            ?>
+                        </p>
 
-                            <form action="boraink.php" method="POST">
-                                <input type="hidden" name="bor_id" value="<?php echo $bor['ID']; ?>">
-                                <input type="number" name="quantity" value="1" min="1" max="<?php echo $bor['keszlet']; ?>" <?php if ($bor['keszlet'] <= 0) echo 'disabled'; ?> class="form-control mb-3">
-                                <button type="submit" name="add_to_cart" class="btn btn-primary btn-block" <?php if ($bor['keszlet'] <= 0) echo 'disabled'; ?>>Kosárba</button>
-                            </form>
-                        </div>
+                        <form action="boraink.php" method="POST">
+                            <input type="hidden" name="bor_id" value="<?php echo $bor['ID']; ?>">
+                            <input type="number" name="quantity" value="1" min="1" max="<?php echo $bor['keszlet']; ?>" <?php if ($bor['keszlet'] <= 0) echo 'disabled'; ?> class="form-control mb-3">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary btn-block" <?php if ($bor['keszlet'] <= 0) echo 'disabled'; ?>>Kosárba</button>
+                        </form>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </main>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</main>
+
 
     <footer class="text-center py-3">
         <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
