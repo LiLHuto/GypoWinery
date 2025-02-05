@@ -1,5 +1,5 @@
 <?php
-include('index_config.php');
+include('fasz.php');
 ?>
 
 <!DOCTYPE html>
