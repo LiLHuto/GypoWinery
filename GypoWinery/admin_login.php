@@ -1,9 +1,13 @@
 <?php
-include('config.php');
+include('index_config.php');
 
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $email
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+ 
+    $sql="select * from login where email= '".$email."' AND password='".$password."' ";
+    $result=mysqli_query();
 }
 
 
@@ -42,6 +46,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         </div>
         </form>
         <br><br>
-    </div>
+        </div>
     </center>
 </body>

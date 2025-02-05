@@ -69,6 +69,10 @@ label {
   transition: transform 0.5s ease-in-out;
 }
 
+a{
+  text-decoration: none;
+}
+
 input {
   width: 80%;
   background: #e0dede;
