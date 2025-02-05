@@ -27,7 +27,6 @@ include('config.php');
             color: white;
             padding: 20px 0;
             text-align: center;
-            position: sticky;
             top: 0;
             z-index: 1000;
         }
