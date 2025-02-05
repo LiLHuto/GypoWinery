@@ -123,6 +123,8 @@ include('fasz.php');
                 <li class="nav-item"><a href="boraink.php">Boraink</a></li>
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
                 <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
+                <li class="nav-item"><div id="google_translate_element"></div>
+                <button onclick="translatePage()">Fordítás angolra</button></li>
             </ul>
 
             <?php if (isset($_SESSION['user_id'])): ?>
@@ -204,28 +206,8 @@ include('fasz.php');
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="translate.js"></script>
 
-    <!-- Kosár funkció és megjelenítés -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cartButton = document.getElementById("cartButton");
-            const cartPanel = document.getElementById("cartPanel");
-            const closeCartBtn = document.getElementById("closeCartBtn");
 
-            // Kosár panel megjelenítése
-            cartButton.addEventListener("click", function () {
-                cartPanel.style.display = "block";
-            });
-
-            // Kosár panel bezárása
-            closeCartBtn.addEventListener("click", function () {
-                cartPanel.style.display = "none";
-            });
-
-            // Kosár tartalom (itt statikus példát adok, valós adatbázisból kell lekérdezni)
-            const cartContent = document.getElementById("cartContent");
-            cartContent.innerHTML = "<p>A kosár üres.</p>";
-        });
-    </script>
 </body>
 </html>

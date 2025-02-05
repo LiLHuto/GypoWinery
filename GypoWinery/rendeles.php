@@ -159,5 +159,6 @@ if (isset($_POST['remove_item'])) {
     </footer>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translate.js"></script>
 </body>
 </html>

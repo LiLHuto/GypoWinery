@@ -130,5 +130,6 @@ if (isset($_POST['add_to_cart'])) {
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="translate.js"></script>
 </body>
 </html>
