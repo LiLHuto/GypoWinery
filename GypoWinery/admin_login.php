@@ -73,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
             <label>emailadress</label>
             <input type="text" name="email" required>
-
         </div>
     </center>
 </body>
