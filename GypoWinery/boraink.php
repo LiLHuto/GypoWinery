@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('fasz.php');
 
 // Lekérdezzük a borokat az adatbázisból
 $query = "SELECT * FROM borok";

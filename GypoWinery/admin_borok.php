@@ -1,70 +1,91 @@
 <?php
 include('fasz.php');
+check_admin();
 
-// Ensure only admins can access
-if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
-    header("Location: admin_borok.php");
-    exit;
-}
-
-// Fetch wines from the database
-$query = "SELECT * FROM borok";
-$stmt = $pdo->query($query);
-$borok = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Handle wine deletion
-if (isset($_POST['delete_wine'])) {
-    $wine_id = $_POST['wine_id'];
-    $delete_query = "DELETE FROM borok WHERE id = :wine_id";
-    $delete_stmt = $pdo->prepare($delete_query);
-    $delete_stmt->execute(['wine_id' => $wine_id]);
-    header("Location: admin_borok.php");
-    exit;
-}
-
-// Handle adding new wine
+// Új bor hozzáadása
 if (isset($_POST['add_wine'])) {
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $image = $_POST['image'];
+    $nev = $_POST['nev'];
+    $ar = $_POST['ar'];
+    $leiras = $_POST['leiras'];
+    $keszlet = $_POST['keszlet'];
 
-    $insert_query = "INSERT INTO borok (name, price, description, image) VALUES (:name, :price, :description, :image)";
-    $insert_stmt = $pdo->prepare($insert_query);
-    $insert_stmt->execute(['name' => $name, 'price' => $price, 'description' => $description, 'image' => $image]);
+    $query = "INSERT INTO borok (nev, ar, leiras, keszlet) VALUES (:nev, :ar, :leiras, :keszlet)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['nev' => $nev, 'ar' => $ar, 'leiras' => $leiras, 'keszlet' => $keszlet]);
     header("Location: admin_borok.php");
-    exit;
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
-    <title>Admin - Borok</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Borok Kezelése</title>
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Borok Kezelése</h1>
-    
-    <?php foreach ($borok as $bor): ?>
-        <div>
-            <h3><?= htmlspecialchars($bor['name']) ?></h3>
-            <p><?= htmlspecialchars($bor['description']) ?></p>
-            <p>Ár: <?= htmlspecialchars($bor['price']) ?> Ft</p>
-            <img src="<?= htmlspecialchars($bor['image']) ?>" width="100">
-            <form method="post">
-                <input type="hidden" name="wine_id" value="<?= $bor['id'] ?>">
-                <button type="submit" name="delete_wine">Törlés</button>
-            </form>
+    <header class="text-center py-3">
+        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+        <div id="flags-container"></div>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="index.php">Főoldal</a></li>
+                <li class="nav-item"><a href="tortenet.php">Történet</a></li>
+                <li class="nav-item"><a href="boraink.php">Boraink</a></li>
+                <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
+                <li class="nav-item"><a href="Kviz.php">Kvíz</a></li>
+                <li class="nav-item"><a href="admin_borok.php">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <h2 class="text-center mb-4">Borok Kezelése</h2>
+
+        <?php
+        $query = "SELECT * FROM borok";
+        $stmt = $pdo->query($query);
+        $borok = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
+        <div class="row">
+            <?php foreach ($borok as $bor): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($bor['nev']) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($bor['leiras']) ?></p>
+                            <p class="card-text"><strong>Ár:</strong> <?= htmlspecialchars($bor['ar']) ?> Ft</p>
+                            <p class="card-text"><strong>Készlet:</strong> <?= htmlspecialchars($bor['keszlet']) ?> db</p>
+                            <form method="post">
+                                <input type="hidden" name="wine_id" value="<?= $bor['ID'] ?>">
+                                <button type="submit" name="delete_wine" class="btn btn-danger">Törlés</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-    
-    <h2>Új Bor Hozzáadása</h2>
-    <form method="post">
-        <input type="text" name="name" placeholder="Név" required>
-        <input type="number" name="price" placeholder="Ár" required>
-        <textarea name="description" placeholder="Leírás" required></textarea>
-        <input type="text" name="image" placeholder="Kép URL" required>
-        <button type="submit" name="add_wine">Hozzáadás</button>
-    </form>
+
+        <h2 class="text-center my-4">Új Bor Hozzáadása</h2>
+        <form method="post" class="text-center">
+            <input type="text" name="nev" placeholder="Bor neve" required>
+            <input type="number" name="ar" placeholder="Ár (Ft)" required>
+            <textarea name="leiras" placeholder="Leírás" required></textarea>
+            <input type="number" name="keszlet" placeholder="Készlet" required>
+            <button type="submit" name="add_wine" class="btn btn-primary">Hozzáadás</button>
+        </form>
+    </main>
+
+    <footer class="text-center py-3">
+        <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
+        <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
+    </footer>
+
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
