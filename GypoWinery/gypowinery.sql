@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 06. 13:22
+-- Létrehozás ideje: 2025. Feb 06. 15:21
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -68,8 +68,32 @@ INSERT INTO `borok` (`ID`, `nev`, `ar`, `leiras`, `keszlet`) VALUES
 (2, 'Gypo Reserve - Csévharaszti Cabernet Sauvignon', 56999, 'Ízjegyek: Mély, komplex ízek, fekete ribizli és tölgyes árnyalatok. Tálalás: 18-20 °C, ajánljuk füstölt sajtokkal vagy gazdag ételekkel.', 10),
 (3, 'Gypo Sparkling - Csévharaszti Olaszrizling', 53990, 'Ízjegyek: Friss és üde, citrusos és virágos aromákkal. Tálalás: 8-10 °C, kiváló választás tenger gyümölcseivel vagy salátákkal.', 38),
 (4, 'Gypo Sweet - Csévharaszti Zöld Veltelini', 47000, 'Ízjegyek: Könnyed, fűszeres ízek, zöldalma és fehér virágok. Tálalás: 10-12 °C, ideális éttermek előtt, könnyű ételek mellé.', 35),
-(5, 'Gypo White - Csévharaszti Rosé', 120853, 'Ízjegyek: Friss, gyümölcsös ízvilág, eper és cseresznye jegyekkel. Tálalás: 8-10 °C, remekül illik piknikekhez vagy könnyű nyári fogásokhoz.', 19),
-(6, 'Gypo Rosé - Csévharaszti Jégbor', 200000, 'Különleges édes borunk, amelyet fagyott szőlőből készítünk. Gazdag, mély ízű, édes és harmonikus. Tálalás: 6-8 °C, tökéletes desszertekhez vagy különleges alkalmakra.', 15);
+(6, 'Gypo Rosé - Csévharaszti Jégbor', 200000, 'Különleges édes borunk, amelyet fagyott szőlőből készítünk. Gazdag, mély ízű, édes és harmonikus. Tálalás: 6-8 °C, tökéletes desszertekhez vagy különleges alkalmakra.', 15),
+(10, 'Gypo White - Csévharaszti Rosé', 120853, 'Ízjegyek: Friss, gyümölcsös ízvilág, eper és cseresznye jegyekkel. Tálalás: 8-10 °C, remekül illik piknikekhez vagy könnyű nyári fogásokhoz.', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `bor_kepek`
+--
+
+CREATE TABLE `bor_kepek` (
+  `id` int(11) NOT NULL,
+  `bor_id` int(11) NOT NULL,
+  `kep_url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `bor_kepek`
+--
+
+INSERT INTO `bor_kepek` (`id`, `bor_id`, `kep_url`) VALUES
+(1, 1, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_borok/idrinks-sauska-cuvee-5.webp?lastmod=0.1666343376'),
+(2, 2, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_borok/idrinks-szepsy-6-puttonyos-aszu.jpg.webp?lastmod=0.1666343376'),
+(3, 3, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/idrinks-vesztergombi-alpha-cuvee.jpg.webp?lastmod=0.1666343376'),
+(4, 4, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/idrinks-mad-gold.jpg.webp?lastmod=0.1666343376'),
+(5, 10, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_Vino/idrinks-gere-attila-cuvee.jpg.webp?lastmod=0.1666343376'),
+(6, 6, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Dereszla/idrinks-chateau-dereszla-tokaji-aszu-eszencia-2008.jpg.webp?lastmod=0.1666343376');
 
 -- --------------------------------------------------------
 
@@ -1124,14 +1148,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `jelszo`, `quiz_completed`, `usertype`) VALUES
-(8, 'Gell?rtfy ', 'Tam?s', 'kisfifi2006@gmail.com', '06302452160', '$2y$10$9fVE1DQO2gvbq58AKycCjuPKJ1lUTvFmn/8Gu9XNaHnje4GJ2GRPO', 0, ''),
-(9, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.hu', '06302452163', '$2y$10$rDWz2jpRyDoUCdg.uam1FuCM4uuEZlTsqwsYMDrj218z2.MIGO0nS', 0, ''),
-(10, 'Gell?rtfy ', 'Tam?s', 'tempmail@tempmail.com', '06302452161', '$2y$10$pTm3a1eY/vurT8WzhWbyGeZ2sRhxhHPfj0HxMvQJih5NtarmKMm2e', 0, ''),
-(12, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.com', '06302452163', '$2y$10$0gCzWkqLYRe8j9mZvevAX.H4EgnFvH3sBADCbBhVfNa3h9DaShqzq', 0, ''),
-(13, 'Majzik', 'Bence', 'majben686@hengersor.hu', '0630145397', '$2y$10$83T5FwWw41I88Cbogx4EUeVDzmxwFY2ORQeOMPT6vf5QPDV7wfAgq', 1, ''),
-(15, 'gabor', 'Bence', 'nemtudom@gmail.com', '0630145397', '$2y$10$HudMen/VcKTuAcs/WEi7jeGbadqb.80j4cJPB3lodKMBaLMhPMt.2', 0, ''),
-(16, 'G?bor', 'Bence', 'geltam813@hengersor.hu', '0630145397', '$2y$10$zJpbPUregvqtx4bJgbvUKeBfZKTKuQ.3KFjg6BnwlHQb1Ma4GQPV.', 0, ''),
-(17, 'Szekrényes', 'Gábor', 'alma@bela.hu', '06302452160', '$2y$10$LBGvUNXhvSDi/kriVlvEue3Jq1Fl0W7EnjHmXLPlVD2Xk5jF6mtpS', 1, 'admin');
+(17, 'Szekrényes', 'Gábor', 'alma@bela.hu', '06302452160', '$2y$10$LBGvUNXhvSDi/kriVlvEue3Jq1Fl0W7EnjHmXLPlVD2Xk5jF6mtpS', 1, 'admin'),
+(19, 'Bence', 'gabor', 'gabben878@hengersor.hu', '06202522207', '$2y$10$PD/2jRzVZtodPgIFfwZxO.M1Jp8KJr9RXW9ynIiGf3ob4nvPFr8Fm', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1207,6 @@ CREATE TABLE `rendeles_tetelek` (
 --
 
 INSERT INTO `rendeles_tetelek` (`ID`, `rendeles_id`, `bor_id`, `quantity`) VALUES
-(1, 1, 5, 1),
 (2, 1, 2, 1),
 (3, 2, 2, 1),
 (4, 3, 2, 1),
@@ -1204,6 +1221,13 @@ INSERT INTO `rendeles_tetelek` (`ID`, `rendeles_id`, `bor_id`, `quantity`) VALUE
 --
 ALTER TABLE `borok`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- A tábla indexei `bor_kepek`
+--
+ALTER TABLE `bor_kepek`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bor_id` (`bor_id`);
 
 --
 -- A tábla indexei `cart`
@@ -1250,7 +1274,13 @@ ALTER TABLE `rendeles_tetelek`
 -- AUTO_INCREMENT a táblához `borok`
 --
 ALTER TABLE `borok`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT a táblához `bor_kepek`
+--
+ALTER TABLE `bor_kepek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `cart`
@@ -1262,7 +1292,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT a táblához `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
@@ -1285,6 +1315,12 @@ ALTER TABLE `rendeles_tetelek`
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `bor_kepek`
+--
+ALTER TABLE `bor_kepek`
+  ADD CONSTRAINT `bor_kepek_ibfk_1` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`) ON DELETE CASCADE;
 
 --
 -- Megkötések a táblához `cart`
