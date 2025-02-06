@@ -52,6 +52,7 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="darkmode.css">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -122,6 +123,7 @@ if (isset($_POST['add_to_cart'])) {
             padding: 20px 0;
             margin-top: 20px;
         }
+
         </style>
 </head>
 <body>
