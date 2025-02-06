@@ -52,6 +52,77 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="darkmode.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #5a2a4e;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        header h1 a {
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffc107;
+        }
+
+        section {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        section h1, section h2 {
+            color: #5a2a4e;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1em;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        </style>
 </head>
 <body>
     <header class="text-center py-3">
