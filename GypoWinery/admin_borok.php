@@ -8,7 +8,9 @@ if (isset($_POST['add_wine'])) {
     $ar = $_POST['ar'];
     $leiras = $_POST['leiras'];
     $keszlet = $_POST['keszlet'];
+    $kep_url = $_POST['kep_url']; // Kép URL mező
 
+    // Bor hozzáadása
     $query = "INSERT INTO borok (nev, ar, leiras, keszlet) VALUES (:nev, :ar, :leiras, :keszlet)";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':nev', $nev);
@@ -16,19 +18,36 @@ if (isset($_POST['add_wine'])) {
     $stmt->bindParam(':leiras', $leiras);
     $stmt->bindParam(':keszlet', $keszlet);
     $stmt->execute();
+
+    // Újonnan létrehozott bor ID-ja
+    $bor_id = $pdo->lastInsertId();
+
+    // Kép URL mentése a bor_kepek táblába
+    $query_kep = "INSERT INTO bor_kepek (bor_id, kep_url) VALUES (:bor_id, :kep_url)";
+    $stmt_kep = $pdo->prepare($query_kep);
+    $stmt_kep->bindParam(':bor_id', $bor_id);
+    $stmt_kep->bindParam(':kep_url', $kep_url);
+    $stmt_kep->execute();
+
     header("Location: admin_borok.php");
     exit();
 }
 
-// Bor törlése (először a rendelés tételeket töröljük, majd a bort)
+// Bor törlése
 if (isset($_POST['delete_wine'])) {
     $wine_id = $_POST['wine_id'];
-    
+
     // Kapcsolódó rendelés tételek törlése
     $delete_rendeles_query = "DELETE FROM rendeles_tetelek WHERE bor_id = :wine_id";
     $delete_stmt = $pdo->prepare($delete_rendeles_query);
     $delete_stmt->bindParam(':wine_id', $wine_id, PDO::PARAM_INT);
     $delete_stmt->execute();
+
+    // Kapcsolódó képek törlése
+    $delete_kepek_query = "DELETE FROM bor_kepek WHERE bor_id = :wine_id";
+    $delete_kepek_stmt = $pdo->prepare($delete_kepek_query);
+    $delete_kepek_stmt->bindParam(':wine_id', $wine_id, PDO::PARAM_INT);
+    $delete_kepek_stmt->execute();
 
     // Bor törlése
     $delete_bor_query = "DELETE FROM borok WHERE ID = :wine_id";
@@ -51,6 +70,7 @@ if (isset($_POST['delete_wine'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="darkmode.css">
     <link rel="stylesheet" href="user-menu.css">
+    <link rel="stylesheet" href="darkmodecard.css">
 
     <style>
         body {
@@ -167,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-        <nav>
+            <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item"><a href="index.php">Főoldal</a></li>
                 <li class="nav-item"><a href="tortenet.php">Történet</a></li>
@@ -176,12 +196,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 <li class="nav-item"><a href="Kviz.php">Kvíz</a></li>
                 <li class="nav-item"><a href="admin_borok.php">Admin</a></li>
             </ul>
-        </nav>
+        </nav>  
     </header>
 
     <main class="container my-5">
-        <h2 class="text-center mb-4">Borok Kezelése</h2>
-        
+    <h2 class="text-center mb-4">Borok Kezelése</h2>
         <?php
         $query = "SELECT borok.*, bor_kepek.kep_url FROM borok LEFT JOIN bor_kepek ON borok.ID = bor_kepek.bor_id";
         $stmt = $pdo->query($query);
@@ -208,15 +227,16 @@ document.addEventListener("DOMContentLoaded", function() {
             <?php endforeach; ?>
         </div>
 
-        <h2 class="text-center my-4">Új Bor Hozzáadása</h2>
-        <form method="post" class="text-center">
-            <input type="text" name="nev" placeholder="Bor neve" required>
-            <input type="number" name="ar" placeholder="Ár (Ft)" required>
-            <textarea name="leiras" placeholder="Leírás" required></textarea>
-            <input type="number" name="keszlet" placeholder="Készlet" required>
-            <button type="submit" name="add_wine" class="btn btn-primary">Hozzáadás</button>
-        </form>
-    </main>
+
+<h2 class="text-center my-4">Új Bor Hozzáadása</h2>
+<form method="post" class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+    <input type="text" name="nev" placeholder="Bor neve" class="form-control w-auto" required>
+    <input type="number" name="ar" placeholder="Ár (Ft)" class="form-control w-auto" required>
+    <textarea name="leiras" placeholder="Leírás" class="form-control w-auto" required></textarea>
+    <input type="number" name="keszlet" placeholder="Készlet" class="form-control w-auto" required>
+    <input type="text" name="kep_url" placeholder="Kép URL" class="form-control w-auto" required> <!-- Kép URL mező -->
+    <button type="submit" name="add_wine" class="btn btn-primary">Hozzáadás</button>
+</form>
 
     <footer class="text-center py-3">
         <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
