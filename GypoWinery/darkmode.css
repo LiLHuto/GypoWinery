@@ -454,3 +454,81 @@ body.dark-mode.rendeles-page .btn-warning
     transition: 0.3s;
 }
 
+/* Sötét mód: világos háttér cseréje sötétre */
+body.dark-mode .bg-light {
+    background-color: #1e1e1e !important; /* Sötét szürke háttér */
+    color: white !important; /* Fehér szöveg */
+}
+
+/* Sötét mód - Kvíz oldal szövege világosabb legyen */
+body.dark-mode #question-container {
+    background-color: #222 !important; /* Sötét háttér */
+    color: #f8f9fa !important; /* Világos szöveg */
+}
+
+/* Kvíz kérdések színe */
+body.dark-mode #question-text {
+    color: #ffffff !important;
+}
+
+/* Kvíz válasz opciók */
+body.dark-mode #options-container {
+    background-color: #333 !important; /* Sötétszürke háttér */
+}
+
+/* Kvíz gombok világosítása */
+body.dark-mode #options-container button {
+    background-color: #444 !important; /* Szürkés gombok */
+    color: white !important;
+    border: 1px solid #777;
+}
+
+body.dark-mode #options-container button:hover {
+    background-color: #666 !important; /* Világosabb hover */
+}
+
+/* Footer sötét módra */
+body.dark-mode footer {
+    background-color: #222 !important;
+    color: white !important;
+}/* Sötét mód űrlap háttér */
+body.dark-mode .contact-section {
+    background-color: #121212; /* Fekete háttér */
+    color: white;
+}
+
+/* Sötét mód űrlapdoboz */
+body.dark-mode .contact-section .container {
+    background-color: #121212; /* Sötétszürke háttér */
+    color: white;
+}
+
+/* Sötét mód űrlap mezők */
+body.dark-mode .form-control {
+    background-color: #222;
+    border: 1px solid #555;
+    color: white;
+}
+
+/* Sötét mód - Placeholder szöveg (pl. "Keresztnév") */
+body.dark-mode .form-control::placeholder {
+    color: #aaa;
+}
+
+/* Sötét mód - Űrlapmezők fókuszban */
+body.dark-mode .form-control:focus {
+    background-color: #333;
+    border-color: #ff69b4; /* Rózsaszín kiemelés */
+    color: white;
+}
+/* Gomb dark mode-ban */
+body.dark-mode .btn-primary {
+    background-color: #ff69b4; /* Rózsaszín, mint máshol */
+    border: none;
+    color: white;
+}
+
+/* Hover állapot */
+body.dark-mode .btn-primary:hover {
+    background-color: #ff85c1; /* Világosabb rózsaszín */
+}

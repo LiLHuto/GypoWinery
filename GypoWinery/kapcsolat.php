@@ -112,6 +112,30 @@ include('config.php');
             border-radius: 8px;
             margin-top: 20px;
         }
+        .contact-section {
+    background-color: #f8f9fa;
+}
+
+form {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    background-color: #5a2a4e;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #45223e;
+}
     </style>
 </head>
 <body>
@@ -200,24 +224,39 @@ document.addEventListener("DOMContentLoaded", function() {
     </section>
 
     <!-- Contact Form -->
-    <section>
-        <h3>Küldjön nekünk üzenetet!</h3>
-        <form action="submit_form.php" method="post">
-            <label for="firstname">Keresztnév:</label>
-            <input type="text" id="firstname" name="firstname" required><br>
-            
-            <label for="lastname">Vezetéknév:</label>
-            <input type="text" id="lastname" name="lastname" required><br>
-            
-            <label for="email">E-mail cím:</label>
-            <input type="email" id="email" name="email" required><br>
-            
-            <label for="message">Üzenet:</label>
-            <textarea id="message" name="message" rows="4" required></textarea><br>
-            
-            <button type="submit">Küldés</button>
-        </form>
-    </section>
+    <section class="contact-section py-5">
+    <div class="container">
+        <h3 class="text-center mb-4 text-primary">Küldjön nekünk üzenetet!</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <form action="submit_form.php" method="post" class="p-4 shadow rounded bg-white">
+                    <div class="mb-3">
+                        <label for="firstname" class="form-label">Keresztnév:</label>
+                        <input type="text" id="firstname" name="firstname" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">Vezetéknév:</label>
+                        <input type="text" id="lastname" name="lastname" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail cím:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Üzenet:</label>
+                        <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">Küldés</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- Embedded Map -->
     <section>
