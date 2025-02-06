@@ -1,0 +1,456 @@
+/* Alap stílusok */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Világos mód */
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Sötét mód */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Header */
+header {
+    background-color: #5a2a4e;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Navigáció */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f8f9fa;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffc107;
+}
+
+/* Section */
+section {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+section h1, section h2 {
+    color: #5a2a4e;
+    margin-bottom: 20px;
+}
+
+section p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.1em;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+/* Gomb */
+.toggle-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+}
+
+.toggle-button:hover {
+    background: #0056b3;
+}
+
+/* Konténer */
+.container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+/* Call-to-action */
+.call-to-action {
+    background-color: #e9ecef;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Sötét mód a konténerekhez */
+body.dark-mode .container {
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .call-to-action {
+    background: #2a2a2a;
+}
+
+/* Sötét mód header */
+body.dark-mode header {
+    background-color: #3a1d35;
+}
+
+/* Sötét mód footer */
+body.dark-mode footer {
+    background-color: #1e1e1e;
+}
+
+/* Sötét mód navigáció */
+body.dark-mode nav ul li a {
+    color: #ddd;
+}
+
+body.dark-mode nav ul li a:hover {
+    color: #ffcc00;
+}
+/* Sötét mód szövegszínek */
+body.dark-mode {
+    background-color: #121212;
+    color: white; /* Alapértelmezett szöveg fehér */
+}
+
+/* Sötét mód - fekete szöveg átalakítása fehérre */
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode div {
+    color: white; /* Fekete szöveg fehér lesz */
+}
+
+/* Sötét mód - sötét lila szöveg rózsaszínre vált */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #ff69b4; /* Rózsaszín */
+}
+
+/* Sötét mód - gombok és linkek */
+body.dark-mode a {
+    color: #ff69b4; /* Linkek is rózsaszínek */
+}
+
+body.dark-mode a:hover {
+    color: #ff85c1; /* Világosabb rózsaszín hover állapot */
+}
+body.dark-mode {
+    background: linear-gradient(120deg, #000000, #000000);
+    color: white;
+} 
+
+/* Zászlók konténere */
+#flags-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Sötét mód kapcsoló tartó div */
+#darkmode-container {
+    position: absolute;
+    top: 50px; /* Közvetlenül a zászlók alá helyezi */
+    right: 10px;
+}
+
+/* Sötét mód kapcsoló */
+.theme-switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Csúszka */
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(120deg, #fdd835, #ffecb3);
+    border-radius: 20px;
+    transition: background 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+/* Hold/Nap kör */
+.circle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, background 0.5s ease;
+}
+
+/* Felhők */
+.clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Kisebb felhők */
+.cloud {
+    position: absolute;
+    width: 10px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: moveClouds 5s infinite alternate linear;
+}
+
+.cloud:nth-child(1) { top: 8px; left: 25px; }  
+.cloud:nth-child(2) { top: 15px; left: 27px; }  
+
+/* Kos csillagkép */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Kisebb csillagok */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+/* Kos csillagkép pontos helye */
+.star:nth-child(1) { top: 14px; left: 5px; }  
+.star:nth-child(2) { top: 10px; left: 10px; }  
+.star:nth-child(3) { top: 7px; left: 17px; }  
+.star:nth-child(4) { top: 5px; left: 25px; }  
+.star:nth-child(5) { top: 2px; left: 30px; }  
+.star:nth-child(6) { top: 18px; left: 20px; }  
+.star:nth-child(7) { top: 12px; left: 27px; }  
+
+/* Ha be van kapcsolva (sötét mód) */
+input:checked + .slider {
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+}
+
+/* Mozgatja a hold/napsugarat */
+input:checked + .slider .circle {
+    transform: translate(20px, -50%);
+    background: #f5f5f5;
+}
+
+/* Megjelenik a Kos csillagkép */
+input:checked + .slider .stars {
+    opacity: 1;
+}
+
+/* Eltűnnek a felhők sötét módban */
+input:checked + .slider .clouds {
+    opacity: 0;
+}
+/* Sötét mód általános beállítások */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Borok kártyáinak kinézete sötét módban */
+body.dark-mode .wine-card {
+    background: #1e1e1e !important; /* Sötétszürke háttér */
+    color: white !important; /* Fehér szöveg */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Halvány fehér keret */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Borok neve */
+body.dark-mode .wine-card .card-title {
+    color: #ff69b4 !important; /* Rózsaszín címek */
+}
+
+/* Borok ára */
+body.dark-mode .wine-card .wine-price {
+    color: #ffcc00 !important; /* Sárga kiemelés */
+    font-weight: bold;
+}
+
+/* Raktárkészlet */
+body.dark-mode .wine-card .wine-stock {
+    color: #00ffcc !important; /* Türkiz kiemelés */
+    font-weight: bold;
+}
+
+/* Termékleírás */
+body.dark-mode .wine-card .card-text {
+    color: #ddd !important; /* Világos szürke */
+}
+
+/* Kosár gomb */
+body.dark-mode .wine-card .btn-primary {
+    background-color: #ff69b4 !important; /* Rózsaszín gomb */
+    border-color: #ff69b4 !important;
+}
+
+body.dark-mode .wine-card .btn-primary:hover {
+    background-color: #ff85c1 !important; /* Világosabb rózsaszín hover */
+    border-color: #ff85c1 !important;
+}
+
+/* Input mezők sötét módban */
+body.dark-mode .wine-card input {
+    background: #333 !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .wine-card input::placeholder {
+    color: #ffffff24;
+}
+/* Kosár táblázat teljes fekete háttérrel */
+body.dark-mode .table {
+    background-color: #222 !important; /* Teljes táblázat fekete */
+    color: white !important;
+    border-collapse: collapse;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Táblázat fejléce */
+body.dark-mode .table thead {
+    background-color: #222 !important; /* Sötétszürke háttér */
+    color: white !important;
+}
+
+/* Táblázat törzse */
+body.dark-mode .table tbody {
+    background-color: #222 !important; /* Fekete háttér */
+    color: white !important;
+}
+
+/* Táblázat cellák */
+body.dark-mode .table td, 
+body.dark-mode .table th {
+    background-color: #222 !important; /* Fekete háttér */
+    color: white !important;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Táblázat input mezők */
+body.dark-mode .table input {
+    background-color: #222 !important; /* Sötétszürke háttér */
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    text-align: center;
+}
+
+/* Táblázat gombok (Frissítés és Törlés) */
+body.dark-mode .table .btn-warning {
+    background-color: #ffc107 !important;
+    color: black !important;
+}
+
+body.dark-mode .table .btn-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* Kijelölés színe */
+body.dark-mode ::selection {
+    background: #222 !important;
+    color: white !important;
+}
+
+body.dark-mode .table td::selection, 
+body.dark-mode .table th::selection {
+    background: #222 !important;
+    color: white !important;
+}
+/* Csak a "rendeles.php" oldalon változtatjuk meg a gombokat */
+body.dark-mode.rendeles-page .btn {
+    background-color: #ff0000 !important; /* Sötétszürke háttér */
+    color: white !important;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* Vissza a borainkhoz gomb */
+body.dark-mode.rendeles-page .btn-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+
+body.dark-mode.rendeles-page .btn-secondary:hover {
+    background-color: #5a6268 !important;
+}
+
+/* Tovább a fizetéshez gomb */
+body.dark-mode.rendeles-page .btn-success {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+body.dark-mode.rendeles-page .btn-success:hover {
+    background-color: #218838 !important;
+}
+body.dark-mode.rendeles-page .btn-warning
+{
+    background-color: #ffe100 !important; /* Sötétszürke háttér */
+    color: rgb(0, 0, 0) !important;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+

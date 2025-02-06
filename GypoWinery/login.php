@@ -51,7 +51,9 @@ $conn->close();
 <head>
   <title>GypoWinery Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-  <style>
+  <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<style>
     body {
   margin: 0;
   padding: 0;
@@ -62,7 +64,6 @@ $conn->close();
   font-family: 'Jost', sans-serif;
   background: linear-gradient(to bottom, #0f0c29, #5a2a4e, #24243e);
 }
-
 .main {
   width: 350px;
   height: 500px;
@@ -72,11 +73,9 @@ $conn->close();
   box-shadow: 5px 20px 50px #000;
   position: relative;
 }
-
 #chk {
   display: none;
 }
-
 .signup,
 .login {
   position: absolute;
@@ -84,7 +83,6 @@ $conn->close();
   height: 100%;
   transition: transform 0.8s ease-in-out;
 }
-
 .signup {
   background: #fff;
   z-index: 2;
@@ -92,7 +90,6 @@ $conn->close();
   flex-direction: column;
   align-items: center;
 }
-
 .login {
   background: #eee;
   z-index: 1;
@@ -101,17 +98,14 @@ $conn->close();
   flex-direction: column;
   align-items: center;
 }
-
 #chk:checked ~ .login {
   transform: translateY(0);
   z-index: 2;
 }
-
 #chk:checked ~ .signup {
   transform: translateY(100%);
   z-index: 1;
 }
-
 label {
   color: #573b8a;
   font-size: 2.3em;
@@ -122,11 +116,9 @@ label {
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
 }
-
 a{
   text-decoration: none;
 }
-
 input {
   width: 80%;
   background: #e0dede;
@@ -137,13 +129,11 @@ input {
   border-radius: 5px;
   display: block;
 }
-
 .button-container {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-
 button {
   width: 80%;
   background: #573b8a;
@@ -157,20 +147,16 @@ button {
   transition: background 0.2s;
   text-align: center;
 }
-
 button:hover {
   background: #6d44b8;
 }
-
   </style>
-</head>
-
 <body>
   <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true">
     <div class="signup">
       <form action="login.php" method="POST">
-        <label for="chk" aria-hidden="true"> <a href="admin_login.php">Login</a></label>
+      <label for="chk" aria-hidden="true"> <a href="admin_login.php">Login</a></label>
         <input type="email" name="email" placeholder="Email" required="">
         <input type="password" name="jelszo" placeholder="Password" required="">
         <div class="button-container">

@@ -1,13 +1,17 @@
 <?php
-$host = "localhost"; // Change if your DB is on a different host
-$dbname = "gypowinery"; // Database name from your SQL file
-$username = "root"; // Change if using a different MySQL user
-$password = ""; // Update if a password is set
-
+session_start();
+// Adatbázis kapcsolat beállítások
+$host = 'localhost'; // Az adatbázis host
+$dbname = 'gypowinery'; // Az adatbázis neve
+$username = 'root'; // Az adatbázis felhasználó
+$password = ''; // Az adatbázis jelszó
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // PDO kapcsolat létrehozása
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Hibakezelés beállítása
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    // Hiba esetén kiírjuk az üzenetet és kilépünk
+    die("Kapcsolódási hiba: " . $e->getMessage());
 }
 ?>

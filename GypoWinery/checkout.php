@@ -46,12 +46,54 @@ if (isset($_POST['place_order'])) {
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Checkout</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="darkmode.css">
 </head>
 <body>
+                      <!-- Zászlók helye (ez JavaScript tölti be) -->
+                      <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
+    
     <header class="text-center py-3">
         <h1>Véglegesítés</h1>
     </header>
@@ -70,5 +112,7 @@ if (isset($_POST['place_order'])) {
     </footer>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translate.js"></script>
+   <script src="darkmode.js"></script>
 </body>
 </html>

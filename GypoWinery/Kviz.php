@@ -13,6 +13,7 @@ include('config.php');
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="darkmode.css">
     <script defer src="kviz.js"></script>
     <style>
         body {
@@ -119,6 +120,45 @@ include('config.php');
 <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+                    <!-- Zászlók helye (ez JavaScript tölti be) -->
+                    <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item"><a href="index.php">Főoldal</a></li>
@@ -174,5 +214,7 @@ include('config.php');
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>
