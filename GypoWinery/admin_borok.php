@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('fasz.php');
 
 // Ensure only admins can access
 if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
