@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 04. 10:16
+-- Létrehozás ideje: 2025. Feb 06. 13:22
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -65,7 +65,7 @@ CREATE TABLE `borok` (
 
 INSERT INTO `borok` (`ID`, `nev`, `ar`, `leiras`, `keszlet`) VALUES
 (1, 'Gypo Red - Csévharaszti Kékfrankos', 79990, 'Ízjegyek: Gazdag gyümölcsös aromák, piros bogyós gyümölcsök és fűszeres jegyek. Tálalás: 16-18 °C között, tökéletes steakhez vagy grillezett húsokhoz.', 44),
-(2, 'Gypo Reserve - Csévharaszti Cabernet Sauvignon', 56999, 'Ízjegyek: Mély, komplex ízek, fekete ribizli és tölgyes árnyalatok. Tálalás: 18-20 °C, ajánljuk füstölt sajtokkal vagy gazdag ételekkel.', 18),
+(2, 'Gypo Reserve - Csévharaszti Cabernet Sauvignon', 56999, 'Ízjegyek: Mély, komplex ízek, fekete ribizli és tölgyes árnyalatok. Tálalás: 18-20 °C, ajánljuk füstölt sajtokkal vagy gazdag ételekkel.', 10),
 (3, 'Gypo Sparkling - Csévharaszti Olaszrizling', 53990, 'Ízjegyek: Friss és üde, citrusos és virágos aromákkal. Tálalás: 8-10 °C, kiváló választás tenger gyümölcseivel vagy salátákkal.', 38),
 (4, 'Gypo Sweet - Csévharaszti Zöld Veltelini', 47000, 'Ízjegyek: Könnyed, fűszeres ízek, zöldalma és fehér virágok. Tálalás: 10-12 °C, ideális éttermek előtt, könnyű ételek mellé.', 35),
 (5, 'Gypo White - Csévharaszti Rosé', 120853, 'Ízjegyek: Friss, gyümölcsös ízvilág, eper és cseresznye jegyekkel. Tálalás: 8-10 °C, remekül illik piknikekhez vagy könnyű nyári fogásokhoz.', 19),
@@ -863,7 +863,7 @@ INSERT INTO `kuponok` (`id`, `kupon_kod`, `felhasznalt`) VALUES
 (760, 'BP7X2S', 0),
 (761, 'SJ6K8D', 0),
 (762, 'DG8J3V', 0),
-(763, 'ZL3F1G', 0),
+(763, 'ZL3F1G', 1),
 (764, 'RS4Z6D', 0),
 (765, 'UQ7W1Y', 0),
 (766, 'JY5D8B', 0),
@@ -1115,21 +1115,23 @@ CREATE TABLE `login` (
   `email` varchar(255) NOT NULL,
   `telefonszam` varchar(20) DEFAULT NULL,
   `jelszo` varchar(255) NOT NULL,
-  `quiz_completed` tinyint(1) DEFAULT 0
+  `quiz_completed` tinyint(1) DEFAULT 0,
+  `usertype` varchar(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `login`
 --
 
-INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `jelszo`, `quiz_completed`) VALUES
-(8, 'Gell?rtfy ', 'Tam?s', 'kisfifi2006@gmail.com', '06302452160', '$2y$10$9fVE1DQO2gvbq58AKycCjuPKJ1lUTvFmn/8Gu9XNaHnje4GJ2GRPO', 0),
-(9, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.hu', '06302452163', '$2y$10$rDWz2jpRyDoUCdg.uam1FuCM4uuEZlTsqwsYMDrj218z2.MIGO0nS', 0),
-(10, 'Gell?rtfy ', 'Tam?s', 'tempmail@tempmail.com', '06302452161', '$2y$10$pTm3a1eY/vurT8WzhWbyGeZ2sRhxhHPfj0HxMvQJih5NtarmKMm2e', 0),
-(12, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.com', '06302452163', '$2y$10$0gCzWkqLYRe8j9mZvevAX.H4EgnFvH3sBADCbBhVfNa3h9DaShqzq', 0),
-(13, 'Majzik', 'Bence', 'majben686@hengersor.hu', '0630145397', '$2y$10$83T5FwWw41I88Cbogx4EUeVDzmxwFY2ORQeOMPT6vf5QPDV7wfAgq', 1),
-(15, 'gabor', 'Bence', 'nemtudom@gmail.com', '0630145397', '$2y$10$HudMen/VcKTuAcs/WEi7jeGbadqb.80j4cJPB3lodKMBaLMhPMt.2', 0),
-(16, 'G?bor', 'Bence', 'geltam813@hengersor.hu', '0630145397', '$2y$10$zJpbPUregvqtx4bJgbvUKeBfZKTKuQ.3KFjg6BnwlHQb1Ma4GQPV.', 0);
+INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `jelszo`, `quiz_completed`, `usertype`) VALUES
+(8, 'Gell?rtfy ', 'Tam?s', 'kisfifi2006@gmail.com', '06302452160', '$2y$10$9fVE1DQO2gvbq58AKycCjuPKJ1lUTvFmn/8Gu9XNaHnje4GJ2GRPO', 0, ''),
+(9, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.hu', '06302452163', '$2y$10$rDWz2jpRyDoUCdg.uam1FuCM4uuEZlTsqwsYMDrj218z2.MIGO0nS', 0, ''),
+(10, 'Gell?rtfy ', 'Tam?s', 'tempmail@tempmail.com', '06302452161', '$2y$10$pTm3a1eY/vurT8WzhWbyGeZ2sRhxhHPfj0HxMvQJih5NtarmKMm2e', 0, ''),
+(12, 'Gell?rtfy ', 'Tam?s', 'istenkiraly006@freemail.com', '06302452163', '$2y$10$0gCzWkqLYRe8j9mZvevAX.H4EgnFvH3sBADCbBhVfNa3h9DaShqzq', 0, ''),
+(13, 'Majzik', 'Bence', 'majben686@hengersor.hu', '0630145397', '$2y$10$83T5FwWw41I88Cbogx4EUeVDzmxwFY2ORQeOMPT6vf5QPDV7wfAgq', 1, ''),
+(15, 'gabor', 'Bence', 'nemtudom@gmail.com', '0630145397', '$2y$10$HudMen/VcKTuAcs/WEi7jeGbadqb.80j4cJPB3lodKMBaLMhPMt.2', 0, ''),
+(16, 'G?bor', 'Bence', 'geltam813@hengersor.hu', '0630145397', '$2y$10$zJpbPUregvqtx4bJgbvUKeBfZKTKuQ.3KFjg6BnwlHQb1Ma4GQPV.', 0, ''),
+(17, 'Szekrényes', 'Gábor', 'alma@bela.hu', '06302452160', '$2y$10$LBGvUNXhvSDi/kriVlvEue3Jq1Fl0W7EnjHmXLPlVD2Xk5jF6mtpS', 1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -1166,7 +1168,8 @@ INSERT INTO `rendelesek` (`ID`, `user_id`, `rendeles_datuma`, `statusz`) VALUES
 (1, 15, '2025-02-03 13:16:21', 'pending'),
 (2, 16, '2025-02-04 09:04:51', 'pending'),
 (3, 16, '2025-02-04 09:08:06', 'pending'),
-(4, 16, '2025-02-04 09:08:32', 'pending');
+(4, 16, '2025-02-04 09:08:32', 'pending'),
+(5, 17, '2025-02-06 12:10:57', 'pending');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1192,8 @@ INSERT INTO `rendeles_tetelek` (`ID`, `rendeles_id`, `bor_id`, `quantity`) VALUE
 (1, 1, 5, 1),
 (2, 1, 2, 1),
 (3, 2, 2, 1),
-(4, 3, 2, 1);
+(4, 3, 2, 1),
+(5, 5, 2, 8);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -1252,13 +1256,13 @@ ALTER TABLE `borok`
 -- AUTO_INCREMENT a táblához `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT a táblához `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
@@ -1270,13 +1274,13 @@ ALTER TABLE `rendeles`
 -- AUTO_INCREMENT a táblához `rendelesek`
 --
 ALTER TABLE `rendelesek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles_tetelek`
 --
 ALTER TABLE `rendeles_tetelek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Megkötések a kiírt táblákhoz
