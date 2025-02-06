@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <td><?php echo $item['nev']; ?></td>
                                 <td><?php echo number_format($item['ar'], 0, '.', ' '); ?> Ft</td>
                                 <td>
-                                    <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="<?php echo $item['keszlet']; ?>" class="form-control" required>
+                                    <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="50"<?php echo $item['keszlet']; ?> class="form-control" required>
                                     <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
                                     <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>"> <!-- Bor ID -->
                                 </td>
