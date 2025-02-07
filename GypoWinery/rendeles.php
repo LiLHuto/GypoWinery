@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('config2.php');
 
 // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
 if (!isset($_SESSION['user_id'])) {
@@ -28,6 +28,21 @@ if (!$cart_items) {
     exit();
 }
 
+// Kosár frissítése
+if (isset($_POST['update_cart'])) {
+    $cart_id = $_POST['cart_id'];
+    $new_quantity = $_POST['quantity'];
+
+    // Mennyiség frissítése
+    $update_query = "UPDATE cart SET quantity = :quantity WHERE ID = :cart_id";
+    $update_stmt = $pdo->prepare($update_query);
+    $update_stmt->execute(['quantity' => $new_quantity, 'cart_id' => $cart_id]);
+
+    // Frissítjük az oldalt
+    header('Location: rendeles.php'); // Oldal frissítése
+    exit();
+}
+
 // Kosár törlés
 if (isset($_POST['remove_item'])) {
     $cart_id = $_POST['cart_id'];
@@ -47,22 +62,8 @@ if (isset($_POST['remove_item'])) {
     header('Location: rendeles.php'); // Törlés után frissítjük az oldalt
     exit();
 }
-
-// Kosár frissítése
-if (isset($_POST['update_cart'])) {
-    $cart_id = $_POST['cart_id'];
-    $new_quantity = $_POST['quantity'];
-
-    // Mennyiség frissítése
-    $update_query = "UPDATE cart SET quantity = :quantity WHERE ID = :cart_id";
-    $update_stmt = $pdo->prepare($update_query);
-    $update_stmt->execute(['quantity' => $new_quantity, 'cart_id' => $cart_id]);
-
-    // Frissítjük az oldalt
-    header('Location: rendeles.php'); // Oldal frissítése
-    exit();
-}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -71,12 +72,51 @@ if (isset($_POST['update_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Kosár</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="darkmode.css">
 </head>
-<body>
+<body class="rendeles-page">
     <header class="text-center py-3">
         <h1>Rendelés</h1>
     </header>
+                  <!-- Zászlók helye (ez JavaScript tölti be) -->
+                  <div id="flags-container"></div>
 
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
     <div class="container">
         <?php if ($cart_items): ?>
             <h3 class="mt-5">A kosár tartalma</h3>
@@ -98,7 +138,7 @@ if (isset($_POST['update_cart'])) {
                                 <td><?php echo $item['nev']; ?></td>
                                 <td><?php echo number_format($item['ar'], 0, '.', ' '); ?> Ft</td>
                                 <td>
-                                    <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="<?php echo $item['keszlet']; ?>" class="form-control" required>
+                                    <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="50"<?php echo $item['keszlet']; ?> class="form-control" required>
                                     <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
                                     <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>"> <!-- Bor ID -->
                                 </td>
@@ -158,5 +198,7 @@ if (isset($_POST['update_cart'])) {
     </footer>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>

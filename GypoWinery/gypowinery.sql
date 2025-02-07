@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 03. 13:05
+-- Létrehozás ideje: 2025. Feb 06. 15:21
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -28,19 +28,17 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GenerateCoupons` ()   BEGIN
     DECLARE i INT DEFAULT 0;
     DECLARE random_code VARCHAR(6);
-
     WHILE i < 1000 DO
         SET random_code = CONCAT(
-            CHAR(FLOOR(65 + (RAND() * 26))), 
-            CHAR(FLOOR(65 + (RAND() * 26))), 
-            CHAR(FLOOR(48 + (RAND() * 10))), 
-            CHAR(FLOOR(65 + (RAND() * 26))), 
-            CHAR(FLOOR(48 + (RAND() * 10))), 
+            CHAR(FLOOR(65 + (RAND() * 26))),
+            CHAR(FLOOR(65 + (RAND() * 26))),
+            CHAR(FLOOR(48 + (RAND() * 10))),
+            CHAR(FLOOR(65 + (RAND() * 26))),
+            CHAR(FLOOR(48 + (RAND() * 10))),
             CHAR(FLOOR(65 + (RAND() * 26)))
         );
-
         INSERT IGNORE INTO kuponok (kupon_kod) VALUES (random_code);
-        
+       
         SET i = i + 1;
     END WHILE;
 END$$
@@ -66,12 +64,50 @@ CREATE TABLE `borok` (
 --
 
 INSERT INTO `borok` (`ID`, `nev`, `ar`, `leiras`, `keszlet`) VALUES
-(1, 'Gypo Red - Csévharaszti Kékfrankos', 79990, 'Ízjegyek: Gazdag gyümölcsös aromák, piros bogyós gyümölcsök és fűszeres jegyek. Tálalás: 16-18 °C között, tökéletes steakhez vagy grillezett húsokhoz.', 50),
-(2, 'Gypo Reserve - Csévharaszti Cabernet Sauvignon', 56999, 'Ízjegyek: Mély, komplex ízek, fekete ribizli és tölgyes árnyalatok. Tálalás: 18-20 °C, ajánljuk füstölt sajtokkal vagy gazdag ételekkel.', 29),
+(1, 'Gypo Red - Csévharaszti Kékfrankos', 79990, 'Ízjegyek: Gazdag gyümölcsös aromák, piros bogyós gyümölcsök és fűszeres jegyek. Tálalás: 16-18 °C között, tökéletes steakhez vagy grillezett húsokhoz.', 44),
+(2, 'Gypo Reserve - Csévharaszti Cabernet Sauvignon', 56999, 'Ízjegyek: Mély, komplex ízek, fekete ribizli és tölgyes árnyalatok. Tálalás: 18-20 °C, ajánljuk füstölt sajtokkal vagy gazdag ételekkel.', 10),
 (3, 'Gypo Sparkling - Csévharaszti Olaszrizling', 53990, 'Ízjegyek: Friss és üde, citrusos és virágos aromákkal. Tálalás: 8-10 °C, kiváló választás tenger gyümölcseivel vagy salátákkal.', 38),
 (4, 'Gypo Sweet - Csévharaszti Zöld Veltelini', 47000, 'Ízjegyek: Könnyed, fűszeres ízek, zöldalma és fehér virágok. Tálalás: 10-12 °C, ideális éttermek előtt, könnyű ételek mellé.', 35),
-(5, 'Gypo White - Csévharaszti Rosé', 120853, 'Ízjegyek: Friss, gyümölcsös ízvilág, eper és cseresznye jegyekkel. Tálalás: 8-10 °C, remekül illik piknikekhez vagy könnyű nyári fogásokhoz.', 20),
-(6, 'Gypo Rosé - Csévharaszti Jégbor', 200000, 'Különleges édes borunk, amelyet fagyott szőlőből készítünk. Gazdag, mély ízű, édes és harmonikus. Tálalás: 6-8 °C, tökéletes desszertekhez vagy különleges alkalmakra.', 15);
+(6, 'Gypo Rosé - Csévharaszti Jégbor', 200000, 'Különleges édes borunk, amelyet fagyott szőlőből készítünk. Gazdag, mély ízű, édes és harmonikus. Tálalás: 6-8 °C, tökéletes desszertekhez vagy különleges alkalmakra.', 15),
+(10, 'Gypo White - Csévharaszti Rosé', 120853, 'Ízjegyek: Friss, gyümölcsös ízvilág, eper és cseresznye jegyekkel. Tálalás: 8-10 °C, remekül illik piknikekhez vagy könnyű nyári fogásokhoz.', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `bor_kepek`
+--
+
+CREATE TABLE `bor_kepek` (
+  `id` int(11) NOT NULL,
+  `bor_id` int(11) NOT NULL,
+  `kep_url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `bor_kepek`
+--
+
+INSERT INTO `bor_kepek` (`id`, `bor_id`, `kep_url`) VALUES
+(1, 1, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_borok/idrinks-sauska-cuvee-5.webp?lastmod=0.1666343376'),
+(2, 2, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_borok/idrinks-szepsy-6-puttonyos-aszu.jpg.webp?lastmod=0.1666343376'),
+(3, 3, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/idrinks-vesztergombi-alpha-cuvee.jpg.webp?lastmod=0.1666343376'),
+(4, 4, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/idrinks-mad-gold.jpg.webp?lastmod=0.1666343376'),
+(5, 10, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Hazai_Vino/idrinks-gere-attila-cuvee.jpg.webp?lastmod=0.1666343376'),
+(6, 6, 'https://idrinks.cdn.shoprenter.hu/custom/idrinks/image/cache/w245h245/product/Bor/Dereszla/idrinks-chateau-dereszla-tokaji-aszu-eszencia-2008.jpg.webp?lastmod=0.1666343376');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `bor_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -851,7 +887,7 @@ INSERT INTO `kuponok` (`id`, `kupon_kod`, `felhasznalt`) VALUES
 (760, 'BP7X2S', 0),
 (761, 'SJ6K8D', 0),
 (762, 'DG8J3V', 0),
-(763, 'ZL3F1G', 0),
+(763, 'ZL3F1G', 1),
 (764, 'RS4Z6D', 0),
 (765, 'UQ7W1Y', 0),
 (766, 'JY5D8B', 0),
@@ -1103,8 +1139,17 @@ CREATE TABLE `login` (
   `email` varchar(255) NOT NULL,
   `telefonszam` varchar(20) DEFAULT NULL,
   `jelszo` varchar(255) NOT NULL,
-  `quiz_completed` tinyint(1) DEFAULT 0
+  `quiz_completed` tinyint(1) DEFAULT 0,
+  `usertype` varchar(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `login`
+--
+
+INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `jelszo`, `quiz_completed`, `usertype`) VALUES
+(17, 'Szekrényes', 'Gábor', 'alma@bela.hu', '06302452160', '$2y$10$LBGvUNXhvSDi/kriVlvEue3Jq1Fl0W7EnjHmXLPlVD2Xk5jF6mtpS', 1, 'admin'),
+(19, 'Bence', 'gabor', 'gabben878@hengersor.hu', '06202522207', '$2y$10$PD/2jRzVZtodPgIFfwZxO.M1Jp8KJr9RXW9ynIiGf3ob4nvPFr8Fm', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1120,6 +1165,53 @@ CREATE TABLE `rendeles` (
   `rendeles_datum` date NOT NULL DEFAULT curdate()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `rendelesek`
+--
+
+CREATE TABLE `rendelesek` (
+  `ID` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rendeles_datuma` timestamp NOT NULL DEFAULT current_timestamp(),
+  `statusz` varchar(20) DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `rendelesek`
+--
+
+INSERT INTO `rendelesek` (`ID`, `user_id`, `rendeles_datuma`, `statusz`) VALUES
+(1, 15, '2025-02-03 13:16:21', 'pending'),
+(2, 16, '2025-02-04 09:04:51', 'pending'),
+(3, 16, '2025-02-04 09:08:06', 'pending'),
+(4, 16, '2025-02-04 09:08:32', 'pending'),
+(5, 17, '2025-02-06 12:10:57', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `rendeles_tetelek`
+--
+
+CREATE TABLE `rendeles_tetelek` (
+  `ID` int(11) NOT NULL,
+  `rendeles_id` int(11) DEFAULT NULL,
+  `bor_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `rendeles_tetelek`
+--
+
+INSERT INTO `rendeles_tetelek` (`ID`, `rendeles_id`, `bor_id`, `quantity`) VALUES
+(2, 1, 2, 1),
+(3, 2, 2, 1),
+(4, 3, 2, 1),
+(5, 5, 2, 8);
+
 --
 -- Indexek a kiírt táblákhoz
 --
@@ -1131,11 +1223,19 @@ ALTER TABLE `borok`
   ADD PRIMARY KEY (`ID`);
 
 --
--- A tábla indexei `kuponok`
+-- A tábla indexei `bor_kepek`
 --
-ALTER TABLE `kuponok`
+ALTER TABLE `bor_kepek`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kupon_kod` (`kupon_kod`);
+  ADD KEY `bor_id` (`bor_id`);
+
+--
+-- A tábla indexei `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `bor_id` (`bor_id`);
 
 --
 -- A tábla indexei `login`
@@ -1153,6 +1253,20 @@ ALTER TABLE `rendeles`
   ADD KEY `bor_id` (`bor_id`);
 
 --
+-- A tábla indexei `rendelesek`
+--
+ALTER TABLE `rendelesek`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- A tábla indexei `rendeles_tetelek`
+--
+ALTER TABLE `rendeles_tetelek`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `rendeles_id` (`rendeles_id`),
+  ADD KEY `bor_id` (`bor_id`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -1160,19 +1274,25 @@ ALTER TABLE `rendeles`
 -- AUTO_INCREMENT a táblához `borok`
 --
 ALTER TABLE `borok`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `kuponok`
+-- AUTO_INCREMENT a táblához `bor_kepek`
 --
-ALTER TABLE `kuponok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+ALTER TABLE `bor_kepek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT a táblához `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT a táblához `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
@@ -1181,8 +1301,33 @@ ALTER TABLE `rendeles`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT a táblához `rendelesek`
+--
+ALTER TABLE `rendelesek`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT a táblához `rendeles_tetelek`
+--
+ALTER TABLE `rendeles_tetelek`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `bor_kepek`
+--
+ALTER TABLE `bor_kepek`
+  ADD CONSTRAINT `bor_kepek_ibfk_1` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`) ON DELETE CASCADE;
+
+--
+-- Megkötések a táblához `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `login` (`ID`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`);
 
 --
 -- Megkötések a táblához `rendeles`
@@ -1190,6 +1335,13 @@ ALTER TABLE `rendeles`
 ALTER TABLE `rendeles`
   ADD CONSTRAINT `rendeles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `login` (`ID`),
   ADD CONSTRAINT `rendeles_ibfk_2` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`);
+
+--
+-- Megkötések a táblához `rendeles_tetelek`
+--
+ALTER TABLE `rendeles_tetelek`
+  ADD CONSTRAINT `rendeles_tetelek_ibfk_1` FOREIGN KEY (`rendeles_id`) REFERENCES `rendelesek` (`ID`),
+  ADD CONSTRAINT `rendeles_tetelek_ibfk_2` FOREIGN KEY (`bor_id`) REFERENCES `borok` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

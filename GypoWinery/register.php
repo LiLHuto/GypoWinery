@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lekérdezés futtatása és eredmény kezelése
     if ($conn->query($sql) === TRUE) {
         // Sikeres regisztráció után átirányítás a login.html oldalra
-        header("Location: login.html");
+        header("Location: login.php");
         exit();
     } else {
         echo "Hiba történt: " . $conn->error;
@@ -40,3 +40,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+?>
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <title>GypoWinery Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="signup">
+      <form action="register.php" method="POST">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="vezeteknev" placeholder="Last Name" required="">
+        <input type="text" name="keresztnev" placeholder="First Name" required="">
+        <input type="email" name="email" placeholder="Email" required="">
+        <input type="tel" name="telefonszam" placeholder="Phone Number" required="">
+        <input type="password" name="jelszo" placeholder="Password" required="">
+        <div class="button-container">
+            <button type="submit">Sign up</button>
+        </div>
+    </form>
+    
+    </div>
+  </div>
+</body>
+
+</html>
+

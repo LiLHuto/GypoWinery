@@ -1,5 +1,5 @@
 <?php
-session_start(); // Minden oldalon elindítjuk a session-t
+include('index_config.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="darkmode.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -116,6 +117,45 @@ session_start(); // Minden oldalon elindítjuk a session-t
     <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
+                <!-- Zászlók helye (ez JavaScript tölti be) -->
+                <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item"><a href="index.php">Főoldal</a></li>
@@ -124,6 +164,7 @@ session_start(); // Minden oldalon elindítjuk a session-t
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
                 <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
             </ul>
+            
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <!-- User menu -->
@@ -132,16 +173,17 @@ session_start(); // Minden oldalon elindítjuk a session-t
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="#" id="cartButton">Kosár</a>
+                        <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
-            <?php else: ?>
+                <?php else: ?>
                 <!-- Login/Register links - only visible if not logged in -->
                 <div class="login-links mt-3">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item"><a href="login.html">Bejelentkezés</a></li>
-                        <li class="nav-item"><a href="regisztracio.html">Regisztráció</a></li>
+                        <li class="nav-item"><a href="login.php">Bejelentkezés</a></li>
+                        
+                        <li class="nav-item"><a href="register.php">Regisztráció</a></li>
                     </ul>
                 </div>
             <?php endif; ?>
@@ -203,28 +245,10 @@ session_start(); // Minden oldalon elindítjuk a session-t
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 
-    <!-- Kosár funkció és megjelenítés -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cartButton = document.getElementById("cartButton");
-            const cartPanel = document.getElementById("cartPanel");
-            const closeCartBtn = document.getElementById("closeCartBtn");
 
-            // Kosár panel megjelenítése
-            cartButton.addEventListener("click", function () {
-                cartPanel.style.display = "block";
-            });
 
-            // Kosár panel bezárása
-            closeCartBtn.addEventListener("click", function () {
-                cartPanel.style.display = "none";
-            });
-
-            // Kosár tartalom (itt statikus példát adok, valós adatbázisból kell lekérdezni)
-            const cartContent = document.getElementById("cartContent");
-            cartContent.innerHTML = "<p>A kosár üres.</p>";
-        });
-    </script>
 </body>
 </html>

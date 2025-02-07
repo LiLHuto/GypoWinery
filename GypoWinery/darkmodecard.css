@@ -1,0 +1,37 @@
+/* Az egész kártya dark mode-ban is fehér maradjon */
+.dark-mode .card {
+    background-color: white !important;
+    color: black !important;
+}
+
+/* Az összes szöveg dark mode-ban fekete legyen */
+.dark-mode .card-body {
+    color: black !important;
+}
+
+/* Az input mezők dark mode-ban világos háttérrel */
+.dark-mode input,
+.dark-mode textarea {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+}
+
+/* A törlés gomb fixen a kártya alján maradjon */
+.dark-mode .card .btn-danger {
+    position: relative !important;
+    bottom: 0 !important;
+    width: 35% !important;
+    margin-top: 10px !important;
+}
+.dark-mode .wine-card {
+    background-color: white !important;
+    color: black !important;
+}
+
+
+/* Kosár gomb */
+body.dark-mode .wine-card .btn-danger {
+    background-color: #ff69b4 !important; /* Rózsaszín gomb */
+    border-color: #ff69b4 !important;
+}
