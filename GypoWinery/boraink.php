@@ -1,8 +1,8 @@
 <?php
-include('config.php');
+include('fasz.php');
 
-// Lekérdezzük a borokat az adatbázisból
-$query = "SELECT * FROM borok";
+// Lekérdezzük a borokat az adatbázisból a képekkel együtt
+$query = "SELECT borok.*, bor_kepek.kep_url FROM borok LEFT JOIN bor_kepek ON borok.ID = bor_kepek.bor_id";
 $stmt = $pdo->query($query);
 $borok = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -52,7 +52,6 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="darkmode.css">
-
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -124,14 +123,42 @@ if (isset($_POST['add_to_cart'])) {
             margin-top: 20px;
         }
 
-        </style>
+        .btn-primary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #495057;
+        }
+
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #6c757d;
+        }
+
+        .call-to-action {
+            background-color: #e9ecef;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="text-center py-3">
         <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
-                    <!-- Zászlók helye (ez JavaScript tölti be) -->
-                    <div id="flags-container"></div>
+         <!-- Zászlók helye (ez JavaScript tölti be) -->
+         <div id="flags-container"></div>
 
 <!-- Sötét mód kapcsoló -->
 <div id="darkmode-container">
@@ -175,9 +202,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 <li class="nav-item"><a href="tortenet.php">Történet</a></li>
                 <li class="nav-item"><a href="boraink.php">Boraink</a></li>
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
-                <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
+                <li class="nav-item"><a href="Kviz.php">Kvíz</a></li>
             </ul>
-
             <?php if (isset($_SESSION['user_id'])): ?>
                 <!-- User menu -->
                 <div class="user-menu mt-3">
@@ -185,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="rendeles.php">Rendeles</a>                       
+                        <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
                 </div>
@@ -208,22 +234,15 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="row">
         <?php foreach ($borok as $bor): ?>
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm wine-card"> <!-- Hozzáadtam a wine-card osztályt -->
-                    <?php 
-                        // A bor ID-ja alapján kép megjelenítése
-                        $image_path = 'kepek/bor' . $bor['ID'] . '.jfif';
-                    ?>
-                    <img src="<?php echo $image_path; ?>" class="card-img-top" alt="<?php echo $bor['nev']; ?>">
+                <div class="card shadow-sm wine-card"> 
+                    <img src="<?php echo htmlspecialchars($bor['kep_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($bor['nev']); ?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $bor['nev']; ?></h5>
-                        <p class="card-text"><?php echo $bor['leiras']; ?></p>
+                        <h5 class="card-title"><?php echo htmlspecialchars($bor['nev']); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($bor['leiras']); ?></p>
                         <p class="card-text wine-price"><strong>Ár:</strong> <?php echo number_format($bor['ar'], 0, '.', ' '); ?> Ft</p>
                         <p class="card-text wine-stock"><strong>Raktár:</strong> 
-                            <?php 
-                                echo ($bor['keszlet'] > 0) ? $bor['keszlet'] . " palack" : "Nincs raktáron"; 
-                            ?>
+                            <?php echo ($bor['keszlet'] > 0) ? $bor['keszlet'] . " palack" : "Nincs raktáron"; ?>
                         </p>
-
                         <form action="boraink.php" method="POST">
                             <input type="hidden" name="bor_id" value="<?php echo $bor['ID']; ?>">
                             <input type="number" name="quantity" value="1" min="1" max="<?php echo $bor['keszlet']; ?>" <?php if ($bor['keszlet'] <= 0) echo 'disabled'; ?> class="form-control mb-3">
@@ -236,14 +255,13 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 </main>
 
-
     <footer class="text-center py-3">
         <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="user-menu.js"></script> 
     <script src="translate.js"></script>
     <script src="darkmode.js"></script>
 </body>

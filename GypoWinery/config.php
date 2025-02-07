@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 // Adatbázis kapcsolat beállítások
 $host = 'localhost'; // Az adatbázis host
 $dbname = 'gypowinery'; // Az adatbázis neve

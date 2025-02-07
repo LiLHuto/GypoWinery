@@ -532,3 +532,79 @@ body.dark-mode .btn-primary {
 body.dark-mode .btn-primary:hover {
     background-color: #ff85c1; /* Világosabb rózsaszín */
 }
+
+/* ALAP FORMÁZÁS */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #f8f9fa;
+}
+
+/* FORM INPUTOK ÉS TEXTAREÁK DARK MODE-BAN */
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #bbb;
+}
+
+/* FORM CÍMKEK */
+body.dark-mode label {
+    color: white;
+}
+
+/* FORM HÁTTÉR SÖTÉT MÓDBAN */
+body.dark-mode form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+/* Alap háttér dark mode esetén */
+body.dark-mode {
+    background-color: #121212;
+    color: #f8f9fa;
+}
+
+/* Bor kártyák dark mode-ban */
+body.dark-mode .bor-card {
+    background-color: #1e1e1e !important;
+    color: #f8f9fa;
+    border: 1px solid #333;
+}
+
+/* Képkeretek és tartalom */
+body.dark-mode .bor-card img {
+    background-color: #222;
+    border-bottom: 1px solid #444;
+}
+
+/* Kártya szövegek */
+body.dark-mode .bor-card .card-title,
+body.dark-mode .bor-card .card-text {
+    color: #f8f9fa;
+}
+
+/* Input mezők */
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #bbb;
+}
+/* A törlés gomb fix pozíciója dark mode-ban is */
+.dark-mode .btn-danger {
+    position: relative;
+    bottom: 0;
+    width: 25%;
+    margin-top: 10px;
+}

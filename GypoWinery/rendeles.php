@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('fasz.php');
 
 // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
 if (!isset($_SESSION['user_id'])) {

@@ -160,3 +160,25 @@ footer p {
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
 }
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form input,
+form textarea,
+form button {
+    height: 38px; /* Bootstrap alapértelmezett input magasság */
+    min-width: 120px; /* Ne legyen túl kicsi */
+}
+
+form textarea {
+    resize: none; /* Ne nyúljon el lefelé */
+    overflow: hidden;
+    line-height: normal;
+}
