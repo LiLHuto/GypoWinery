@@ -1,13 +1,10 @@
 <?php
 session_start();
-
-
 // Adatbázis kapcsolat beállítások
 $host = 'localhost'; // Az adatbázis host
 $dbname = 'gypowinery'; // Az adatbázis neve
 $username = 'root'; // Az adatbázis felhasználó
 $password = ''; // Az adatbázis jelszó
-
 try {
     // PDO kapcsolat létrehozása
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
