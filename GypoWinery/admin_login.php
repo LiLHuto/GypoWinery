@@ -1,5 +1,5 @@
 <?php
-include('fasz.php');
+include('config2.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';

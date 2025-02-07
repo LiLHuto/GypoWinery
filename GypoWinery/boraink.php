@@ -1,5 +1,5 @@
 <?php
-include('fasz.php');
+include('config.php');
 
 // Lekérdezzük a borokat az adatbázisból a képekkel együtt
 $query = "SELECT borok.*, bor_kepek.kep_url FROM borok LEFT JOIN bor_kepek ON borok.ID = bor_kepek.bor_id";

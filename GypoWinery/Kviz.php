@@ -1,5 +1,5 @@
 <?php
-include('fasz.php');
+include('config2.php');
 ?>
 
 
