@@ -142,6 +142,13 @@ if (isset($_POST['delete_wine'])) {
             padding: 20px 0;
             margin-top: 20px;
         }
+           .wine-card img.card-img-top {
+             width: 100%;
+             height: auto;
+             max-height: 300px;
+             object-fit: contain; /* Az arányokat megőrzi, és nem vágja le */
+            display: block;
+        }
 
         </style>
 </head>
@@ -210,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="row">
             <?php foreach ($borok as $bor): ?>
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm wine-card">
                         <img src="<?= htmlspecialchars($bor['kep_url']) ?>" class="card-img-top" alt="<?= htmlspecialchars($bor['nev']) ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($bor['nev']) ?></h5>
@@ -219,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <p class="card-text"><strong>Készlet:</strong> <?= htmlspecialchars($bor['keszlet']) ?> db</p>
                             <form method="post">
                                 <input type="hidden" name="wine_id" value="<?= $bor['ID'] ?>">
-                                <button type="submit" name="delete_wine" class="btn btn-danger">Törlés</button>
+                                <button type="submit" name="delete_wine" class="btn btn-danger btn-block">Törlés</button>
                             </form>
                         </div>
                     </div>

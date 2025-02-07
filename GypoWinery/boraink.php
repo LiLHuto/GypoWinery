@@ -151,6 +151,14 @@ if (isset($_POST['add_to_cart'])) {
             border-radius: 8px;
             margin-top: 20px;
         }
+        .wine-card img.card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain; /* Az arányokat megőrzi, és nem vágja le */
+    display: block;
+        }
+        
     </style>
 </head>
 <body>

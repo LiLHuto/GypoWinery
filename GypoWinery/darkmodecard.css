@@ -21,11 +21,17 @@
 .dark-mode .card .btn-danger {
     position: relative !important;
     bottom: 0 !important;
-    width: 100% !important;
+    width: 35% !important;
     margin-top: 10px !important;
 }
-.dark-mode .card-text
-{
+.dark-mode .wine-card {
     background-color: white !important;
     color: black !important;
+}
+
+
+/* Kosár gomb */
+body.dark-mode .wine-card .btn-danger {
+    background-color: #ff69b4 !important; /* Rózsaszín gomb */
+    border-color: #ff69b4 !important;
 }
