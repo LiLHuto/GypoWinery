@@ -74,7 +74,7 @@ section p {
 
 /* Footer */
 footer {
-    background-color: #343a40;
+    background-color: S;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -130,10 +130,6 @@ body.dark-mode header {
     background-color: #3a1d35;
 }
 
-/* Sötét mód footer */
-body.dark-mode footer {
-    background-color: #1e1e1e;
-}
 
 /* Sötét mód navigáció */
 body.dark-mode nav ul li a {
@@ -486,12 +482,7 @@ body.dark-mode #options-container button {
 body.dark-mode #options-container button:hover {
     background-color: #666 !important; /* Világosabb hover */
 }
-
-/* Footer sötét módra */
-body.dark-mode footer {
-    background-color: #222 !important;
-    color: white !important;
-}/* Sötét mód űrlap háttér */
+/* Sötét mód űrlap háttér */
 body.dark-mode .contact-section {
     background-color: #121212; /* Fekete háttér */
     color: white;
@@ -510,10 +501,6 @@ body.dark-mode .form-control {
     color: white;
 }
 
-/* Sötét mód - Placeholder szöveg (pl. "Keresztnév") */
-body.dark-mode .form-control::placeholder {
-    color: #aaa;
-}
 
 /* Sötét mód - Űrlapmezők fókuszban */
 body.dark-mode .form-control:focus {
@@ -555,7 +542,7 @@ body.dark-mode textarea::placeholder {
 
 /* FORM CÍMKEK */
 body.dark-mode label {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 /* FORM HÁTTÉR SÖTÉT MÓDBAN */
@@ -597,10 +584,6 @@ body.dark-mode textarea {
     border: 1px solid #444;
 }
 
-body.dark-mode input::placeholder,
-body.dark-mode textarea::placeholder {
-    color: #bbb;
-}
 /* A törlés gomb fix pozíciója dark mode-ban is */
 .dark-mode .btn-danger {
     position: relative;

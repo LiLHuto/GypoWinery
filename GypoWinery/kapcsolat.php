@@ -112,10 +112,6 @@ include('config2.php');
             border-radius: 8px;
             margin-top: 20px;
         }
-        .contact-section {
-    background-color: #f8f9fa;
-}
-
 form {
     background: white;
     border-radius: 10px;
@@ -136,6 +132,11 @@ form {
 .btn-primary:hover {
     background-color: #45223e;
 }
+/* Dark mode - Label-ek feketévé tétele */
+body.dark-mode label {
+    color: black !important; /* Fekete szöveg */
+}
+
     </style>
 </head>
 <body>
@@ -213,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <?php endif; ?>
         </nav>
     </header>
-    <section>
+    <section class="contact.section">
         <h2>Kapcsolat</h2>
         <p>Ha szeretne kapcsolatba lépni velünk, kérjük, küldjön üzenetet az alábbi elérhetőségek egyikén:</p>
         <ul>
