@@ -19,14 +19,16 @@ $stmt->execute(['user_id' => $user_id]);
 $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Ha a kosár üres
-if (!$cart_items) {
-    echo "<div class='container mt-5'>
-            <h3>A kosár üres.</h3>
-            <p>Nincs termék a kosaradban.</p>
-            <a href='boraink.php' class='btn btn-primary'>Vissza a borainkhoz</a>
-          </div>";
+/*if (!$cart_items) {
+    echo "<div class='mt-5 empty-cart'>
+    <div class='empty-cart-icon'>🛒</div>
+    <h3>A kosár üres.</h3>
+    <p>Nincs termék a kosaradban.</p>
+    <a href='boraink.php' class='btn btn-primary'>Vissza a borainkhoz</a>
+</div>
+";
     exit();
-}
+}*/
 
 // Kosár frissítése
 if (isset($_POST['update_cart'])) {
@@ -72,7 +74,9 @@ if (isset($_POST['remove_item'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Kosár</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    
     <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="rend.css">
 </head>
 <body class="rendeles-page">
     <header class="text-center py-3">
@@ -184,13 +188,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="boraink.php" class="btn btn-secondary">Vissza a borainkhoz</a>
                 <a href="checkout.php" class="btn btn-success mt-3">Tovább a fizetéshez</a>
             </form>
-        <?php else: ?>
-            <div class="mt-5">
-                <h3>A kosár üres.</h3>
-                <p>Nincs termék a kosaradban.</p>
-                <a href="boraink.php" class="btn btn-primary">Vissza a borainkhoz</a>
-            </div>
-        <?php endif; ?>
+    <?php else: ?>
+        <div class="mt-5 empty-cart">
+    <div class="empty-cart-icon">🛒</div>
+    <h3>A kosár üres.</h3>
+    <p>Nincs termék a kosaradban.</p>
+    <a href="boraink.php" class="btn btn-primary">Vissza a borainkhoz</a>
+</div>
+
+    <?php endif; ?>
     </div>
 
     <footer class="text-center py-3">

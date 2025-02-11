@@ -425,6 +425,10 @@ body.dark-mode.rendeles-page .btn {
 body.dark-mode.rendeles-page .btn-secondary {
     background-color: #6c757d !important;
     color: white !important;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
 body.dark-mode.rendeles-page .btn-secondary:hover {
