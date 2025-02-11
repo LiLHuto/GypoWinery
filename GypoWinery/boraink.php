@@ -219,7 +219,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
                     </button>
                     <div id="userDropdown" class="dropdown-menu">
-                        <a href="#" id="cartButton">Kosár</a>
                         <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
                         <a href="logout.php">Kijelentkezés</a>
                     </div>
