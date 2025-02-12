@@ -10,10 +10,73 @@ $get_cart_stmt = $pdo->prepare($get_cart_query);
 $get_cart_stmt->execute(['user_id' => $user_id]);
 $cart_items = $get_cart_stmt->fetchAll(PDO::FETCH_ASSOC);
 
+<<<<<<< Updated upstream
 // Összegzés számítása
 $total_price = 0;
 foreach ($cart_items as $item) {
     $total_price += $item['quantity'] * $item['ar'];
+=======
+    // Rendelés rögzítése a rendelesek táblába
+    $insert_order_query = "INSERT INTO rendelesek (user_id, rendeles_datuma) VALUES (:user_id, :rendeles_datuma)";
+    $insert_order_stmt = $pdo->prepare($insert_order_query);
+    $insert_order_stmt->execute(['user_id' => $user_id, 'rendeles_datuma' => $date]);
+
+    // Az utolsó beszúrt rendelés ID-jának lekérése
+    $order_id = $pdo->lastInsertId();
+
+    // Kosárban lévő tételek lekérdezése
+    $get_cart_query = "SELECT * FROM cart WHERE user_id = :user_id";
+    $get_cart_stmt = $pdo->prepare($get_cart_query);
+    $get_cart_stmt->execute(['user_id' => $user_id]);
+    $cart_items = $get_cart_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Rendeléshez tartozó tételek rögzítése a rendeles_tetelek táblában
+    foreach ($cart_items as $item) {
+        $bor_id = $item['bor_id'];
+        $quantity = $item['quantity'];
+
+        $insert_order_items_query = "INSERT INTO rendeles_tetelek (rendeles_id, bor_id, quantity) VALUES (:rendeles_id, :bor_id, :quantity)";
+        $insert_order_items_stmt = $pdo->prepare($insert_order_items_query);
+        $insert_order_items_stmt->execute(['rendeles_id' => $order_id, 'bor_id' => $bor_id, 'quantity' => $quantity]);
+    }
+
+    // Kosár törlése a cart táblából
+    $delete_cart_query = "DELETE FROM cart WHERE user_id = :user_id";
+    $delete_cart_stmt = $pdo->prepare($delete_cart_query);
+    $delete_cart_stmt->execute(['user_id' => $user_id]);
+
+    // Vásárló e-mail címe
+    $get_user_email_query = "SELECT email FROM login WHERE ID = :user_id";
+    $get_user_email_stmt = $pdo->prepare($get_user_email_query);
+    $get_user_email_stmt->execute(['user_id' => $user_id]);
+    $user_email = $get_user_email_stmt->fetchColumn();
+
+    if ($user_email) {
+        $api_key = "a058a000-92b7-445f-9d13-e75f1cee5a04"; // Cseréld ki a saját Web3Forms API kulcsodra
+
+        $post_fields = http_build_query([
+            "access_key" => $api_key,
+            "subject" => "Rendelés visszaigazolás - Gypo Winery",
+            "from_name" => "Gypo Winery",
+            "from_email" => "gypowinery@gmail.com",
+            "replyto" => $user_email,
+            "to" => $user_email,
+            "message" => "Kedves Vásárló,\n\nKöszönjük a rendelésed!\n\nRendelési azonosító: #$order_id\n\nRendelt tételek:\n$order_details\n\nHamarosan jelentkezünk a kiszállítás részleteivel.\n\nÜdvözlettel,\nGypo Winery"
+        ]);
+
+        $ch = curl_init("https://api.web3forms.com/submit");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $response = curl_exec($ch);
+        curl_close($ch);
+    }
+    
+
+    // Törlés után visszairányítás a rendelés oldalra
+    header('Location: rendelesvege.php');
+    exit();
+>>>>>>> Stashed changes
 }
 $total_price_with_shipping = $total_price + $shipping_fee;
 ?>
@@ -90,10 +153,16 @@ $total_price_with_shipping = $total_price + $shipping_fee;
         }
     </script>
 </head>
+<<<<<<< Updated upstream
 <body>
     <div class="container text-center">
         <div id="flags-container" class="mb-3"></div>
         <div id="darkmode-container" class="mb-3"></div>
+=======
+<body class="checkout-page">
+                      <!-- Zászlók helye (ez JavaScript tölti be) -->
+                      <div id="flags-container"></div>
+>>>>>>> Stashed changes
 
         <div class="checkout-card">
             <h2 class="mb-3">🛒 Véglegesítés</h2>

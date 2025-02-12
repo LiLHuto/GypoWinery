@@ -27,7 +27,7 @@ $user_name = $user['keresztnev'];
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="darkmode.css">
 </head>
-<body>
+<body class="rendelesvege-page">
                       <!-- Zászlók helye (ez JavaScript tölti be) -->
                       <div id="flags-container"></div>
 
