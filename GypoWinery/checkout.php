@@ -1,5 +1,5 @@
 <?php
-include('fasz.php');
+include('config2.php');
 
 // Ha a rendelés véglegesítése gombra kattintottak
 if (isset($_POST['place_order'])) {
