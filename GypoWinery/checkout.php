@@ -72,8 +72,7 @@ foreach ($cart_items as $item) {
     
 
     // Törlés után visszairányítás a rendelés oldalra
-    header('Location: rendelesvege.php');
-    exit();
+
 }
 $total_price_with_shipping = $total_price + $shipping_fee;
 ?>
