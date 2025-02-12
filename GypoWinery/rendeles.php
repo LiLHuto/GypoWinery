@@ -155,12 +155,14 @@ document.addEventListener("DOMContentLoaded", function() {
                                     ?> Ft
                                 </td>
                                 <td>
+                                    <div class="button-container"> 
                                     <button type="submit" name="update_cart" class="btn btn-warning">Frissítés</button>
                                     <form method="POST" action="rendeles.php" style="display:inline;">
                                         <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
                                         <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>">
                                         <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>"> <!-- Készlet frissítéshez -->
                                         <button type="submit" name="remove_item" class="btn btn-danger">Törlés</button>
+                                      </div>
                                     </form>
                                 </td>
                             </tr>
@@ -185,9 +187,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     <div><strong>Végösszeg:</strong></div>
                     <div><?php echo number_format($total + 1500, 0, '.', ' '); ?> Ft</div>
                 </div>
-
+                <div class="button-container2"> 
                 <a href="boraink.php" class="btn btn-secondary">Vissza a borainkhoz</a>
                 <a href="checkout.php" class="btn btn-success mt-3">Tovább a fizetéshez</a>
+                </div>
             </form>
     <?php else: ?>
         <div class="mt-5 empty-cart">
