@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
             </div>
             <div class="col-md-6">
-                <img src="kepek/borozo.jfif" alt="Borkóstoló" class="img-fluid rounded">
+                <img src="kepek/borpince.jpg" alt="Borkóstoló" class="img-fluid rounded">
             </div>
         </section>
 
