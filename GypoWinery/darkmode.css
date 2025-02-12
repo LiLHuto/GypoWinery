@@ -592,6 +592,83 @@ body.dark-mode textarea {
 .dark-mode .btn-danger {
     position: relative;
     bottom: 0;
-    width: 25%;
+    width: 30%;
     margin-top: 10px;
+}
+
+/* Alapértelmezett (világos mód) */
+.container {
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+/* Sötét mód - Kosár konténer (meglévő osztályhoz) */
+body.dark-mode .container {
+    background-color: #1e1e1e !important; /* Sötétszürke háttér */
+    color: white !important; /* Fehér szöveg */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Táblázat háttér javítása */
+.container .table {
+    background-color: white;
+    color: black;
+}
+
+/* Táblázat sötét módban */
+body.dark-mode .container .table {
+    background-color: #222 !important;
+    color: white !important;
+}
+
+/* Táblázat fejlécek világos módban */
+.container .table thead,
+.container .table th {
+    background-color: white;
+    color: black;
+}
+
+/* Táblázat fejlécek sötét módban */
+body.dark-mode .container .table thead,
+body.dark-mode .container .table th {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+/* Gombok világos és sötét módban */
+.container .btn {
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+/* Világos mód gombok */
+.container .btn-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+
+.container .btn-success {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+/* Sötét mód gombok */
+body.dark-mode .container .btn-secondary {
+    background-color: #444 !important;
+    color: white !important;
+}
+
+body.dark-mode .container .btn-success {
+    background-color: #218838 !important;
+    color: white !important;
+}
+.rendeles-page
+{
+    background-color: white;
+
 }
