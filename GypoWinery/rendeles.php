@@ -156,15 +156,26 @@ document.addEventListener("DOMContentLoaded", function() {
                                 </td>
                                 <td>
                                     <div class="button-container"> 
-                                    <button type="submit" name="update_cart" class="btn btn-warning">Frissítés</button>
-                                    <form method="POST" action="rendeles.php" style="display:inline;">
-                                        <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
-                                        <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>">
-                                        <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>"> <!-- Készlet frissítéshez -->
-                                        <button type="submit" name="remove_item" class="btn btn-danger">Törlés</button>
-                                      </div>
-                                    </form>
+                                        <!-- Frissítés gomb saját külön formban -->
+                                        <form method="POST" action="rendeles.php" style="display:inline;">
+                                            <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
+                                            <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>">
+                                            <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>">
+                                            <button type="submit" name="update_cart" class="btn btn-warning">Frissítés</button>
+                                        </form>
+
+                                        <!-- Törlés gomb külön formban, saját `div`-ben -->
+                                        <div class="delete-button-container">
+                                            <form method="POST" action="rendeles.php" style="display:inline;">
+                                                <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
+                                                <input type="hidden" name="bor_id" value="<?php echo $item['bor_id']; ?>">
+                                                <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>">
+                                                <button type="submit" name="remove_item" class="btn btn-danger">Törlés</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </td>
+
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

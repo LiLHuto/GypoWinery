@@ -701,4 +701,35 @@ body.dark-mode .container .btn-success {
 .rendelesvege-page{
     background-color: white;
 }
+/* Gombok méretének egységesítése */
+.button-container button {
+    width: 100px !important; /* Ugyanakkora szélesség mindkét gombnak */
+    height: 40px !important; /* Ugyanakkora magasság */
+    padding: 5px 10px !important;
+    text-align: center;
+    font-size: 16px; /* Egységes betűméret */
+    display: inline-block;
+}
+/* Biztosítjuk, hogy a form ne legyen nagyobb, mint a gomb */
+.button-container form {
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    position: relative !important;
+    pointer-events: none !important;
+}
 
+/* A gomb biztosan kattintható maradjon */
+.button-container form button {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+/* A gombokat flexboxban helyezzük el, hogy legyen közöttük tér */
+.button-container {
+    display: flex;
+    gap: 8px; /* Itt állíthatod a távolságot (8px jelenleg) */
+    align-items: center;
+}
