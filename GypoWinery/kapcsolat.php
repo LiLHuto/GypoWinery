@@ -230,7 +230,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <h3 class="text-center mb-4 text-primary">Küldjön nekünk üzenetet!</h3>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <form action="submit_form.php" method="post" class="p-4 shadow rounded bg-white">
+                <form action="https://api.web3forms.com/submit" method="POST" class="p-4 shadow rounded bg-white">
+                    <input type="hidden" name="access_key" value="a058a000-92b7-445f-9d13-e75f1cee5a04">
                     <div class="mb-3">
                         <label for="firstname" class="form-label">Keresztnév:</label>
                         <input type="text" id="firstname" name="firstname" class="form-control" required>
