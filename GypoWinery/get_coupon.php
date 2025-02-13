@@ -26,7 +26,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // **Lekérjük a még fel nem használt kupont**
-$query = "SELECT id, kupon_kod FROM kuponok WHERE felhasznalt = 0 ORDER BY RAND() LIMIT 1";
+$query = "SELECT id, kupon_kod FROM kuponok WHERE kiosztott = 0 ORDER BY RAND() LIMIT 1";
 $result = $conn->query($query);
 
 if ($result && $result->num_rows > 0) {
@@ -35,7 +35,7 @@ if ($result && $result->num_rows > 0) {
     $coupon_code = $row['kupon_kod'];
 
     // **Frissítjük a kupont, hogy már felhasznált legyen**
-    $update_query = "UPDATE kuponok SET felhasznalt = 1 WHERE id = ?";
+    $update_query = "UPDATE kuponok SET kiosztott = 1 WHERE id = ?";
     $stmt = $conn->prepare($update_query);
     $stmt->bind_param("i", $coupon_id);
     
