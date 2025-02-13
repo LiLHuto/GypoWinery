@@ -847,3 +847,37 @@ body.dark-mode button:disabled {
     color: rgba(255, 255, 255, 0.5) !important;
     opacity: 0.5;
 }
+
+/* Dark mode - A leírás mező is sötét legyen */
+body.dark-mode textarea {
+    background-color: #222 !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Dark mode - Input mezők */
+body.dark-mode input {
+    background-color: #222 !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Az inputok és a textarea formázása */
+form input,
+form textarea {
+    width: 250px; /* Egyforma szélesség */
+    height: 38px; /* Magasság */
+    padding: 5px;
+    border-radius: 5px; /* Lekerekített sarkok */
+    border: 1px solid #ccc;
+}
+
+/* A gomb egy új sorba kerüljön */
+form button {
+    width: 200px; /* Vegye fel az input mezők szélességét */
+    height: 40px; /* Magasabb legyen */
+    margin-top: 10px; /* Távolság az inputoktól */
+    font-size: 16px; /* Olvasható méret */
+    text-align: center; /* Szöveg középre */
+}
+
