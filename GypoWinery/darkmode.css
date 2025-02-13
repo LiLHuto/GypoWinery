@@ -827,3 +827,23 @@ body.dark-mode .form-select option {
 body.dark-mode label {
     color: white !important;
 }
+.btn-primary:hover {
+    background-color: #495057;
+}
+
+/* Inaktív (disabled) gomb világos módban */
+.btn-primary:disabled, 
+button:disabled {
+    background-color: rgba(108, 117, 125, 0.6) !important; /* Ugyanaz a szín, de halványabb */
+    color: rgba(255, 255, 255, 0.6) !important;
+    cursor: not-allowed;
+    opacity: 0.6; /* Csökkentett átlátszóság */
+}
+
+/* Sötét mód: Inaktív gomb */
+body.dark-mode .btn-primary:disabled, 
+body.dark-mode button:disabled {
+    background-color: rgba(255, 105, 180, 0.5) !important; /* Sötét módban rózsaszínes árnyalat */
+    color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 0.5;
+}

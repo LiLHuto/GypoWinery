@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Lekérdezzük a kosár tartalmát
-$query = "SELECT cart.ID as cart_id, borok.ID as bor_id, borok.ar, cart.quantity 
+$query = "SELECT cart.ID as cart_id, borok.ID as bor_id, borok.ar, borok.nev, cart.quantity 
           FROM cart 
           JOIN borok ON cart.bor_id = borok.ID
           WHERE cart.user_id = :user_id";
@@ -24,8 +24,10 @@ if (!$cart_items) {
 }
 
 $total = 0;
+$order_details = "";
 foreach ($cart_items as $item) {
     $total += $item['ar'] * $item['quantity'];
+    $order_details .= "{$item['nev']} - {$item['quantity']} db - " . number_format($item['ar'] * $item['quantity'], 0, ',', ' ') . " Ft\n";
 }
 $shipping_cost = 1500;
 $final_total = $total + $shipping_cost;
@@ -55,38 +57,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     $delete_stmt = $pdo->prepare($delete_cart);
     $delete_stmt->execute(['user_id' => $user_id]);
 
-     // Vásárló e-mail címe
-     $get_user_email_query = "SELECT email FROM login WHERE ID = :user_id";
-     $get_user_email_stmt = $pdo->prepare($get_user_email_query);
-     $get_user_email_stmt->execute(['user_id' => $user_id]);
-     $user_email = $get_user_email_stmt->fetchColumn();
- 
-     if ($user_email) {
-         $api_key = "a058a000-92b7-445f-9d13-e75f1cee5a04"; // Cseréld ki a saját Web3Forms API kulcsodra
- 
-         $post_fields = http_build_query([
-             "access_key" => $api_key,
-             "subject" => "Rendelés visszaigazolás - Gypo Winery",
-             "from_name" => "Gypo Winery",
-             "from_email" => "gypowinery@gmail.com",
-             "replyto" => $user_email,
-             "to" => $user_email,
-             "message" => "Kedves Vásárló,\n\nKöszönjük a rendelésed!\n\nRendelési azonosító: #$order_id\n\nRendelt tételek:\n$order_details\n\nHamarosan jelentkezünk a kiszállítás részleteivel.\n\nÜdvözlettel,\nGypo Winery"
-         ]);
- 
-         $ch = curl_init("https://api.web3forms.com/submit");
-         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-         curl_setopt($ch, CURLOPT_POST, true);
-         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
-         $response = curl_exec($ch);
-         curl_close($ch);
-     }
+    // Vásárló e-mail címe
+    $get_user_email_query = "SELECT email FROM login WHERE ID = :user_id";
+    $get_user_email_stmt = $pdo->prepare($get_user_email_query);
+    $get_user_email_stmt->execute(['user_id' => $user_id]);
+    $user_email = $get_user_email_stmt->fetchColumn();
+
+    if ($user_email) {
+        $api_key = "a058a000-92b7-445f-9d13-e75f1cee5a04"; // Cseréld ki a saját Web3Forms API kulcsodra
+
+        $post_fields = http_build_query([
+            "access_key" => $api_key,
+            "subject" => "Rendelés visszaigazolás - Gypo Winery",
+            "from_name" => "Gypo Winery",
+            "from_email" => "gypowinery@gmail.com",
+            "replyto" => $user_email,
+            "to" => $user_email,
+            "message" => "Kedves Vásárló,\n\nKöszönjük a rendelésed!\n\nRendelési azonosító: #$order_id\n\nRendelt tételek:\n$order_details\n\nÖsszesen: " . number_format($final_total, 0, ',', ' ') . " Ft\n\nHamarosan jelentkezünk a kiszállítás részleteivel.\n\nÜdvözlettel,\nGypo Winery"
+        ]);
+
+        $ch = curl_init("https://api.web3forms.com/submit");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $response = curl_exec($ch);
+        curl_close($ch);
+    }
 
     // Átirányítás a rendelés végére
     header('Location: rendelesvege.php');
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
