@@ -9,7 +9,7 @@ body {
 
 /* Világos mód */
 body.light-mode {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     color: #333;
 }
 
@@ -753,12 +753,12 @@ body.dark-mode .checkout-card h2,
 body.dark-mode .checkout-card h4,
 body.dark-mode .checkout-card p,
 body.dark-mode label {
-    color: rgb(0, 0, 0) !important;
+    color: #ff69b4 !important;
 }
 
 /* Dark mode - összegzés */
 body.dark-mode .order-summary {
-    background-color: #2a2a2a !important;
+    background-color: #000000 !important;
     color: #ffcc00 !important;
     padding: 10px;
     border-radius: 5px;
@@ -879,5 +879,12 @@ form button {
     margin-top: 10px; /* Távolság az inputoktól */
     font-size: 16px; /* Olvasható méret */
     text-align: center; /* Szöveg középre */
+}
+/* A világos és sötét módra is alkalmazzuk */
+body.dark-mode .vissza-gomb,
+.vissza-gomb {
+    width: 200px !important;
+    text-align: center !important;
+    margin-left: 20px;
 }
 

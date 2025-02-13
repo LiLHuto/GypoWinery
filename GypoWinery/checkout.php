@@ -103,6 +103,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="darkmode.css">
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+        
         function togglePaymentDetails() {
             var paymentMethod = document.getElementById("payment_method").value;
             var cardDetails = document.getElementById("card-details");
@@ -119,11 +130,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
                 paypalDetails.style.display = "none";
             }
         }
+        
     </script>
 </head>
 <body>
 <header class="text-center py-3">
     <h1>Rendelés véglegesítése</h1>
+     <!-- Zászlók helye (ez JavaScript tölti be) -->
+     <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
 </header>
 
 <div class="container">
@@ -133,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
             <h4 class="mb-3">🛍 Termékek ára: <?php echo number_format($total, 0, ',', ' '); ?> Ft</h4>
             <h4 class="mb-3">🚚 Szállítási díj: <?php echo number_format($shipping_cost, 0, ',', ' '); ?> Ft</h4>
             <h4 class="mb-3">💰 Összesen: <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h4>
-        <h3>Fizetendő összeg: <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h3>
+        <h3 class="fizetendo-osszeg">Fizetendő összeg: <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h3>
 
         <form action="checkout.php" method="POST">
             <div class="mb-3 text-start">
@@ -176,10 +215,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
             <button type="submit" name="place_order" class="btn btn-success">✔️ Rendelés leadása</button>
         </form>
         
-        <a href="rendeles.php" class="btn btn-secondary mt-2">🔙 Vissza</a>
+        <a href="rendeles.php" class="btn btn-secondary vissza-gomb">🔙 Vissza</a>
     </div>
 </div>
 
 <script src="darkmode.js"></script>
+<script src="translate.js"></script>
 </body>
 </html>
