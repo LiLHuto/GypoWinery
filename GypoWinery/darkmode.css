@@ -733,3 +733,97 @@ body.dark-mode .container .btn-success {
     gap: 8px; /* Itt állíthatod a távolságot (8px jelenleg) */
     align-items: center;
 }
+
+/* Sötét mód - Alapbeállítások */
+body.dark-mode {
+    background-color: #333!important;
+    color: white !important;
+}
+
+/* Dark mode - a rendelés összegző kártya */
+body.dark-mode .checkout-card {
+    background-color: #1e1e1e !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode - címek és szövegek */
+body.dark-mode .checkout-card h2,
+body.dark-mode .checkout-card h4,
+body.dark-mode .checkout-card p,
+body.dark-mode label {
+    color: rgb(0, 0, 0) !important;
+}
+
+/* Dark mode - összegzés */
+body.dark-mode .order-summary {
+    background-color: #2a2a2a !important;
+    color: #ffcc00 !important;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Dark mode - input mezők */
+body.dark-mode select,
+body.dark-mode input {
+    background-color: #333 !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Dark mode - gombok */
+body.dark-mode .btn-success {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+body.dark-mode .btn-success:hover {
+    background-color: #218838 !important;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: #5a6268 !important;
+}
+
+/* Dark mode - PayPal és Kártyás fizetés mezők */
+body.dark-mode #card-details,
+body.dark-mode #paypal-details {
+    background-color: #222 !important;
+    color: white !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Dark mode - rendelés leadása */
+body.dark-mode .checkout-card button {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+body.dark-mode .checkout-card button:hover {
+    background-color: #218838 !important;
+}
+/* Dark mode - fizetési mód kiválasztás */
+body.dark-mode .form-select {
+    background-color: #333 !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Dark mode - fizetési mód kiválasztó szövege */
+body.dark-mode .form-select option {
+    background-color: #222 !important;
+    color: white !important;
+}
+
+/* Dark mode - fizetési mód kiválasztó label (Válassz fizetési módot:) */
+body.dark-mode label {
+    color: white !important;
+}

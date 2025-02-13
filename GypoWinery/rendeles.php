@@ -77,7 +77,6 @@ if (isset($_POST['remove_item'])) {
     
     <link rel="stylesheet" href="darkmode.css">
     <link rel="stylesheet" href="rend.css">
-    <link rel="stylesheet" href="darkmode2.css">
 </head>
 <body class="rendeles-page">
     <header class="text-center py-3">
