@@ -756,6 +756,10 @@ body.dark-mode label {
     color: #ff69b4 !important;
 }
 
+body.dark-mode .rendeles-page h4{
+    color: #ff69b4 !important;
+}
+
 /* Dark mode - összegzés */
 body.dark-mode .order-summary {
     background-color: #000000 !important;
@@ -887,4 +891,5 @@ body.dark-mode .vissza-gomb,
     text-align: center !important;
     margin-left: 20px;
 }
+
 

@@ -100,6 +100,45 @@ $_SESSION['final_total'] = $final_total;
 <body class="rendeles-page">
     <header class="text-center py-3">
         <h1>Rendelés</h1>
+        <!-- Zászlók helye (ez JavaScript tölti be) -->
+        <div id="flags-container"></div>
+
+<!-- Sötét mód kapcsoló -->
+<div id="darkmode-container">
+    <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <div class="slider">
+            <div class="clouds">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+            </div>
+            <div class="circle"></div>
+            <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+    </label>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Megvárjuk, amíg a JavaScript betölti a zászlókat
+    var flagsContainer = document.querySelector("#flags-container");
+    var darkmodeContainer = document.querySelector("#darkmode-container");
+
+    if (flagsContainer && darkmodeContainer) {
+        // A sötét mód kapcsolót a zászlók után helyezzük el
+        flagsContainer.insertAdjacentElement("afterend", darkmodeContainer);
+    }
+});
+</script>
     </header>
 
     <div class="container">
@@ -161,5 +200,7 @@ $_SESSION['final_total'] = $final_total;
             <a href="boraink.php" class="btn btn-primary">Vissza a borainkhoz</a>
         <?php endif; ?>
     </div>
+    <script src="translate.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>
