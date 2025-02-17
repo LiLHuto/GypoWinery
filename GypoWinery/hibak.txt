@@ -1,0 +1,4 @@
+kuponkod tarolasa abban az esetben is ha torlunk egy tetel a kosarbol
+kerdesek az adatbazisbol valo betoltese
+darkmode fixalasa
+header dropboxba rakasa kis keperyo eseten
