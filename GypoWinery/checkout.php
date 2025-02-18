@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
             <h4 class="mb-3">🛍 Termékek ára: <?php echo number_format($total, 0, ',', ' '); ?> Ft</h4>
             <h4 class="mb-3">🚚 Szállítási díj: <?php echo number_format($shipping_cost, 0, ',', ' '); ?> Ft</h4>
             <h4 class="mb-3">💰 Összesen: <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h4>
-        <h3 class="fizetendo-osszeg">Fizetendő összeg: <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h3>
+        <h3 class="fizetendo-osszeg">Fizetendő összeg <?php echo number_format($final_total, 0, ',', ' '); ?> Ft</h3>
 
         <form action="checkout.php" method="POST">
             <div class="mb-3 text-start">

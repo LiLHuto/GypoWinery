@@ -1,32 +1,3 @@
-// Kvíz kérdések
-const questions = [
-    { 
-        text: "Hol alakult meg a GypoWinery?",
-        options: ["Csévharaszti régió", "Tokaji régió", "Villány", "Eger"],
-        correct: 0
-    },
-    { 
-        text: "Mikor ültették el a GypoWinery első szőlőültetvényét?",
-        options: ["1985", "1990", "2000", "2005"],
-        correct: 1
-    },
-    { 
-        text: "Milyen technológiai újítást vezetett be a GypoWinery 2005-ben?",
-        options: ["Organikus gazdálkodási módszerek", "Modern borászat-technológiai újítások", "Új szőlőültetvények elhelyezése", "Nemzetközi forgalmazás"],
-        correct: 1
-    },
-    { 
-        text: "Mi a GypoWinery küldetése?",
-        options: ["A világ legnépszerűbb borát készíteni", "Bemutatni a Csévharaszti terroir egyedülálló ízvilágát", "Új technológiák bevezetése a borászatban", "Csak vörösborokra koncentrálni"],
-        correct: 1
-    },
-    { 
-        text: "Mi a GypoWinery elköteleződése?",
-        options: ["Fenntarthatóság és a helyi közösségek támogatása", "Nemzetközi piacokra való terjeszkedés", "Csak hagyományos borászmódszerek alkalmazása", "Csak édes borok készítése"],
-        correct: 0
-    }
-];
-
 // Állapotváltozók
 let shuffledQuestions = [];
 let currentQuestionIndex = 0;
@@ -36,35 +7,55 @@ let score = 0;
 const questionContainer = document.getElementById("question-container");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
+
 // Kvíz indítása
 async function startQuiz() {
     console.log("Kvíz indítása...");
-    
-    // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
+
     const loggedIn = await isLoggedIn();
     if (!loggedIn) {
         alert("Csak bejelentkezett felhasználók tölthetik ki a kvízt.");
         return;
     }
 
-    // Ellenőrizzük a localStorage-ban, hogy a felhasználó már kitöltötte-e a kvízt
     if (localStorage.getItem('quizCompleted') === 'true') {
         alert("Már kitöltötted a kvízt!");
         return;
     }
 
-    // Kérdések randomizálása
-    shuffledQuestions = [...questions].sort(() => Math.random() - 0.5).slice(0, 5);
-    currentQuestionIndex = 0;
-    score = 0;
-    showQuestion();
+    await fetchQuestions();
+
+    if (shuffledQuestions.length > 0) {
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+    } else {
+        questionText.textContent = "Hiba történt a kérdések betöltésekor.";
+    }
+}
+
+// Kérdések lekérése adatbázisból
+async function fetchQuestions() {
+    try {
+        const response = await fetch('fetch_questions.php'); // PHP backend a kérdések lekérésére
+        const data = await response.json();
+
+        if (!data.error) {
+            shuffledQuestions = data;
+            console.log("Betöltött kérdések:", shuffledQuestions);
+        } else {
+            console.error("Hiba:", data.error);
+        }
+    } catch (error) {
+        console.error("Hiba a kérdések lekérésekor:", error);
+    }
 }
 
 // Kérdés megjelenítése
 function showQuestion() {
     if (currentQuestionIndex < shuffledQuestions.length) {
         const currentQuestion = shuffledQuestions[currentQuestionIndex];
-        questionText.textContent = currentQuestion.text;
+        questionText.textContent = currentQuestion.question_text;
         optionsContainer.innerHTML = "";
 
         currentQuestion.options.forEach((option, index) => {
@@ -89,7 +80,7 @@ function handleAnswer(selectedIndex) {
     showQuestion();
 }
 
-// Eredmény megjelenítése és kupon igénylése
+// Eredmény megjelenítése
 async function showResult() {
     questionText.textContent = `Kvíz vége! Eredményed: ${score}/${shuffledQuestions.length}`;
     optionsContainer.innerHTML = "";
@@ -100,26 +91,23 @@ async function showResult() {
         resultMessage = "Gratulálunk! Nyertél egy ingyenes borkóstolást!";
     } else if (score >= 2 && score <= 4) {
         resultMessage = "Gratulálunk! Nyertél 10%-os kedvezményt a következő vásárlásodhoz!";
-        await fetchCoupon(); // Kupon igénylése
+        await fetchCoupon();
     } else {
         resultMessage = "Köszönjük, hogy játszottál!";
     }
-  // Eredmény megjelenítése
-  const resultText = document.createElement("p");
-  resultText.textContent = resultMessage;
-  optionsContainer.appendChild(resultText);
 
-  // Újrapróbálás gomb
-  const retryButton = document.createElement("button");
-  retryButton.textContent = "Újrapróbálom";
-  retryButton.classList.add("btn", "btn-success");
-  retryButton.onclick = startQuiz;
-  optionsContainer.appendChild(retryButton);
+    const resultText = document.createElement("p");
+    resultText.textContent = resultMessage;
+    optionsContainer.appendChild(resultText);
 
-  // Mentés a localStorage-ba, hogy a felhasználó már kitöltötte a kvízt
-  localStorage.setItem('quizCompleted', 'true');
+    const retryButton = document.createElement("button");
+    retryButton.textContent = "Újrapróbálom";
+    retryButton.classList.add("btn", "btn-success");
+    retryButton.onclick = startQuiz;
+    optionsContainer.appendChild(retryButton);
 
-    // Mentés a backendre
+    localStorage.setItem('quizCompleted', 'true');
+
     await saveQuizResult();
 }
 
@@ -131,11 +119,11 @@ async function fetchCoupon() {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const text = await response.text(); // Először sima szövegként beolvassuk
-        console.log("Szerver válasza:", text); // Debugging
+        const text = await response.text();
+        console.log("Szerver válasza:", text);
 
         try {
-            const data = JSON.parse(text); // Megpróbáljuk JSON-né alakítani
+            const data = JSON.parse(text);
             if (data.status === "success") {
                 const couponText = document.createElement("p");
                 couponText.textContent = `Nyertél egy kupont! Kód: ${data.coupon}`;
@@ -144,7 +132,7 @@ async function fetchCoupon() {
                 console.error('Hiba történt:', data.message);
             }
         } catch (jsonError) {
-            console.error("Hibás JSON válasz:", text); // Ha nem JSON, kiírjuk
+            console.error("Hibás JSON válasz:", text);
         }
 
     } catch (error) {
@@ -152,7 +140,7 @@ async function fetchCoupon() {
     }
 }
 
-// Mentés a backendre, hogy a felhasználó kitöltötte a kvízt
+// Kvíz eredmény mentése a backendre
 async function saveQuizResult() {
     const userId = await getUserIdFromSession();
     if (userId !== null) {
@@ -209,4 +197,5 @@ async function isLoggedIn() {
     }
 }
 
+// Kvíz indítása
 startQuiz();

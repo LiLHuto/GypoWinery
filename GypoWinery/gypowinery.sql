@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 13. 15:00
+-- Létrehozás ideje: 2025. Feb 18. 08:22
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -925,7 +925,7 @@ INSERT INTO `kuponok` (`id`, `kupon_kod`, `felhasznalt`, `kiosztott`) VALUES
 (797, 'SF0K9J', 0, 0),
 (798, 'DQ6L1Q', 0, 0),
 (799, 'RK9T7O', 0, 0),
-(800, 'OC7L0V', 0, 0),
+(800, 'OC7L0V', 0, 1),
 (801, 'CZ6F0V', 0, 0),
 (802, 'YF2K4U', 0, 0),
 (803, 'VQ7B8C', 0, 0),
@@ -1156,6 +1156,39 @@ INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `quiz_questions`
+--
+
+CREATE TABLE `quiz_questions` (
+  `id` int(11) NOT NULL,
+  `question_text` text NOT NULL,
+  `option_a` varchar(255) NOT NULL,
+  `option_b` varchar(255) NOT NULL,
+  `option_c` varchar(255) NOT NULL,
+  `option_d` varchar(255) NOT NULL,
+  `correct_option` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `quiz_questions`
+--
+
+INSERT INTO `quiz_questions` (`id`, `question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_option`) VALUES
+(1, 'Hol alakult meg a GypoWinery?', 'Csévharaszti régió', 'Tokaji régió', 'Villány', 'Eger', 'A'),
+(2, 'Mikor ültették el a GypoWinery első szőlőültetvényét?', '1985', '1990', '2000', '2005', 'B'),
+(3, 'Milyen technológiai újítást vezetett be a GypoWinery 2005-ben?', 'Organikus gazdálkodási módszerek', 'Modern borászat-technológiai újítások', 'Új szőlőültetvények elhelyezése', 'Nemzetközi forgalmazás', 'C'),
+(4, 'Mi a GypoWinery küldetése?', 'A világ legnépszerűbb borát készíteni', 'Bemutatni a Csévharaszti terroir egyedülálló ízvilágát', 'Új technológiák bevezetése a borászatban', 'Csak vörösborokra koncentrálni', 'D'),
+(5, 'Mi a GypoWinery elköteleződése?', 'Fenntarthatóság és a helyi közösségek támogatása', 'Nemzetközi piacokra való terjeszkedés', 'Csak hagyományos borászmódszerek alkalmazása', 'Csak édes borok készítése', 'A'),
+(6, 'Milyen jövőbeli tervei vannak a GypoWinerynek?', 'Új helyszínek nyitása világszerte', 'Új borfajták bevezetése és a borászat bővítése', 'Csak vörösborokra koncentrálni', 'Borok kizárólagos online értékesítése', 'B'),
+(7, 'Melyik vörösborunk illik legjobban steakhez vagy grillezett húsokhoz?', 'Csévharaszti Kékfrankos', 'Csévharaszti Cabernet Sauvignon', 'Csévharaszti Rosé', 'Csévharaszti Olaszrizling', 'C'),
+(8, 'Milyen hőmérsékleten kell tálalni a GypoWinery Csévharaszti Zöld Veltelinit?', '8-10°C', '10-12°C', '16-18°C', '18-20°C', 'B'),
+(9, 'Melyik borunkban található eper és cseresznye ízvilág, és tökéletes a nyári fogásokhoz?', 'Csévharaszti Cabernet Sauvignon', 'Csévharaszti Rosé', 'Csévharaszti Olaszrizling', 'Csévharaszti Kékfrankos', 'D'),
+(10, 'Mi az ideális hőmérséklet a Csévharaszti Jégbor tálalásához?', '6-8°C', '8-10°C', '16-18°C', '18-20°C', 'A'),
+(11, 'Mi a GypoWinery Mottója?', '„A legjobb módja, hogy élvezd egy pohár bort, ha megosztod egy barátoddal.” – Ismeretlen', '„Az élet túl rövid ahhoz, hogy rossz bort igyunk.” – Johann Wolfgang von Goethe', '„A bor folyamatos bizonyítéka annak, hogy Isten szeret minket, és szeret bennünket boldognak látni.” – Benjamin Franklin', '„A bor minden étkezést alkalmassá tesz, minden asztalt elegánsabbá, és minden napot civilizáltabbá.” – Andre Simon', 'B');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `rendeles`
 --
 
@@ -1251,6 +1284,12 @@ ALTER TABLE `login`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- A tábla indexei `quiz_questions`
+--
+ALTER TABLE `quiz_questions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `rendeles`
 --
 ALTER TABLE `rendeles`
@@ -1292,13 +1331,19 @@ ALTER TABLE `bor_kepek`
 -- AUTO_INCREMENT a táblához `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT a táblához `login`
 --
 ALTER TABLE `login`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT a táblához `quiz_questions`
+--
+ALTER TABLE `quiz_questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `rendeles`
