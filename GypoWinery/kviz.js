@@ -18,20 +18,32 @@ async function startQuiz() {
         return;
     }
 
-    if (localStorage.getItem('quizCompleted') === 'true') {
-        alert("Már kitöltötted a kvízt!");
+    const userId = await getUserIdFromSession();
+
+    // Lekérdezzük, hogy a felhasználó már kitöltötte-e a kvízt
+    const response = await fetch('getQuizStatus.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId })
+    });
+
+    const data = await response.json();
+
+    if (data.quiz_completed) {
+        if (data.coupon) {
+            questionText.textContent = `Már kitöltötted a kvízt! A kuponod: ${data.coupon}`;
+        } else {
+            questionText.textContent = "Már kitöltötted a kvízt!";
+        }
+        optionsContainer.innerHTML = "";
         return;
     }
 
-    await fetchQuestions();
-
-    if (shuffledQuestions.length > 0) {
-        currentQuestionIndex = 0;
-        score = 0;
-        showQuestion();
-    } else {
-        questionText.textContent = "Hiba történt a kérdések betöltésekor.";
-    }
+    // Kérdések randomizálása
+    shuffledQuestions = [...questions].sort(() => Math.random() - 0.5).slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
 }
 
 // Kérdések lekérése adatbázisból
