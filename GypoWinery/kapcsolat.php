@@ -40,26 +40,27 @@ include('config2.php');
             color: white;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
+        .navbar {
+        background-color: #5a2a4e; /* A headerrel megegyező háttérszín */
         }
-
-        nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #f8f9fa;
+        .navbar-nav .nav-link {
             font-weight: bold;
+            color: white;
         }
-
-        nav ul li a:hover {
-            color: #ffc107;
+        .navbar-nav .nav-link:hover {
+            color: gold;
         }
-
+        .dropdown-menu {
+            background-color: #5a2a4e;
+        }
+        .dropdown-menu .dropdown-item {
+            font-weight: bold;
+            color: white;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background-color: gold;
+            color: black;
+        }
         section {
             padding: 40px 15px;
             text-align: center;
@@ -182,37 +183,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a href="index.php">Főoldal</a></li>
-                <li class="nav-item"><a href="tortenet.php">Történet</a></li>
-                <li class="nav-item"><a href="boraink.php">Boraink</a></li>
-                <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
-                <li class="nav-item"><a href="Kviz.php">Kviz</a></li>
+<nav class="navbar navbar-expand-lg navbar-light text-center">
+    <div class="container-fluid d-flex flex-column align-items-center">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
+                <li class="nav-item"><a class="nav-link" href="tortenet.php">Történet</a></li>
+                <li class="nav-item"><a class="nav-link" href="boraink.php">Boraink</a></li>
+                <li class="nav-item"><a class="nav-link" href="kapcsolat.php">Kapcsolat</a></li>
+                <li class="nav-item"><a class="nav-link" href="Kviz.php">Kviz</a></li>
             </ul>
-
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <!-- User menu -->
-                <div class="user-menu mt-3">
-                    <button id="userIcon" class="user-icon" onclick="toggleMenu()">
-                        <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon">
-                    </button>
-                    <div id="userDropdown" class="dropdown-menu">
-                        <li class = "nav-item"><a href="rendeles.php">Rendelés</a></li>
-                        <a href="logout.php">Kijelentkezés</a>
-                    </div>
-                </div>
-                <?php else: ?>
-                <!-- Login/Register links - only visible if not logged in -->
-                <div class="login-links mt-3">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item"><a href="login.php">Bejelentkezés</a></li>
-                        
-                        <li class="nav-item"><a href="register.php">Regisztráció</a></li>
-                    </ul>
-                </div>
-            <?php endif; ?>
-        </nav>
+        </div>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
+                </button>
+                <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
+                    <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Kijelentkezés</a></li>
+                </ul>
+            </div>
+        <?php else: ?>
+            <ul class="navbar-nav mt-3 text-center">
+                <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés</a></li>
+                <li class="nav-item"><a class="nav-link" href="register.php">Regisztráció</a></li>
+            </ul>
+        <?php endif; ?>
+    </div>
+</nav>
     </header>
     <section class="contact.section">
         <h2>Kapcsolat</h2>

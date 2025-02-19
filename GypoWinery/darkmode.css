@@ -35,25 +35,28 @@ header h1 a {
 }
 
 /* Navigáció */
-nav ul {
-    list-style: none;
-    padding: 0;
-}
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #f8f9fa;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #ffc107;
-}
+.navbar {
+    background-color: #5a2a4e; /* A headerrel megegyező háttérszín */
+    }
+    .navbar-nav .nav-link {
+        font-weight: bold;
+        color: white;
+    }
+    .navbar-nav .nav-link:hover {
+        color: gold;
+    }
+    .dropdown-menu {
+        background-color: #5a2a4e;
+    }
+    .dropdown-menu .dropdown-item {
+        font-weight: bold;
+        color: white;
+    }
+    .dropdown-menu .dropdown-item:hover {
+        background-color: gold;
+        color: black;
+    }
 
 /* Section */
 section {

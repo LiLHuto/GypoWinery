@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: admin_borok.php");
                 exit;
             } else {
-                header("Location: index.php");
+                echo "Sajnálom rossz helyen vagy de gratulálok hogy idetalaltál!";
                 exit;
             }
         } else {
