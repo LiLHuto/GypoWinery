@@ -896,3 +896,25 @@ body.dark-mode .vissza-gomb,
 }
 
 
+/* Sötét mód - Kupon megjelenítés javítása */
+body.dark-mode .alert {
+    background-color: #333 !important; /* Sötétszürke háttér */
+    color: white !important; /* Fehér szöveg */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Halvány fehér keret */
+}
+
+
+/* Sötét mód - Fejléc háttérszínének sötétítése */
+body.dark-mode header {
+    background-color: #3a1d35 !important; /* Sötétebb háttér, hogy jobban illeszkedjen */
+}
+
+/* Sötét mód - Navigációs sáv háttérszínének sötétítése */
+body.dark-mode .navbar {
+    background-color: #3a1d35 !important; /* Ugyanolyan, mint a header */
+}
+
+/* Sötét mód - A "Gypo Winery" cím színének egységesítése */
+body.dark-mode h1 {
+    color: white !important; /* Fehér maradjon, hogy jól olvasható legyen */
+}

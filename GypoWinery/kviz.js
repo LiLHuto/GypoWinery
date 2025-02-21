@@ -20,38 +20,45 @@ async function startQuiz() {
 
     const userId = await getUserIdFromSession();
 
-    // Lekérdezzük, hogy a felhasználó már kitöltötte-e a kvízt
-    const response = await fetch('getQuizStatus.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId })
-    });
+    // 🔍 Lekérdezzük a kvíz státuszát és a kupont
+    try {
+        const response = await fetch('getQuizStatus.php');
+        const data = await response.json();
 
-    const data = await response.json();
-
-    if (data.quiz_completed) {
-        if (data.coupon) {
-            questionText.textContent = `Már kitöltötted a kvízt! A kuponod: ${data.coupon}`;
-        } else {
+        if (data.quiz_completed) {
             questionText.textContent = "Már kitöltötted a kvízt!";
+            optionsContainer.innerHTML = "";
+
+            if (data.coupon) {
+                const couponText = document.createElement("p");
+                couponText.textContent = `Kuponod: ${data.coupon}`;
+                optionsContainer.appendChild(couponText);
+            }
+            return;
         }
-        optionsContainer.innerHTML = "";
-        return;
+    } catch (error) {
+        console.error("Hiba a státusz lekérésekor:", error);
     }
 
-    // Kérdések randomizálása
-    shuffledQuestions = [...questions].sort(() => Math.random() - 0.5).slice(0, 5);
-    currentQuestionIndex = 0;
-    score = 0;
-    showQuestion();
+    await fetchQuestions();
+
+    if (shuffledQuestions.length > 0) {
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+    } else {
+        questionText.textContent = "Hiba történt a kérdések betöltésekor.";
+    }
 }
 
 // Kérdések lekérése adatbázisból
 async function fetchQuestions() {
     try {
-        const response = await fetch('fetch_questions.php'); // PHP backend a kérdések lekérésére
-        const data = await response.json();
+        const response = await fetch('fetch_questions.php'); 
+        const text = await response.text(); // Az eredeti JSON válasz beolvasása
+        console.log("fetch_questions.php válasz:", text); // Debugging
 
+        const data = JSON.parse(text); // JSON-ná alakítjuk
         if (!data.error) {
             shuffledQuestions = data;
             console.log("Betöltött kérdések:", shuffledQuestions);
@@ -92,18 +99,17 @@ function handleAnswer(selectedIndex) {
     showQuestion();
 }
 
-// Eredmény megjelenítése
 async function showResult() {
     questionText.textContent = `Kvíz vége! Eredményed: ${score}/${shuffledQuestions.length}`;
     optionsContainer.innerHTML = "";
 
     let resultMessage = "";
+    let couponCode = null;
 
     if (score === 5) {
         resultMessage = "Gratulálunk! Nyertél egy ingyenes borkóstolást!";
     } else if (score >= 2 && score <= 4) {
         resultMessage = "Gratulálunk! Nyertél 10%-os kedvezményt a következő vásárlásodhoz!";
-        await fetchCoupon();
     } else {
         resultMessage = "Köszönjük, hogy játszottál!";
     }
@@ -112,43 +118,35 @@ async function showResult() {
     resultText.textContent = resultMessage;
     optionsContainer.appendChild(resultText);
 
-    const retryButton = document.createElement("button");
-    retryButton.textContent = "Újrapróbálom";
-    retryButton.classList.add("btn", "btn-success");
-    retryButton.onclick = startQuiz;
-    optionsContainer.appendChild(retryButton);
-
     localStorage.setItem('quizCompleted', 'true');
 
-    await saveQuizResult();
-}
-
-// Kupon lekérése a szerverről
-async function fetchCoupon() {
-    try {
-        const response = await fetch('get_coupon.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        });
-
-        const text = await response.text();
-        console.log("Szerver válasza:", text);
-
+    // 🔹 Eredmények mentése és kupon kérése egyben
+    const userId = await getUserIdFromSession();
+    if (userId !== null) {
         try {
-            const data = JSON.parse(text);
-            if (data.status === "success") {
-                const couponText = document.createElement("p");
-                couponText.textContent = `Nyertél egy kupont! Kód: ${data.coupon}`;
-                optionsContainer.appendChild(couponText);
-            } else {
-                console.error('Hiba történt:', data.message);
-            }
-        } catch (jsonError) {
-            console.error("Hibás JSON válasz:", text);
-        }
+            const response = await fetch('saveQuizCompletion.php', {
+                method: 'POST',
+                body: JSON.stringify({ user_id: userId, quiz_completed: 1, score: score }),
+                headers: { 'Content-Type': 'application/json' }
+            });
 
-    } catch (error) {
-        console.error('Hiba a kupon lekérésekor:', error);
+            const responseData = await response.json();
+            console.log('saveQuizCompletion.php válasz:', responseData);
+            
+            if (responseData.status === "success" && responseData.coupon) {
+                couponCode = responseData.coupon;
+            }
+        } catch (error) {
+            console.error('Hiba a kvíz eredményének mentésekor:', error);
+        }
+    }
+
+    // 🔹 Ha van kupon, kiírjuk
+    if (couponCode) {
+        const couponText = document.createElement("p");
+        couponText.textContent = `Nyertél egy kupont! Kód: ${couponCode}`;
+        couponText.classList.add("alert", "alert-info", "mt-3");
+        optionsContainer.appendChild(couponText);
     }
 }
 
@@ -165,12 +163,7 @@ async function saveQuizResult() {
             });
 
             const responseData = await response.json();
-            console.log('Backend válasz:', responseData);
-            if (responseData.status === 'success') {
-                console.log('Kvíz eredmény mentve a backendre');
-            } else {
-                console.error('Hiba történt a mentés során:', responseData.message);
-            }
+            console.log('saveQuizCompletion.php válasz:', responseData);
         } catch (error) {
             console.error('Hiba a kvíz eredményének mentésekor:', error);
         }
@@ -181,11 +174,7 @@ async function saveQuizResult() {
 async function getUserIdFromSession() {
     try {
         const response = await fetch('get_user_id.php', { method: 'GET' });
-        if (!response.ok) {
-            throw new Error('Hiba történt a kéréssel');
-        }
         const data = await response.json();
-        console.log('Felhasználói ID adat:', data);
         return data.user_id || null;
     } catch (error) {
         console.error('Hiba a felhasználói ID lekérésekor:', error);
@@ -197,11 +186,7 @@ async function getUserIdFromSession() {
 async function isLoggedIn() {
     try {
         const response = await fetch('get_user_id.php', { method: 'GET' });
-        if (!response.ok) {
-            throw new Error('Hiba történt a kéréssel');
-        }
         const data = await response.json();
-        console.log('Bejelentkezett felhasználó:', data);
         return data.user_id !== null;
     } catch (error) {
         console.error('Hiba a bejelentkezési állapot ellenőrzésekor:', error);

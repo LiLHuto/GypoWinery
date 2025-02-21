@@ -1,5 +1,5 @@
 <?php
-include('config2.php'); // Database connection file
+include('config2.php'); 
 
 header('Content-Type: application/json');
 
@@ -18,11 +18,9 @@ try {
             'D' => $question['option_d']
         ];
 
-        // Shuffle options randomly
         $shuffledKeys = array_keys($options);
         shuffle($shuffledKeys);
 
-        // Re-map shuffled options and find new correct index
         $shuffledOptions = [];
         $correctIndex = null;
 
@@ -33,7 +31,6 @@ try {
             }
         }
 
-        // Store formatted question
         $formattedQuestions[] = [
             'question_text' => $question['question_text'],
             'options' => array_values($shuffledOptions),
