@@ -918,3 +918,7 @@ body.dark-mode .navbar {
 body.dark-mode h1 {
     color: white !important; /* Fehér maradjon, hogy jól olvasható legyen */
 }
+/* Sötét mód - Kiemelt fizetési összeg */
+body.dark-mode .final-total {
+    color: white !important; /* Fehér maradjon */
+}

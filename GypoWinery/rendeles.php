@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <h4>Összesen: <?php echo number_format($total, 0, '.', ' '); ?> Ft</h4>
                     <h4>Kedvezmény: -<?php echo number_format($discount, 0, '.', ' '); ?> Ft</h4>
                     <h4>Szállítási díj: <?php echo number_format($shipping_cost, 0, '.', ' '); ?> Ft</h4>
-                    <h3>Fizetendő összeg: <?php echo number_format($final_total, 0, '.', ' '); ?> Ft</h3>
+                    <h3 class="final-total">Fizetendő összeg: <?php echo number_format($final_total, 0, '.', ' '); ?> Ft</h3>
                 </div>
 
                 <div class="mt-4">
