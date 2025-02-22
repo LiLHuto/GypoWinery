@@ -103,3 +103,21 @@ button {
 button:hover {
   background: #6d44b8;
 }
+.hidden {
+  display: none;
+}
+
+#signupImageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#signupImageContainer img {
+  width: 300px; /* Képméretet állítsd be szükség szerint */
+  height: auto;
+}
