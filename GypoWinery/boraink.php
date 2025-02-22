@@ -165,7 +165,8 @@ if (isset($_POST['add_to_cart'])) {
 </head>
 <body>
     <header class="text-center py-3">
-        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+    <a href="index.php">
+    <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
          <!-- Zászlók helye (ez JavaScript tölti be) -->
          <div id="flags-container"></div>

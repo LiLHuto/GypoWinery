@@ -171,10 +171,7 @@ body.dark-mode a {
 body.dark-mode a:hover {
     color: #ff85c1; /* Világosabb rózsaszín hover állapot */
 }
-body.dark-mode {
-    background: linear-gradient(120deg, #000000, #000000);
-    color: white;
-} 
+
 
 /* Zászlók konténere */
 #flags-container {
@@ -701,6 +698,9 @@ body.dark-mode .container .btn-success {
 .checkout-page{
     background-color: white;
 }
+.checkout-page .dark-mode{
+    background-color: #1e1e1e;
+}
 .rendelesvege-page{
     background-color: white;
 }
@@ -736,13 +736,6 @@ body.dark-mode .container .btn-success {
     gap: 8px; /* Itt állíthatod a távolságot (8px jelenleg) */
     align-items: center;
 }
-
-/* Sötét mód - Alapbeállítások */
-body.dark-mode {
-    background-color: #333!important;
-    color: white !important;
-}
-
 /* Dark mode - a rendelés összegző kártya */
 body.dark-mode .checkout-card {
     background-color: #1e1e1e !important;
@@ -755,8 +748,9 @@ body.dark-mode .checkout-card {
 body.dark-mode .checkout-card h2,
 body.dark-mode .checkout-card h4,
 body.dark-mode .checkout-card p,
+body.dark-mode .checkout-card h3,
 body.dark-mode label {
-    color: #ff69b4 !important;
+    color: #ffffff !important;
 }
 
 body.dark-mode .rendeles-page h4{
@@ -888,11 +882,14 @@ form button {
     text-align: center; /* Szöveg középre */
 }
 /* A világos és sötét módra is alkalmazzuk */
+
 body.dark-mode .vissza-gomb,
 .vissza-gomb {
     width: 200px !important;
     text-align: center !important;
     margin-left: 20px;
+    margin-top: 10px;
+    height: 40px; 
 }
 
 
@@ -921,4 +918,24 @@ body.dark-mode h1 {
 /* Sötét mód - Kiemelt fizetési összeg */
 body.dark-mode .final-total {
     color: white !important; /* Fehér maradjon */
+}
+.checkout-card {
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Alapértelmezett világos mód */
+.checkout-container {
+    background-color: white; /* Fehér háttér alapból */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Sötét mód felülírja */
+body.dark-mode .checkout-container {
+    background-color: #121212; /* Sötét háttér dark mode-ban */
+    color: white;
 }

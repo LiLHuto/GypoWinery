@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
         
     </script>
 </head>
-<body>
+<body class="checkout-page">
 <header class="text-center py-3">
     <h1>Rendelés véglegesítése</h1>
      <!-- Zászlók helye (ez JavaScript tölti be) -->
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     </label>
 </div>
 </header>
-
+<main class="checkout-container">
 <div class="container">
     <div class="checkout-card">
         <h2 class="mb-3">🛒 Véglegesítés</h2>
@@ -213,12 +213,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
             </div>
 
             <button type="submit" name="place_order" class="btn btn-success">✔️ Rendelés leadása</button>
+            <a href="rendeles.php" class="btn btn-secondary vissza-gomb">🔙 Vissza</a>
         </form>
         
-        <a href="rendeles.php" class="btn btn-secondary vissza-gomb">🔙 Vissza</a>
+       
     </div>
 </div>
-
+</main>
 <script src="darkmode.js"></script>
 <script src="translate.js"></script>
 </body>
