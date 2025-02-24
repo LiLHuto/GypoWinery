@@ -939,3 +939,7 @@ body.dark-mode .checkout-container {
     background-color: #121212; /* Sötét háttér dark mode-ban */
     color: white;
 }
+/* Hamburger ikon javítása dark mode-ban */
+body.dark-mode .navbar-toggler-icon {
+    filter: invert(1); /* Ikon színét világosra állítja dark mode esetén */
+}
