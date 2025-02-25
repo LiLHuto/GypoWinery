@@ -87,7 +87,7 @@ $conn->close();
 
             <!-- Telefonszám: csak számokat enged, min. 8 és max. 15 karakter -->
             <input type="tel" name="telefonszam" placeholder="Phone Number" required="" 
-                   pattern="[0-9]{8,15}" title="Csak számokat használhatsz, minimum 8 és maximum 15 hosszúságban!">
+                   pattern="[0-11]" title="Telefonszámnak megfelelő formátum legyen">
 
             <!-- Jelszó: legalább 8 karakter, min. 2 szám -->
             <input type="password" id="jelszo" name="jelszo" placeholder="Password" required="" 
