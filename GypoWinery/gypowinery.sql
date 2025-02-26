@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 26. 08:39
+-- Létrehozás ideje: 2025. Feb 26. 09:14
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -1152,6 +1152,39 @@ INSERT INTO `login` (`ID`, `vezeteknev`, `keresztnev`, `email`, `telefonszam`, `
 (17, 'Szekrényes', 'Gábor', 'alma@bela.hu', '06302452160', '$2y$10$LBGvUNXhvSDi/kriVlvEue3Jq1Fl0W7EnjHmXLPlVD2Xk5jF6mtpS', 1, 'admin'),
 (19, 'Bence', 'gabor', 'gabben878@hengersor.hu', '06202522207', '$2y$10$PD/2jRzVZtodPgIFfwZxO.M1Jp8KJr9RXW9ynIiGf3ob4nvPFr8Fm', 0, ''),
 (20, 'majzik', 'bence', 'majzi0421@gmail.com', '06300145396', '$2y$10$euQTOGPdv4qhE0ULICqBku4SIUsaJx2/PPyi7axljjkNd6A3nnZWW', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `quiz_questions`
+--
+
+CREATE TABLE `quiz_questions` (
+  `id` int(11) NOT NULL,
+  `question_text` text NOT NULL,
+  `option_a` varchar(255) NOT NULL,
+  `option_b` varchar(255) NOT NULL,
+  `option_c` varchar(255) NOT NULL,
+  `option_d` varchar(255) NOT NULL,
+  `correct_option` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `quiz_questions`
+--
+
+INSERT INTO `quiz_questions` (`id`, `question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_option`) VALUES
+(1, 'Hol alakult meg a GypoWinery?', 'Csévharaszti régió', 'Tokaji régió', 'Villány', 'Eger', 'A'),
+(2, 'Mikor ültették el a GypoWinery első szőlőültetvényét?', '1985', '1990', '2000', '2005', 'B'),
+(3, 'Milyen technológiai újítást vezetett be a GypoWinery 2005-ben?', 'Organikus gazdálkodási módszerek', 'Modern borászat-technológiai újítások', 'Új szőlőültetvények elhelyezése', 'Nemzetközi forgalmazás', 'C'),
+(4, 'Mi a GypoWinery küldetése?', 'A világ legnépszerűbb borát készíteni', 'Bemutatni a Csévharaszti terroir egyedülálló ízvilágát', 'Új technológiák bevezetése a borászatban', 'Csak vörösborokra koncentrálni', 'D'),
+(5, 'Mi a GypoWinery elköteleződése?', 'Fenntarthatóság és a helyi közösségek támogatása', 'Nemzetközi piacokra való terjeszkedés', 'Csak hagyományos borászmódszerek alkalmazása', 'Csak édes borok készítése', 'A'),
+(6, 'Milyen jövőbeli tervei vannak a GypoWinerynek?', 'Új helyszínek nyitása világszerte', 'Új borfajták bevezetése és a borászat bővítése', 'Csak vörösborokra koncentrálni', 'Borok kizárólagos online értékesítése', 'B'),
+(7, 'Melyik vörösborunk illik legjobban steakhez vagy grillezett húsokhoz?', 'Csévharaszti Kékfrankos', 'Csévharaszti Cabernet Sauvignon', 'Csévharaszti Rosé', 'Csévharaszti Olaszrizling', 'C'),
+(8, 'Milyen hőmérsékleten kell tálalni a GypoWinery Csévharaszti Zöld Veltelinit?', '8-10°C', '10-12°C', '16-18°C', '18-20°C', 'B'),
+(9, 'Melyik borunkban található eper és cseresznye ízvilág, és tökéletes a nyári fogásokhoz?', 'Csévharaszti Cabernet Sauvignon', 'Csévharaszti Rosé', 'Csévharaszti Olaszrizling', 'Csévharaszti Kékfrankos', 'D'),
+(10, 'Mi az ideális hőmérséklet a Csévharaszti Jégbor tálalásához?', '6-8°C', '8-10°C', '16-18°C', '18-20°C', 'A'),
+(11, 'Mi a GypoWinery Mottója?', '„A legjobb módja, hogy élvezd egy pohár bort, ha megosztod egy barátoddal.” – Ismeretlen', '„Az élet túl rövid ahhoz, hogy rossz bort igyunk.” – Johann Wolfgang von Goethe', '„A bor folyamatos bizonyítéka annak, hogy Isten szeret minket, és szeret bennünket boldognak látni.” – Benjamin Franklin', '„A bor minden étkezést alkalmassá tesz, minden asztalt elegánsabbá, és minden napot civilizáltabbá.” – Andre Simon', 'B');
 
 -- --------------------------------------------------------
 
