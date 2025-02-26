@@ -11,14 +11,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['usertype'] !== 'admin') {
 $query = "SELECT rendelesek.ID, login.vezeteknev, login.keresztnev, rendelesek.rendeles_datuma, rendelesek.statusz 
           FROM rendelesek 
           JOIN login ON rendelesek.user_id = login.ID 
-<<<<<<< Updated upstream
-          ORDER BY rendelesek.rendeles_datuma DESC";
-$stmt = $pdo->query($query);
-=======
           ORDER BY rendelesek.rendeles_datuma ASC";
 $stmt = $pdo->query($query);
 $rendelesek = $stmt->fetchAll();
->>>>>>> Stashed changes
 ?>
 
 <!DOCTYPE html>
@@ -100,23 +95,6 @@ $rendelesek = $stmt->fetchAll();
                 </tr>
             </thead>
             <tbody>
-<<<<<<< Updated upstream
-                <?php while ($row = $stmt->fetch()): ?>
-                    <tr>
-                        <td><?php echo $row['ID']; ?></td>
-                        <td><?php echo htmlspecialchars($row['vezeteknev'] . ' ' . $row['keresztnev']); ?></td>
-                        <td><?php echo $row['rendeles_datuma']; ?></td>
-                        <td class="status" id="status_<?php echo $row['ID']; ?>"> <?php echo ucfirst($row['statusz']); ?></td>
-                        <td>
-                            <?php if ($row['statusz'] === 'pending'): ?>
-                                <button class="btn btn-success" onclick="approveOrder(<?php echo $row['ID']; ?>)">Jóváhagyás</button>
-                            <?php else: ?>
-                                <span class="text-success">Teljesítve</span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-=======
                 <?php if (count($rendelesek) > 0): ?>
                     <?php foreach ($rendelesek as $row): ?>
                         <tr>
@@ -138,7 +116,6 @@ $rendelesek = $stmt->fetchAll();
                         <td colspan="5" class="text-center">Nincs megjeleníthető rendelés.</td>
                     </tr>
                 <?php endif; ?>
->>>>>>> Stashed changes
             </tbody>
         </table>
     </div>
@@ -148,8 +125,4 @@ $rendelesek = $stmt->fetchAll();
     <script src="translate.js"></script>
     <script src="user-menu.js"></script>
 </body>
-<<<<<<< Updated upstream
 </html>
-=======
-</html>
->>>>>>> Stashed changes
