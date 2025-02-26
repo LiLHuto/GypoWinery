@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </ul>
         </div>
         <?php if (isset($_SESSION['user_id'])): ?>
+        
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
@@ -183,6 +184,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     <li><a class="dropdown-item" href="logout.php">Kijelentkezés</a></li>
                 </ul>
             </div>
+            
+            <?php if (isset($_SESSION['usertype'])&& ($_SESSION['usertype'] === 'admin')): ?>
+               
+                            <ul class="navbar-nav text-center">
+                                <li class="nav-item"><a class="nav-link" href="admin_borok.php">Admin</a></li>
+                                <li class="nav-item"><a class="nav-link" href="rendelesek.php">Admin rendelések</a></li>
+                            </ul>
+                       
+            <?php endif; ?>
+
         <?php else: ?>
             <ul class="navbar-nav mt-3 text-center">
                 <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés</a></li>
