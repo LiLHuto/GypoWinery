@@ -103,12 +103,13 @@ $rendelesek = $stmt->fetchAll();
                             <td><?php echo $row['rendeles_datuma']; ?></td>
                             <td class="status" id="status_<?php echo $row['ID']; ?>"> <?php echo ucfirst($row['statusz']); ?></td>
                             <td>
-                                <?php if ($row['statusz'] === 'pending'): ?>
-                                    <button class="btn btn-success" onclick="approveOrder(<?php echo $row['ID']; ?>)">Jóváhagyás</button>
-                                <?php else: ?>
-                                    <span class="text-success">Teljesítve</span>
-                                <?php endif; ?>
-                            </td>
+    <?php if ($row['statusz'] === 'pending'): ?>
+        <button class="btn btn-success approve-btn" data-id="<?php echo $row['ID']; ?>">Jóváhagyás</button>
+    <?php else: ?>
+        <span class="text-success">Teljesítve</span>
+    <?php endif; ?>
+</td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -119,6 +120,36 @@ $rendelesek = $stmt->fetchAll();
             </tbody>
         </table>
     </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".approve-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let orderId = this.getAttribute("data-id");
+
+            fetch("update_status.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "order_id=" + orderId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    let statusCell = document.getElementById("status_" + orderId);
+                    statusCell.innerText = "Completed"; // UI frissítése
+                    this.replaceWith(document.createTextNode("Teljesítve")); // Gomb eltávolítása
+                } else {
+                    alert("Hiba: " + data.message);
+                }
+            })
+            .catch(error => console.error("Hálózati hiba:", error));
+        });
+    });
+});
+</script>
+
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="darkmode.js"></script>
