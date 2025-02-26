@@ -202,7 +202,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
                 <li class="nav-item"><a href="Kviz.php">Kvíz</a></li>
                 <li class="nav-item"><a href="admin_borok.php">Admin</a></li>
+<<<<<<< Updated upstream
                 <li class="mav-item"><a href="rendelesek.php">Rendelesek</a></li>
+=======
+                <li class="nav-item"><a href="rendelesek.php">Admin rendelesek</a></li>
+>>>>>>> Stashed changes
             </ul>
         </nav>  
     </header>
