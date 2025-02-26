@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <h2>Kapcsolat</h2>
         <p>Ha szeretne kapcsolatba lépni velünk, kérjük, küldjön üzenetet az alábbi elérhetőségek egyikén:</p>
         <ul>
-            <li>Email: info@gypowinery.hu</li>
+            <li>Email: gypowinery@gmail.com</li>
             <li>Telefon: +36 30 123 4567</li>
             <li>Cím: 2211 Csévharaszt, Kossuth Lajos utca 12.</li>
         </ul>
