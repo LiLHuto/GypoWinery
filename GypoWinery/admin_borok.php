@@ -194,17 +194,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-            <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a href="index.php">Főoldal</a></li>
-                <li class="nav-item"><a href="tortenet.php">Történet</a></li>
-                <li class="nav-item"><a href="boraink.php">Boraink</a></li>
-                <li class="nav-item"><a href="kapcsolat.php">Kapcsolat</a></li>
-                <li class="nav-item"><a href="Kviz.php">Kvíz</a></li>
-                <li class="nav-item"><a href="admin_borok.php">Admin</a></li>
-                <li class="nav-item"><a href="rendelesek.php">Rendelések</a></li>
+<nav class="navbar navbar-expand-lg navbar-light text-center">
+    <div class="container-fluid d-flex flex-column align-items-center">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
+                <li class="nav-item"><a class="nav-link" href="tortenet.php">Történet</a></li>
+                <li class="nav-item"><a class="nav-link" href="boraink.php">Boraink</a></li>
+                <li class="nav-item"><a class="nav-link" href="kapcsolat.php">Kapcsolat</a></li>
+                <li class="nav-item"><a class="nav-link" href="Kviz.php">Kviz</a></li>
             </ul>
-        </nav>  
+        </div>
+                <ul class="navbar-nav text-center">
+                   <li class="nav-item"><a class="nav-link" href="admin_borok.php">Admin</a></li>
+                   <li class="nav-item"><a class="nav-link" href="rendelesek.php">Admin rendelések</a></li>
+               </ul>
+          
     </header>
 
     <main class="container my-5">

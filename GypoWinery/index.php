@@ -12,7 +12,55 @@ include('index_config.php');
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="darkmode.css">
+    
+
+
     <style>
+         /* Popup alapstílus */
+         .popup-container {
+            display: none; /* Kezdetben el van rejtve */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #5a2a4e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            color: white;
+            z-index: 9999;
+            width: 300px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Fade-in animáció */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -55%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Bezárás gomb */
+        .popup-close {
+            background: #ff66b2;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .popup-close:hover {
+            background: #ff2222;
+        }
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -116,6 +164,17 @@ include('index_config.php');
     </style>
 </head>
 <body>
+<?php
+if (isset($_SESSION['logout_message'])) {
+    echo '
+    <div class="popup-container" id="logoutPopup">
+        <p>' . $_SESSION['logout_message'] . '</p>
+        <button class="popup-close" onclick="closePopup()">OK</button>
+    </div>
+    ';
+    unset($_SESSION['logout_message']);
+}
+?>
     <header class="text-center py-3">
     <a href="index.php">
     <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
@@ -262,7 +321,22 @@ document.addEventListener("DOMContentLoaded", function() {
     <script src="translate.js"></script>
     <script src="darkmode.js"></script>
     
+    <script>
+    // Megnyitja a popupot automatikusan, ha van logout üzenet
+    document.addEventListener("DOMContentLoaded", function() {
+        var popup = document.getElementById("logoutPopup");
+        if (popup) {
+            popup.style.display = "block";
+        }
+    });
 
+    // Bezárja a popupot
+    function closePopup() {
+        var popup = document.getElementById("logoutPopup");
+        popup.style.display = "none";
+    }
+</script>
 
 </body>
+
 </html>
