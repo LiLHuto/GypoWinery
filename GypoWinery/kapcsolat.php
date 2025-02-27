@@ -271,6 +271,10 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </section>
+<section class="house-image-section text-center">
+        <h3>A borászatunk</h3>
+        <img src="kepek/hazkep.png" alt="Gypo Winery Ház" class="img-fluid rounded shadow-lg" style="max-width: 50%; height: auto; margin: 20px 0;">
+    </section>
 
 
     <!-- Embedded Map -->
@@ -289,16 +293,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <footer>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
-    <!-- Kosár panel -->
-    <div id="cartPanel" class="cart-panel" style="display:none;">
-        <div class="cart-header">
-            <h2>Kosár</h2>
-            <button id="closeCartBtn" class="close-btn">X</button>
-        </div>
-        <div id="cartContent" class="cart-content">
-            <!-- Kosár tartalom dinamikusan kerül ide -->
-        </div>
-    </div>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
