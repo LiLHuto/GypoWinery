@@ -271,13 +271,17 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </section>
+<section class="house-image-section text-center">
+        <h3>A borászatunk</h3>
+        <img src="kepek/hazkep.png" alt="Gypo Winery Ház" class="img-fluid rounded shadow-lg" style="max-width: 50%; height: auto; margin: 20px 0;">
+    </section>
 
 
     <!-- Embedded Map -->
     <section>
         <h3>Találjon meg minket itt:</h3>
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107405.66028119974!2d19.386987519348073!3d47.32620180925259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4740e7b402a505f3%3A0x7b7b2f90f63fda2e!2sCs%C3%A9vharaszt!5e0!3m2!1shu!2shu!4v1696673674352!5m2!1shu!2shu" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11094.41825447772!2d19.432318016154997!3d47.377823500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741cb7e4a6b2749%3A0xf7e4df83adf6f1e5!2sCs%C3%A9vharaszt%2C%20Kossuth%20Lajos%20u.%2012%2C%202212!5e0!3m2!1shu!2shu!4v1709056000000" 
             width="100%" 
             height="450" 
             style="border:0;" 
@@ -289,16 +293,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <footer>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
-    <!-- Kosár panel -->
-    <div id="cartPanel" class="cart-panel" style="display:none;">
-        <div class="cart-header">
-            <h2>Kosár</h2>
-            <button id="closeCartBtn" class="close-btn">X</button>
-        </div>
-        <div id="cartContent" class="cart-content">
-            <!-- Kosár tartalom dinamikusan kerül ide -->
-        </div>
-    </div>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
