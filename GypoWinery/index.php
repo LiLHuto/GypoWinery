@@ -164,17 +164,6 @@ include('index_config.php');
     </style>
 </head>
 <body>
-<?php
-if (isset($_SESSION['logout_message'])) {
-    echo '
-    <div class="popup-container" id="logoutPopup">
-        <p>' . $_SESSION['logout_message'] . '</p>
-        <button class="popup-close" onclick="closePopup()">OK</button>
-    </div>
-    ';
-    unset($_SESSION['logout_message']);
-}
-?>
     <header class="text-center py-3">
     <a href="index.php">
     <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
@@ -321,21 +310,31 @@ document.addEventListener("DOMContentLoaded", function() {
     <script src="translate.js"></script>
     <script src="darkmode.js"></script>
     
+    <?php if (isset($_SESSION['login_message'])): ?>
+    <div id="loginPopup" class="popup-container">
+        <p><?php echo $_SESSION['login_message']; ?></p>
+        <button class="popup-close" onclick="closePopup()">OK</button>
+    </div>
     <script>
-    // Megnyitja a popupot automatikusan, ha van logout üzenet
-    document.addEventListener("DOMContentLoaded", function() {
-        var popup = document.getElementById("logoutPopup");
-        if (popup) {
-            popup.style.display = "block";
-        }
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            var popup = document.getElementById("loginPopup");
+            if (popup) {
+                popup.style.display = "block";
 
-    // Bezárja a popupot
-    function closePopup() {
-        var popup = document.getElementById("logoutPopup");
-        popup.style.display = "none";
-    }
-</script>
+                // 🔥 Popup automatikus eltűnése 3 másodperc után
+                setTimeout(closePopup, 8000);
+            }
+        });
+
+        function closePopup() {
+            var popup = document.getElementById("loginPopup");
+            if (popup) {
+                popup.style.display = "none";
+            }
+        }
+    </script>
+    <?php unset($_SESSION['login_message']); // ✅ Üzenet törlése a session-ből ?>
+<?php endif; ?>
 
 </body>
 
