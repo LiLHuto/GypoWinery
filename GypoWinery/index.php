@@ -164,6 +164,17 @@ include('index_config.php');
     </style>
 </head>
 <body>
+<?php
+if (isset($_SESSION['logout_message'])) {
+    echo '
+    <div class="popup-container" id="logoutPopup">
+        <p>' . $_SESSION['logout_message'] . '</p>
+        <button class="popup-close" onclick="closePopup()">OK</button>
+    </div>
+    ';
+    unset($_SESSION['logout_message']);
+}
+?>
     <header class="text-center py-3">
     <a href="index.php">
     <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
@@ -313,28 +324,38 @@ document.addEventListener("DOMContentLoaded", function() {
     <?php if (isset($_SESSION['login_message'])): ?>
     <div id="loginPopup" class="popup-container">
         <p><?php echo $_SESSION['login_message']; ?></p>
-        <button class="popup-close" onclick="closePopup()">OK</button>
+        <button class="popup-close" onclick="closePopup('loginPopup')">OK</button>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var popup = document.getElementById("loginPopup");
-            if (popup) {
-                popup.style.display = "block";
-
-                // 🔥 Popup automatikus eltűnése 3 másodperc után
-                setTimeout(closePopup, 8000);
-            }
-        });
-
-        function closePopup() {
-            var popup = document.getElementById("loginPopup");
-            if (popup) {
-                popup.style.display = "none";
-            }
-        }
-    </script>
-    <?php unset($_SESSION['login_message']); // ✅ Üzenet törlése a session-ből ?>
+    <?php unset($_SESSION['login_message']); ?>
 <?php endif; ?>
+
+<?php if (isset($_SESSION['logout_message'])): ?>
+    <div id="logoutPopup" class="popup-container">
+        <p><?php echo $_SESSION['logout_message']; ?></p>
+        <button class="popup-close" onclick="closePopup('logoutPopup')">OK</button>
+    </div>
+    <?php unset($_SESSION['logout_message']); ?>
+<?php endif; ?>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (document.getElementById("loginPopup")) {
+            document.getElementById("loginPopup").style.display = "block";
+            setTimeout(function() { closePopup("loginPopup"); }, 3000);
+        }
+        if (document.getElementById("logoutPopup")) {
+            document.getElementById("logoutPopup").style.display = "block";
+            setTimeout(function() { closePopup("logoutPopup"); }, 1350);
+        }
+    });
+
+    function closePopup(id) {
+        var popup = document.getElementById(id);
+        if (popup) {
+            popup.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 
