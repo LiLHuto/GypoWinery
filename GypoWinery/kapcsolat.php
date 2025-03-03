@@ -239,37 +239,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- Contact Form -->
     <section class="contact-section py-5">
-    <div class="container">
-        <h3 class="text-center mb-4 text-primary">Küldjön nekünk üzenetet!</h3>
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <form action="https://api.web3forms.com/submit" method="POST" class="p-4 shadow rounded bg-white">
-                    <input type="hidden" name="access_key" value="a058a000-92b7-445f-9d13-e75f1cee5a04">
+<div class="container">
+<h3 class="text-center mb-4 text-primary">Küldjön nekünk üzenetet!</h3>
+<div class="row justify-content-center">
+<div class="col-md-8 col-lg-6">
+<form action="https://api.web3forms.com/submit" method="POST" class="p-4 shadow rounded bg-white">
+<input type="hidden" name="access_key" value="a058a000-92b7-445f-9d13-e75f1cee5a04">
+ 
                     <div class="mb-3">
-                        <label for="firstname" class="form-label">Keresztnév:</label>
-                        <input type="text" id="firstname" name="firstname" class="form-control" required>
-                    </div>
-                    
+<label for="firstname" class="form-label">Keresztnév:</label>
+<input type="text" id="firstname" name="firstname" class="form-control" required>
+</div>
+ 
                     <div class="mb-3">
-                        <label for="lastname" class="form-label">Vezetéknév:</label>
-                        <input type="text" id="lastname" name="lastname" class="form-control" required>
-                    </div>
-                    
+<label for="lastname" class="form-label">Vezetéknév:</label>
+<input type="text" id="lastname" name="lastname" class="form-control" required>
+</div>
+ 
                     <div class="mb-3">
-                        <label for="email" class="form-label">E-mail cím:</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Üzenet:</label>
-                        <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
-                    </div>
-                    
+<label for="email" class="form-label">E-mail cím:</label>
+<input type="email" id="email" name="email" class="form-control" required>
+</div>
+ 
+                    <!-- Üzenet mező közvetlenül az email mező után -->
+<div class="mb-3">
+<label for="message" class="form-label">Üzenet:</label>
+<textarea id="message" name="message" rows="6" class="form-control" style="height: 130px;" required></textarea>
+</div>
+ 
                     <button type="submit" class="btn btn-primary w-100">Küldés</button>
-                </form>
-            </div>
-        </div>
-    </div>
+</form>
+</div>
+</div>
+</div>
 </section>
 <section class="house-image-section text-center">
         <h3>A borászatunk</h3>
