@@ -169,7 +169,7 @@ $rendelesek = $stmt->fetchAll();
                </ul>
           
     </header>
-
+    
     <div class="container mt-5">
         <h2 class="text-center">Rendelések kezelése</h2>
         <table class="table table-bordered table-striped mt-4">
