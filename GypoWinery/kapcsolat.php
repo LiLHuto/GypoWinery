@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <!-- Üzenet mező közvetlenül az email mező után -->
 <div class="mb-3">
 <label for="message" class="form-label">Üzenet:</label>
-<textarea id="message" name="message" rows="6" class="form-control" style="height: 130px;" required></textarea>
+<textarea id="message" name="message" rows="6" class="form-control" style="height: 50px;" required></textarea>
 </div>
  
                     <button type="submit" class="btn btn-primary w-100">Küldés</button>
