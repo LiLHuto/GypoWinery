@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(flagsContainer);
 
     var flags = [
-        { src: "UKflag.png", lang: "en", alt: "English" },
-        { src: "germanflag.png", lang: "de", alt: "Deutsch" },
-        { src: "hungaryflag.png", lang: "hu", alt: "Magyar" }
+        { src: "kepek/UKflag.png", lang: "en", alt: "English" },
+        { src: "kepek/germanflag.png", lang: "de", alt: "Deutsch" },
+        { src: "kepek/hungaryflag.png", lang: "hu", alt: "Magyar" }
     ];
 
     flags.forEach(flag => {
