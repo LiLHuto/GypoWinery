@@ -170,18 +170,18 @@ document.addEventListener("DOMContentLoaded", function() {
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav text-center">
-                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
-                <li class="nav-item"><a class="nav-link" href="tortenet.php">Történet</a></li>
-                <li class="nav-item"><a class="nav-link" href="boraink.php">Boraink</a></li>
-                <li class="nav-item"><a class="nav-link" href="kapcsolat.php">Kapcsolat</a></li>
-                <li class="nav-item"><a class="nav-link" href="Kviz.php">Kviz</a></li>
+            <li class="nav-item"><a class="nav-link" href="php/index.php">Főoldal</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/tortenet.php">Történet</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/boraink.php">Boraink</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/kapcsolat.php">Kapcsolat</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/Kviz.php">Kviz</a></li>
             </ul>
         </div>
         <?php if (isset($_SESSION['usertype'])&& ($_SESSION['usertype'] === 'admin')): ?>
                
                <ul class="navbar-nav text-center">
-                   <li class="nav-item"><a class="nav-link" href="admin_borok.php">Admin</a></li>
-                   <li class="nav-item"><a class="nav-link" href="rendelesek.php">Admin rendelések</a></li>
+                   <li class="nav-item"><a class="nav-link" href="php/admin_borok.php">Admin</a></li>
+                   <li class="nav-item"><a class="nav-link" href="php/rendelesek.php">Admin rendelések</a></li>
                </ul>
           
 <?php endif; ?>
@@ -192,15 +192,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
-                    <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Kijelentkezés</a></li>
+                    <li><a class="dropdown-item" href="php/rendeles.php">Rendelés</a></li>
+                    <li><a class="dropdown-item" href="php/logout.php">Kijelentkezés</a></li>
                 </ul>
             </div>
 
         <?php else: ?>
             <ul class="navbar-nav mt-3 text-center">
-                <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                <li class="nav-item"><a class="nav-link" href="register.php">Regisztráció</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/login.php">Bejelentkezés</a></li>
+                <li class="nav-item"><a class="nav-link" href="php/register.php">Regisztráció</a></li>
             </ul>
         <?php endif; ?>
     </div>
@@ -228,8 +228,8 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
+    <script src="js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="js/translate.js"></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>

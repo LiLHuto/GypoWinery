@@ -1,66 +1,19 @@
 <?php
-include('index_config.php');
+include('config.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypo Winery</title>
+    <title>Gypo Winery - Kapcsolat</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="darkmode.css">
-    
-
-
     <style>
-         /* Popup alapstílus */
-         .popup-container {
-            display: none; /* Kezdetben el van rejtve */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #5a2a4e;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-            color: white;
-            z-index: 9999;
-            width: 300px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        /* Fade-in animáció */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -55%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        /* Bezárás gomb */
-        .popup-close {
-            background: #ff66b2;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-            margin-top: 10px;
-        }
-
-        .popup-close:hover {
-            background: #ff2222;
-        }
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -108,14 +61,13 @@ include('index_config.php');
             background-color: gold;
             color: black;
         }
-
         section {
             padding: 40px 15px;
             text-align: center;
         }
 
         section h1, section h2 {
-            color: #5a2a4e;
+            color: #6c757d;
             margin-bottom: 20px;
         }
 
@@ -161,26 +113,40 @@ include('index_config.php');
             border-radius: 8px;
             margin-top: 20px;
         }
+form {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    background-color: #5a2a4e;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #45223e;
+}
+/* Dark mode - Label-ek feketévé tétele */
+body.dark-mode label {
+    color: black !important; /* Fekete szöveg */
+}
+
     </style>
 </head>
 <body>
-<?php
-if (isset($_SESSION['logout_message'])) {
-    echo '
-    <div class="popup-container" id="logoutPopup">
-        <p>' . $_SESSION['logout_message'] . '</p>
-        <button class="popup-close" onclick="closePopup()">OK</button>
-    </div>
-    ';
-    unset($_SESSION['logout_message']);
-}
-?>
-    <header class="text-center py-3">
-    <a href="index.php">
+<header class="text-center py-3">
+<a href="index.php">
     <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
-                <!-- Zászlók helye (ez JavaScript tölti be) -->
-                <div id="flags-container"></div>
+                    <!-- Zászlók helye (ez JavaScript tölti be) -->
+                    <div id="flags-container"></div>
 
 <!-- Sötét mód kapcsoló -->
 <div id="darkmode-container">
@@ -232,12 +198,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 <li class="nav-item"><a class="nav-link" href="Kviz.php">Kviz</a></li>
             </ul>
         </div>
-
         <?php if (isset($_SESSION['usertype'])&& ($_SESSION['usertype'] === 'admin')): ?>
                
                <ul class="navbar-nav text-center">
-                   <li class="nav-item"><a class="nav-link" href="admin_borok.php">Admin</a></li>
-                   <li class="nav-item"><a class="nav-link" href="rendelesek.php">Admin rendelések</a></li>
+                   <li class="nav-item"><a class="nav-link" href="php/admin_borok.php">Admin</a></li>
+                   <li class="nav-item"><a class="nav-link" href="php/rendelesek.php">Admin rendelések</a></li>
                </ul>
           
 <?php endif; ?>
@@ -262,101 +227,75 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 </nav>
     </header>
+    <section class="contact.section">
+        <h2>Kapcsolat</h2>
+        <p>Ha szeretne kapcsolatba lépni velünk, kérjük, küldjön üzenetet az alábbi elérhetőségek egyikén:</p>
+        <ul>
+            <li>Email: gypowinery@gmail.com</li>
+            <li>Telefon: +36 30 123 4567</li>
+            <li>Cím: 2211 Csévharaszt, Kossuth Lajos utca 12.</li>
+        </ul>
+    </section>
 
-    <main class="container my-5">
-        <!-- Első szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Gypo Winery – A Borok Művészete</h1>
-                <h2>Üdvözöljük a Gypo Winery-nél!</h2>
-                <p>Fedezze fel a kiváló minőségű boraink világát, ahol a hagyomány és a modern technológia találkozik! Borkészítésünk során a természet adta legjobb alapanyagokat használjuk, hogy minden palackunkban a terroir és a szenvedély esszenciáját örökítsük meg.</p>
-                <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
+    <!-- Contact Form -->
+    <section class="contact-section py-5">
+    <div class="container">
+        <h3 class="text-center mb-4 text-primary">Küldjön nekünk üzenetet!</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <form action="https://api.web3forms.com/submit" method="POST" class="p-4 shadow rounded bg-white">
+                    <input type="hidden" name="access_key" value="a058a000-92b7-445f-9d13-e75f1cee5a04">
+                    <div class="mb-3">
+                        <label for="firstname" class="form-label">Keresztnév:</label>
+                        <input type="text" id="firstname" name="firstname" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">Vezetéknév:</label>
+                        <input type="text" id="lastname" name="lastname" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail cím:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Üzenet:</label>
+                        <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">Küldés</button>
+                </form>
             </div>
-            <div class="col-md-6">
-                <img src="kepek/borpince.jpg" alt="Borkóstoló" class="img-fluid rounded">
-            </div>
-        </section>
+        </div>
+    </div>
+</section>
+<section class="house-image-section text-center">
+        <h3>A borászatunk</h3>
+        <img src="kepek/hazkep.png" alt="Gypo Winery Ház" class="img-fluid rounded shadow-lg" style="max-width: 50%; height: auto; margin: 20px 0;">
+    </section>
 
-        <!-- Második szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6 order-md-2">
-                <h1>Látogatások és Kóstolók</h1>
-                <p>Fedezze fel borászatunkat személyesen! Csoportos és egyéni kóstolóink során lehetősége van megismerkedni a borkészítés folyamatával, valamint megkóstolni a legújabb borainkat. Foglaljon időpontot most!</p>
-            </div>
-            <div class="col-md-6 order-md-1">
-                <img src="kepek/borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
-            </div>
-        </section>
 
-        <!-- Harmadik szekció -->
-        <section class="row align-items-center mb-5">
-            <div class="col-md-6">
-                <h1>Hírek és Események</h1>
-                <p>Tartsa velünk a lépést! Friss hírek, események és különleges ajánlatok várják Önt. Ne hagyja ki a jövőbeli borfesztiválokat és workshopokat!</p>
-            </div>
-            <div class="col-md-6">
-                <img src="kepek/istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
-            </div>
-        </section>
-    </main>
+    <!-- Embedded Map -->
+    <section>
+        <h3>Találjon meg minket itt:</h3>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11094.41825447772!2d19.432318016154997!3d47.377823500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741cb7e4a6b2749%3A0xf7e4df83adf6f1e5!2sCs%C3%A9vharaszt%2C%20Kossuth%20Lajos%20u.%2012%2C%202212!5e0!3m2!1shu!2shu!4v1709056000000" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </section>
 
-    <footer class="text-center py-3">
-        <p>Johann Wolfgang von Goethe: „Az élet túl rövid ahhoz, hogy rossz bort igyunk.”</p>
+    <footer>
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
 
-    <!-- Kosár panel -->
-    <div id="cartPanel" class="cart-panel" style="display:none;">
-        <div class="cart-header">
-            <h2>Kosár</h2>
-            <button id="closeCartBtn" class="close-btn">X</button>
-        </div>
-        <div id="cartContent" class="cart-content">
-            <!-- Kosár tartalom dinamikusan kerül ide -->
-        </div>
-    </div>
-
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
-    
-    <?php if (isset($_SESSION['login_message'])): ?>
-    <div id="loginPopup" class="popup-container">
-        <p><?php echo $_SESSION['login_message']; ?></p>
-        <button class="popup-close" onclick="closePopup('loginPopup')">OK</button>
-    </div>
-    <?php unset($_SESSION['login_message']); ?>
-<?php endif; ?>
-
-<?php if (isset($_SESSION['logout_message'])): ?>
-    <div id="logoutPopup" class="popup-container">
-        <p><?php echo $_SESSION['logout_message']; ?></p>
-        <button class="popup-close" onclick="closePopup('logoutPopup')">OK</button>
-    </div>
-    <?php unset($_SESSION['logout_message']); ?>
-<?php endif; ?>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (document.getElementById("loginPopup")) {
-            document.getElementById("loginPopup").style.display = "block";
-            setTimeout(function() { closePopup("loginPopup"); }, 3000);
-        }
-        if (document.getElementById("logoutPopup")) {
-            document.getElementById("logoutPopup").style.display = "block";
-            setTimeout(function() { closePopup("logoutPopup"); }, 1350);
-        }
-    });
-
-    function closePopup(id) {
-        var popup = document.getElementById(id);
-        if (popup) {
-            popup.style.display = "none";
-        }
-    }
-</script>
-
-</body>
-
+    <script src="js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="js/translate.js"></script>
+    <script src="js/darkmode.js"></script>
 </html>

@@ -51,7 +51,7 @@ $conn->close();
 <head>
   <title>GypoWinery Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="login.css">
+  <link rel="stylesheet" type="text/css" href="css/login.css">
   
   <style>
     body {
