@@ -100,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Checkout</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
     <script>
         document.addEventListener("DOMContentLoaded", function() {
     // Megvárjuk, amíg a JavaScript betölti a zászlókat
@@ -220,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     </div>
 </div>
 </main>
-<script src="darkmode.js"></script>
-<script src="translate.js"></script>
+<script src="../js/darkmode.js"></script>
+<script src="../js/translate.js"></script>
 </body>
 </html>

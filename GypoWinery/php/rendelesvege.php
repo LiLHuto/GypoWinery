@@ -24,8 +24,8 @@ $user_name = $user['keresztnev'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Rendelés Vége</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
 </head>
 <body class="rendelesvege-page">
                       <!-- Zászlók helye (ez JavaScript tölti be) -->
@@ -82,8 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
 </body>
 </html>

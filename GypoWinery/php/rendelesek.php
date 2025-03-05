@@ -6,6 +6,48 @@ if (!isset($_SESSION['user_id']) || $_SESSION['usertype'] !== 'admin') {
     echo "<script>alert('Nincs jogosultságod az oldal megtekintéséhez!'); window.location.href='index.php';</script>";
     exit();
 }
+// Ha POST érkezik a rendelés jóváhagyására
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_order_id'])) {
+    $orderId = intval($_POST['approve_order_id']);
+
+    // Rendelés email címének lekérdezése
+    $stmt = $pdo->prepare("SELECT login.email FROM rendelesek JOIN login ON rendelesek.user_id = login.ID WHERE rendelesek.ID = ?");
+    $stmt->execute([$orderId]);
+    $order = $stmt->fetch();
+
+    if ($order) {
+        $user_email = $order['email'];
+
+        // Státusz frissítése 'completed'-re
+        $update = $pdo->prepare("UPDATE rendelesek SET statusz = 'completed' WHERE ID = ?");
+        $update->execute([$orderId]);
+
+        // Web3Forms e-mail küldés
+        $api_key = "a058a000-92b7-445f-9d13-e75f1cee5a04";
+
+        $post_fields = http_build_query([
+            "access_key" => $api_key,
+            "subject" => "Rendelésed úton van - Gypo Winery",
+            "from_name" => "Gypo Winery",
+            "from_email" => "gypowinery@gmail.com",
+            "replyto" => "$user_email",
+            "to" => $user_email,
+            "message" => "Kedves Vásárlónk,\n\nÖrömmel értesítünk, hogy rendelésedet feldolgoztuk, és az már úton van hozzád!\n\nHamarosan megérkezik.\n\nÜdvözlettel,\nGypo Winery"
+        ]);
+
+        $ch = curl_init("https://api.web3forms.com/submit");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        echo "<script>alert('Rendelés jóváhagyva és értesítő email elküldve!'); window.location.href='rendelesek.php';</script>";
+        exit();
+    } else {
+        echo "<script>alert('Hiba: Nem található a rendeléshez tartozó email cím.');</script>";
+    }
+}
 
 // Rendelések lekérése az adatbázisból
 $query = "SELECT rendelesek.ID, login.vezeteknev, login.keresztnev, rendelesek.rendeles_datuma, rendelesek.statusz 
@@ -102,15 +144,15 @@ $rendelesek = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Rendelések</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="darkmode.css">
-    <link rel="stylesheet" href="user-menu.css">
-    <link rel="stylesheet" href="darkmodecard.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="stylesheet" href="../css/user-menu.css">
+    <link rel="stylesheet" href="../css/darkmodecard.css">
 </head>
 <body>
     <header class="text-center py-3">
-        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <div id="flags-container"></div>
 
@@ -171,43 +213,45 @@ $rendelesek = $stmt->fetchAll();
     </header>
 
     <div class="container mt-5">
-        <h2 class="text-center">Rendelések kezelése</h2>
-        <table class="table table-bordered table-striped mt-4">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Vevő neve</th>
-                    <th>Rendelés dátuma</th>
-                    <th>Állapot</th>
-                    <th>Művelet</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (count($rendelesek) > 0): ?>
-                    <?php foreach ($rendelesek as $row): ?>
-                        <tr>
-                            <td><?php echo $row['ID']; ?></td>
-                            <td><?php echo htmlspecialchars($row['vezeteknev'] . ' ' . $row['keresztnev']); ?></td>
-                            <td><?php echo $row['rendeles_datuma']; ?></td>
-                            <td class="status" id="status_<?php echo $row['ID']; ?>"> <?php echo ucfirst($row['statusz']); ?></td>
-                            <td>
-    <?php if ($row['statusz'] === 'pending'): ?>
-        <button class="btn btn-success approve-btn" data-id="<?php echo $row['ID']; ?>">Jóváhagyás</button>
-    <?php else: ?>
-        <span class="text-success">Teljesítve</span>
-    <?php endif; ?>
-</td>
-
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+    <h2 class="text-center">Rendelések kezelése</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Vevő neve</th>
+                <th>Rendelés dátuma</th>
+                <th>Állapot</th>
+                <th>Művelet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (count($rendelesek) > 0): ?>
+                <?php foreach ($rendelesek as $row): ?>
                     <tr>
-                        <td colspan="5" class="text-center">Nincs megjeleníthető rendelés.</td>
+                        <td><?php echo $row['ID']; ?></td>
+                        <td><?php echo htmlspecialchars($row['vezeteknev'] . ' ' . $row['keresztnev']); ?></td>
+                        <td><?php echo $row['rendeles_datuma']; ?></td>
+                        <td><?php echo ucfirst($row['statusz']); ?></td>
+                        <td>
+                            <?php if ($row['statusz'] === 'pending'): ?>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="approve_order_id" value="<?php echo $row['ID']; ?>">
+                                    <button type="submit" class="btn btn-success">Jóváhagyás</button>
+                                </form>
+                            <?php else: ?>
+                                <span class="text-success">Teljesítve</span>
+                            <?php endif; ?>
+                        </td>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5" class="text-center">Nincs megjeleníthető rendelés.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -239,9 +283,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="darkmode.js"></script>
-    <script src="translate.js"></script>
-    <script src="user-menu.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/darkmode.js"></script>
+    <script src="../js/translate.js"></script>
+    <script src="../js/user-menu.js"></script>
 </body>
 </html>
