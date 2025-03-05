@@ -8,10 +8,10 @@ include('index_config.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="js/user-menu.css"> 
-    <link rel="stylesheet" href="js/darkmode.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user-menu.css"> 
+    <link rel="stylesheet" href="../css/darkmode.css">
     
 
 
@@ -177,7 +177,7 @@ if (isset($_SESSION['logout_message'])) {
 ?>
     <header class="text-center py-3">
     <a href="index.php">
-    <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
+    <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
                 <!-- Zászlók helye (ez JavaScript tölti be) -->
                 <div id="flags-container"></div>
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav text-center">
-            <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
                 <li class="nav-item"><a class="nav-link" href="tortenet.php">Történet</a></li>
                 <li class="nav-item"><a class="nav-link" href="boraink.php">Boraink</a></li>
                 <li class="nav-item"><a class="nav-link" href="kapcsolat.php">Kapcsolat</a></li>
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
+                    <img src="../kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
                     <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="tortenet.php" class="btn btn-primary">Rólunk</a>
             </div>
             <div class="col-md-6">
-                <img src="kepek/borpince.jpg" alt="Borkóstoló" class="img-fluid rounded">
+                <img src="../kepek/borpince.jpg" alt="Borkóstoló" class="img-fluid rounded">
             </div>
         </section>
 
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <p>Fedezze fel borászatunkat személyesen! Csoportos és egyéni kóstolóink során lehetősége van megismerkedni a borkészítés folyamatával, valamint megkóstolni a legújabb borainkat. Foglaljon időpontot most!</p>
             </div>
             <div class="col-md-6 order-md-1">
-                <img src="kepek/borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
+                <img src="../kepek/borkostolo-borkostolas-pince.webp" alt="Borkóstoló esemény" class="img-fluid rounded">
             </div>
         </section>
 
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <p>Tartsa velünk a lépést! Friss hírek, események és különleges ajánlatok várják Önt. Ne hagyja ki a jövőbeli borfesztiválokat és workshopokat!</p>
             </div>
             <div class="col-md-6">
-                <img src="kepek/istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
+                <img src="../kepek/istock-1126184071-1140x760-1.jpg" alt="Kapcsolat" class="img-fluid rounded">
             </div>
         </section>
     </main>
@@ -316,10 +316,10 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
     
     <?php if (isset($_SESSION['login_message'])): ?>
     <div id="loginPopup" class="popup-container">

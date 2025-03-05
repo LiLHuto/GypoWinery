@@ -9,10 +9,10 @@ include('config.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Történet</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
-    <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="../css/darkmode.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -120,7 +120,7 @@ include('config.php');
 <body>
 <header class="text-center py-3">
 <a href="index.php">
-    <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
+    <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
                     <!-- Zászlók helye (ez JavaScript tölti be) -->
                     <div id="flags-container"></div>
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
+                    <img src="../kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
                     <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>A GypoWinery története a csodálatos Csévharaszti vidéken kezdődött, ahol a borászat hagyományai évszázadokra nyúlnak vissza. A családunk generációk óta foglalkozik szőlőtermesztéssel, és a szenvedélyünk a borkészítés iránt öröklődött. Az első szőlőültetvényünket 1990-ben alapítottuk, kezdetben csak kis mennyiségben készítettük borainkat, de a minőség és a helyi ízek iránti elkötelezettségünk hamarosan meghozta gyümölcsét.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="kepek/borkezdete 1.jpg" alt="A borászat kezdetei" class="img-fluid rounded shadow">
+                    <img src="../kepek/borkezdete 1.jpg" alt="A borászat kezdetei" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>Az évek során a GypoWinery folyamatosan fejlődött. 2005-ben modern borkészítő technológiákkal bővítettük üzemünket, ami lehetővé tette számunkra, hogy még finomabb és változatosabb borokat készítsünk. A hagyományos módszerek mellett a legújabb tudományos megközelítéseket is alkalmazzuk, hogy a lehető legjobb minőséget érjük el.</p>
                 </div>
                 <div class="col-md-6 order-md-1">
-                    <img src="kepek/borokfejlodes 1.jpeg" alt="A borászat fejlődése" class="img-fluid rounded shadow">
+                    <img src="../kepek/borokfejlodes 1.jpeg" alt="A borászat fejlődése" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <h1 class="h3 fw-bold">Küldetésünk</h1>
             <div class="text-center">
                 <p>Célunk, hogy bemutassuk a Csévharaszti terroir egyedülálló ízvilágát. Minden palack borunkban a szőlő, a föld és a helyi környezet szelleme tükröződik. Hiszünk abban, hogy a borkészítés művészet, ahol minden egyes üveg egy történetet mesél el.</p>
-                <img src="kepek/borkuldetes 1.jpg" alt="Küldetésünk" class="img-fluid rounded shadow">
+                <img src="../kepek/borkuldetes 1.jpg" alt="Küldetésünk" class="img-fluid rounded shadow">
             </div>
         </section>
 
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>A GypoWinery elkötelezett a fenntarthatóság mellett. Szőlőinket természetbarát módszerekkel gondozzuk, és figyelmet fordítunk a helyi közösség támogatására is. Rendszeresen részt veszünk helyi rendezvényeken, és együttműködünk más borászokkal, hogy népszerűsítsük a Csévharaszti borászatot.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="kepek/borkozosseg 1.jpg" alt="Közösség és Fenntarthatóság" class="img-fluid rounded shadow">
+                    <img src="../kepek/borkozosseg 1.jpg" alt="Közösség és Fenntarthatóság" class="img-fluid rounded shadow">
                 </div>
             </div>
         </section>
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <h1 class="h3 fw-bold">Jövőnk</h1>
             <div class="text-center">
                 <p>A jövőnk fényes, és szeretnénk továbbra is a borászat iránti szenvedélyünket megosztani Önökkel. Tervezünk új borfajták bevezetését és borászatunk bővítését, hogy a lehető legjobb élményt nyújthassuk a látogatóknak.</p>
-                <img src="kepek/borfejlodes.jpeg" alt="Jövőnk" class="img-fluid rounded shadow">
+                <img src="../kepek/borfejlodes.jpeg" alt="Jövőnk" class="img-fluid rounded shadow">
             </div>
         </section>
 
@@ -281,10 +281,10 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
 
 
 </body>

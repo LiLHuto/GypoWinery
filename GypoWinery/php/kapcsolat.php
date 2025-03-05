@@ -9,10 +9,10 @@ include('config.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Kapcsolat</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
-    <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="../css/darkmode.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -143,7 +143,7 @@ body.dark-mode label {
 <body>
 <header class="text-center py-3">
 <a href="index.php">
-    <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
+    <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
                     <!-- Zászlók helye (ez JavaScript tölti be) -->
                     <div id="flags-container"></div>
@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
+                    <img src="../kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
                     <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </section>
 <section class="house-image-section text-center">
         <h3>A borászatunk</h3>
-        <img src="kepek/hazkep.png" alt="Gypo Winery Ház" class="img-fluid rounded shadow-lg" style="max-width: 50%; height: auto; margin: 20px 0;">
+        <img src="../kepek/hazkep.png" alt="Gypo Winery Ház" class="img-fluid rounded shadow-lg" style="max-width: 50%; height: auto; margin: 20px 0;">
     </section>
 
 
@@ -294,8 +294,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="js/translate.js"></script>
-    <script src="js/darkmode.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
 </html>

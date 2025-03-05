@@ -93,9 +93,9 @@ $_SESSION['final_total'] = $final_total;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Kosár</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="darkmode.css">
-    <link rel="stylesheet" href="rend.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="stylesheet" href="../css/rend.css">
 </head>
 <body class="rendeles-page">
     <header class="text-center py-3">
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="boraink.php" class="btn btn-primary">Vissza a borainkhoz</a>
         <?php endif; ?>
     </div>
-    <script src="translate.js"></script>
-    <script src="darkmode.js"></script>
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
 </body>
 </html>

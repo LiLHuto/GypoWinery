@@ -66,11 +66,11 @@ if (isset($_POST['delete_wine'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Borok Kezelése</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="darkmode.css">
-    <link rel="stylesheet" href="user-menu.css">
-    <link rel="stylesheet" href="darkmodecard.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="stylesheet" href="../css/user-menu.css">
+    <link rel="stylesheet" href="../css/darkmodecard.css">
 
     <style>
         body {
@@ -154,7 +154,7 @@ if (isset($_POST['delete_wine'])) {
 </head>
 <body>
     <header class="text-center py-3">
-        <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
+        <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo">
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
         <div id="flags-container"></div>
 
@@ -259,9 +259,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <p>&copy; 2024 Gypo Winery. Minden jog fenntartva.</p>
     </footer>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="darkmode.js"></script>
-    <script src="translate.js"></script>
-    <script src="user-menu.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/darkmode.js"></script>
+    <script src="../js/translate.js"></script>
+    <script src="../js/user-menu.js"></script>
 </body>
 </html>

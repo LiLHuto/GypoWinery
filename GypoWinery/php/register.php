@@ -47,7 +47,7 @@ $conn->close();
 <head>
   <title>GypoWinery Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="login.css">
+  <link rel="stylesheet" type="text/css" href="../css/login.css">
   <style>
       /* A kép tartója (kitölti a piros területet) */
       #signupImageContainer {
@@ -103,7 +103,7 @@ $conn->close();
 
 <!-- A megjelenítendő kép -->
 <div id="signupImageContainer">
-    <img src="kepek/dicaprio.png" alt="Signup Image">
+    <img src="../kepek/dicaprio.png" alt="Signup Image">
 </div>
 
 <script>

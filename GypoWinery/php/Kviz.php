@@ -10,11 +10,11 @@ include('config.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gypo Winery - Kvíz</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="user-menu.css"> <!-- Felhasználói menü stílus -->
-    <link rel="stylesheet" href="darkmode.css">
-    <script defer src="kviz.js"></script>
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user-menu.css"> <!-- Felhasználói menü stílus -->
+    <link rel="stylesheet" href="../css/darkmode.css">
+    <script defer src="../js/kviz.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -122,7 +122,7 @@ include('config.php');
 <body>
 <header class="text-center py-3">
 <a href="index.php">
-    <img src="kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
+    <img src="../kepek/gypo2-removebg-preview.png" alt="Gypo Winery Logo" class="logo"></a>
         <h1><a href="index.php" class="text-decoration-none">Gypo Winery</a></h1>
                     <!-- Zászlók helye (ez JavaScript tölti be) -->
                     <div id="flags-container"></div>
@@ -170,11 +170,11 @@ document.addEventListener("DOMContentLoaded", function() {
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav text-center">
-            <li class="nav-item"><a class="nav-link" href="php/index.php">Főoldal</a></li>
-                <li class="nav-item"><a class="nav-link" href="php/tortenet.php">Történet</a></li>
-                <li class="nav-item"><a class="nav-link" href="php/boraink.php">Boraink</a></li>
-                <li class="nav-item"><a class="nav-link" href="php/kapcsolat.php">Kapcsolat</a></li>
-                <li class="nav-item"><a class="nav-link" href="php/Kviz.php">Kviz</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
+                <li class="nav-item"><a class="nav-link" href="tortenet.php">Történet</a></li>
+                <li class="nav-item"><a class="nav-link" href="boraink.php">Boraink</a></li>
+                <li class="nav-item"><a class="nav-link" href="kapcsolat.php">Kapcsolat</a></li>
+                <li class="nav-item"><a class="nav-link" href="Kviz.php">Kviz</a></li>
             </ul>
         </div>
         <?php if (isset($_SESSION['usertype'])&& ($_SESSION['usertype'] === 'admin')): ?>
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
+                    <img src="../kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
                     <li><a class="dropdown-item" href="php/rendeles.php">Rendelés</a></li>
@@ -227,9 +227,9 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
-    <script src="js/translate.js"></script>
-    <script src="js/darkmode.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/user-menu.js"></script> <!-- Felhasználói menü funkciók -->
+    <script src="../js/translate.js"></script>
+    <script src="../js/darkmode.js"></script>
 </body>
 </html>
