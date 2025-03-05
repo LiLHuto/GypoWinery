@@ -521,7 +521,7 @@ body.dark-mode .btn-primary {
 
 /* Hover állapot */
 body.dark-mode .btn-primary:hover {
-    background-color: #ff85c1; /* Világosabb rózsaszín */
+    background-color: #00000000; /* Világosabb rózsaszín */
 }
 
 /* ALAP FORMÁZÁS */
