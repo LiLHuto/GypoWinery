@@ -180,8 +180,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <?php if (isset($_SESSION['usertype'])&& ($_SESSION['usertype'] === 'admin')): ?>
                
                <ul class="navbar-nav text-center">
-                   <li class="nav-item"><a class="nav-link" href="php/admin_borok.php">Admin</a></li>
-                   <li class="nav-item"><a class="nav-link" href="php/rendelesek.php">Admin rendelések</a></li>
+                   <li class="nav-item"><a class="nav-link" href="admin_borok.php">Admin</a></li>
+                   <li class="nav-item"><a class="nav-link" href="rendelesek.php">Admin rendelések</a></li>
                </ul>
           
 <?php endif; ?>
