@@ -262,6 +262,8 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         </section>
 
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@farkasleventeandras/video/7299865332431260961" data-video-id="7299865332431260961" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@farkasleventeandras" href="https://www.tiktok.com/@farkasleventeandras?refer=embed">@farkasleventeandras</a> A legendás HAMVAS Béla; Borról és Szerelemről!🍷<a title="drfarkasleventeandrás" target="_blank" href="https://www.tiktok.com/tag/drfarkasleventeandr%C3%A1s?refer=embed">#drfarkasleventeandrás</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a target="_blank" title="♬ eredeti hang - Dr. Farkas Levente András" href="https://www.tiktok.com/music/eredeti-hang-7299865360231090976?refer=embed">♬ eredeti hang - Dr. Farkas Levente András</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
         <div class="text-center py-4 bg-light rounded shadow">
             <p class="fs-5">Fedezze fel a GypoWinery-t, és legyen részese a boraink történetének! Kóstolja meg a szenvedélyünket és hagyományainkat minden egyes palackban!</p>
             <a href="boraink.php" class="btn btn-primary btn-lg">Ismerje meg borainkat</a>
