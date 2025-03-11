@@ -192,15 +192,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     <img src="../kepek/user-icon.png" alt="Felhasználó ikon" class="icon" width="30">
                 </button>
                 <ul class="dropdown-menu text-center" aria-labelledby="userMenu">
-                    <li><a class="dropdown-item" href="php/rendeles.php">Rendelés</a></li>
-                    <li><a class="dropdown-item" href="php/logout.php">Kijelentkezés</a></li>
+                    <li><a class="dropdown-item" href="rendeles.php">Rendelés</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Kijelentkezés</a></li>
                 </ul>
             </div>
 
         <?php else: ?>
             <ul class="navbar-nav mt-3 text-center">
-                <li class="nav-item"><a class="nav-link" href="php/login.php">Bejelentkezés</a></li>
-                <li class="nav-item"><a class="nav-link" href="php/register.php">Regisztráció</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés</a></li>
+                <li class="nav-item"><a class="nav-link" href="register.php">Regisztráció</a></li>
             </ul>
         <?php endif; ?>
     </div>
