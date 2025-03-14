@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['ID'];
             $_SESSION['usertype'] = $row['usertype'];
 
-            echo "Logged in as: " . htmlspecialchars($row["usertype"]);
+            echo "" . htmlspecialchars($row["usertype"]);
 
             if ($row["usertype"] === "admin") {
                 header("Location: admin_borok.php");
