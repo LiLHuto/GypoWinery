@@ -48,6 +48,7 @@ $conn->close();
   <title>GypoWinery Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/login.css">
+  <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
   <style>
       /* A kép tartója (kitölti a piros területet) */
       #signupImageContainer {

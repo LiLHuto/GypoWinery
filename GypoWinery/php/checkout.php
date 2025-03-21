@@ -102,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
     <title>Gypo Winery - Checkout</title>
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
     <script>
         document.addEventListener("DOMContentLoaded", function() {
     // Megvárjuk, amíg a JavaScript betölti a zászlókat

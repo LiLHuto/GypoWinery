@@ -96,6 +96,7 @@ $_SESSION['final_total'] = $final_total;
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/darkmode.css">
     <link rel="stylesheet" href="../css/rend.css">
+    <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
 </head>
 <body class="rendeles-page">
     <header class="text-center py-3">
