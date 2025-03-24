@@ -71,6 +71,7 @@ if (isset($_POST['delete_wine'])) {
     <link rel="stylesheet" href="../css/darkmode.css">
     <link rel="stylesheet" href="../css/user-menu.css">
     <link rel="stylesheet" href="../css/darkmodecard.css">
+    <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
 
     <style>
         body {

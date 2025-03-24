@@ -52,6 +52,7 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/user-menu.css"> <!-- Felhasználói menü stílus -->
     <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
     <style>
         body {
             font-family: 'Arial', sans-serif;

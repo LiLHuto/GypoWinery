@@ -12,6 +12,7 @@ include('index_config.php');
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/user-menu.css"> 
     <link rel="stylesheet" href="../css/darkmode.css">
+    <link rel="shortcut icon" href="../kepek/gypo2-removebg-preview.png" type="image/x-icon">
     
 
 
