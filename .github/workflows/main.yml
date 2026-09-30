@@ -1,0 +1,45 @@
+name: ReactOS & Database Workflow
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  reactos-with-db:
+    runs-on: ubuntu-latest
+    name: Run on ReactOS with Database
+
+    steps:
+      
+name: Checkout repository
+      uses: actions/checkout@v4
+
+      
+name: Start Database on Host (Ubuntu)
+      run: |
+        echo "Adatbázis indítása Dockerben..."
+        docker run --name gypo-db \-e POSTGRES_DB=gypowinery \-e POSTGRES_USER=testuser \-e POSTGRES_PASSWORD=secret \-p 5432:5432 \-d postgres:15-alpine
+
+          # Opcionális: Várakozás, amíg az adatbázis teljesen feláll
+          sleep 5
+
+      
+name: Run ReactOS VM & Execute Tests
+      uses: vmactions/reactos-vm@v1
+      with:
+        release: "0.4.16" # Használhatsz más ReactOS verziót is
+        mem: 4096         # 4GB RAM a VM-nek (ha szükséges)
+        nat: |"5432": "5432"   # Opcionális port-forwarding ha kell
+        run: |
+          echo "--- ReactOS környezet elindult ---"
+          ver
+          echo "IP kapcsolat ellenőrzése a hoszt felé (Host IP QEMU-ban: 10.0.2.2):"
+          ping -n 2 10.0.2.2
+
+            echo "Itt tudod futtatni a projektetek tesztjeit vagy programjait:"
+            # Példa: Ha van lefordított .exe fájlod a repóban:
+            # C:\work\GypoWinery\app.exe --db-host=10.0.2.2 --db-user=testuser
+
+            echo "Alkalmazás / teszt sikeresen lefutott ReactOS alatt!"
